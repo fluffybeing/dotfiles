@@ -9,9 +9,9 @@
 #
 
 # Set computer name
-COMPUTERNAME="Nick Plekhanov's MBP"
-HOSTNAME='mbp'
-LOCALHOSTNAME='mbp'
+# COMPUTERNAME="Nick Plekhanov's MBP"
+# HOSTNAME='mbp'
+# LOCALHOSTNAME='mbp'
 
 # Ask for the administrator password upfront
 sudo -v
@@ -72,11 +72,11 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Disable some menu bar icons: Time Machine, Volume and User
-for domain in ~/Library/Preferences/ByHost/com.apple.stytemuiserver.*; do
-  "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
-  "/System/Library/CoreServices/Menu Extras/User.menu"
-done
+# for domain in ~/Library/Preferences/ByHost/com.apple.stytemuiserver.*; do
+#   "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+#   "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+#   "/System/Library/CoreServices/Menu Extras/User.menu"
+# done
 
 ###############################################################################
 # Activity Monitor                                                            #

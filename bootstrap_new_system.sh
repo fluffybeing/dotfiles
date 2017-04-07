@@ -4,7 +4,7 @@
 # Taken from https://github.com/paulmillr/dotfiles
 
 # A simple script for setting up OSX dev environment.
-dev="$HOME/Code/dotfiles"
+dev="$HOME/Code"
 pushd .
 mkdir -p $dev
 cd $dev
@@ -47,7 +47,8 @@ if [[ `uname` == 'Darwin' ]]; then
         print_result $? 'Agree with the XCode Command Line Tools licence'
 
       fi
-
+      # set default preferences
+      sh osx/sensible_defaults.sh
   fi
 
   echo 'Tweaking OS X...'
@@ -98,3 +99,4 @@ read give_links
 [[ "$give_links" == 'y' ]] && open_apps
 
 popd
+

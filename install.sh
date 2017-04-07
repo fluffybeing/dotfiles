@@ -5,7 +5,7 @@ echo 'You might need to change your default shell to zsh: `chsh -s /bin/zsh` (or
 # Install ZSH
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
-dir="$HOME/code/personal"
+dir="$HOME/Code/personal"
 mkdir -p $dir
 cd $dir
 
