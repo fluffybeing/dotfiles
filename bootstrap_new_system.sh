@@ -19,8 +19,8 @@ if [[ `uname` == 'Darwin' ]]; then
       brew install htop hub
       brew install zsh
       brew install coreutils
-      git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-      git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
+      # git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+      # git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
 
       # Install xcode command line
       sh osx/xcode_setup.sh
