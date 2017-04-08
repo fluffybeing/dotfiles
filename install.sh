@@ -16,4 +16,4 @@ cd $dir
 # Clone the repo from github a
 git clone https://github.com/rahulrrixe/dotfiles.git
 cd dotfiles
-sudo bash bin/symlink-dotfiles.sh
+sudo bash bootstrap_new_system.sh

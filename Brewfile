@@ -49,13 +49,11 @@ cask 'google-chrome'
 cask 'google-drive'
 cask 'gpgtools'
 cask 'iterm2'
-cask 'quip'
 cask 'sequel-pro'
 cask 'shuttle'
 cask 'slack'
 cask 'sublime-text'
 cask 'tower'
-cask 'transmit'
 cask 'vagrant'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
@@ -70,11 +68,10 @@ cask 'quicklook-csv'
 cask 'qlstephen'
 
 # Fonts
-cask 'font-source-code-pro-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Install Mac App Store apps
-appstore 'Xcode'
+# appstore 'Xcode'
 
