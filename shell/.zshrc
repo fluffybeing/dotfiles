@@ -96,8 +96,6 @@ source $ZSH/oh-my-zsh.sh
 # Source local extra (private) settings specific to machine if it exists
 [ -f ~/.zsh.local ] && source ~/.zsh.local
 
-# npm tab completion
-. <(npm completion)
+# git tab completion
+. <(git completion)
 
-# fortune: brew install fortune ponysay
-fortune | ponysay

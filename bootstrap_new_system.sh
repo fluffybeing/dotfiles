@@ -14,18 +14,10 @@ if [[ `uname` == 'Darwin' ]]; then
   which -s brew
   if [[ $? != 0 ]]; then
     echo 'Installing Homebrew...'
-      ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+      ruby -e "$(/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install)"
       brew update
-      brew install htop hub
-      brew install zsh
-      brew install coreutils
-      # git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-      # git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
-
-      # Install xcode command line
-      sh osx/xcode_setup.sh
-      # set default preferences
-      sh osx/sensible_defaults.sh
+      brew tap Homebrew/bundle
+      brew bundle
   fi
 fi
 
@@ -39,38 +31,38 @@ if [[ `uname` != 'Darwin' ]]; then
   fi
 fi
 
-echo 'Enter new hostname of the machine (e.g. macbook-rahul)'
-  read hostname
-  echo "Setting new hostname to $hostname..."
-  scutil --set HostName "$hostname"
-  compname=$(sudo scutil --get HostName | tr '-' '.')
-  echo "Setting computer name to $compname"
-  scutil --set ComputerName "$compname"
 
-echo 'Checking for SSH key, generating one if it does not exist...'
-  [[ -f '~/.ssh/id_rsa.pub' ]] || ssh-keygen -t rsa
+# For MacOS
+if [[ `uname` == 'Darwin' ]]; then
+  echo 'Enter new hostname of the machine (e.g. macbook-rahul)'
+    read hostname
+    echo "Setting new hostname to $hostname..."
+    scutil --set HostName "$hostname"
+    compname=$(sudo scutil --get HostName | tr '-' '.')
+    echo "Setting computer name to $compname"
+    scutil --set ComputerName "$compname"
 
-echo 'Copying public key to clipboard. Paste it into your Github account...'
-  [[ -f '~/.ssh/id_rsa.pub' ]] && cat '~/.ssh/id_rsa.pub' | pbcopy
-  open 'https://github.com/account/ssh'
+  echo 'Checking for SSH key, generating one if it does not exist...'
+    [[ -f '~/.ssh/id_rsa.pub' ]] || ssh-keygen -t rsa
 
-echo 'Symlinking config files...'
-  source 'bin/symlink-dotfiles.sh'
+  echo 'Copying public key to clipboard. Paste it into your Github account...'
+    [[ -f '~/.ssh/id_rsa.pub' ]] && cat '~/.ssh/id_rsa.pub' | pbcopy
+    open 'https://github.com/account/ssh'
 
-open_apps() {
-  echo 'Install apps:'
-  echo 'Dropbox:'
-  open https://www.dropbox.com
-  echo 'Chrome:'
-  open https://www.google.com/intl/en/chrome/browser/
-  echo 'VLC:'
-  open http://www.videolan.org/vlc/index.html
-}
+  open_apps() {
+    echo 'Install apps:'
+    echo 'Dropbox:'
+    open https://www.dropbox.com
+    echo 'Chrome:'
+    open https://www.google.com/intl/en/chrome/browser/
+    echo 'VLC:'
+    open http://www.videolan.org/vlc/index.html
+  }
 
-echo 'Should I give you links for system applications (e.g. Skype, Tower, VLC)?'
-echo 'n / y'
-read give_links
-[[ "$give_links" == 'y' ]] && open_apps
-
-popd
+  echo 'Should I give you links for system applications (e.g. Skype, Tower, VLC)?'
+  echo 'n / y'
+  read give_links
+  [[ "$give_links" == 'y' ]] && open_apps
+  popd
+fi
 

@@ -20,19 +20,19 @@ brew 'findutils'
 brew 'bash'
 
 # Install more recent versions of some macOS tools
-brew 'homebrew/dupes/grep'
+brew 'grep'
 
 # Install Binaries
 brew 'awscli'
 brew 'git'
 brew 'hub'
+brew 'htop'
 brew 'tree'
 brew 'mackup'
 brew 'mas'
 brew 'trash'
 brew 'wget'
 brew 'rbenv'
-brew 'rbenv-gem-rehash'
 brew 'readline'
 brew 'ruby-build'
 brew 'cocoapods'
@@ -70,12 +70,11 @@ cask 'quicklook-csv'
 cask 'qlstephen'
 
 # Fonts
-cask 'font-sauce-code-powerline'
+cask 'font-source-code-pro-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Install Mac App Store apps
-mas 'Sketch', id: 402476602
-appstore Xcode
+appstore 'Xcode'
 
