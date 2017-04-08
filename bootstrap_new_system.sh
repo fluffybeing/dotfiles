@@ -23,36 +23,10 @@ if [[ `uname` == 'Darwin' ]]; then
       git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
 
       # Install xcode command line
-      if ! xcode-select --print-path &> /dev/null; then
-
-        # Prompt user to install the XCode Command Line Tools
-        xcode-select --install &> /dev/null
-
-        # Wait until the XCode Command Line Tools are installed
-        until xcode-select --print-path &> /dev/null; do
-          sleep 5
-        done
-
-        print_result $? 'Install XCode Command Line Tools'
-
-        # Point the `xcode-select` developer directory to
-        # the appropriate directory from within `Xcode.app`
-        # https://github.com/alrra/dotfiles/issues/13
-        sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-        print_result $? 'Make "xcode-select" developer directory point to Xcode'
-
-        # Prompt user to agree to the terms of the Xcode license
-        # https://github.com/alrra/dotfiles/issues/10
-        sudo xcodebuild -license
-        print_result $? 'Agree with the XCode Command Line Tools licence'
-
-      fi
+      sh osx/xcode_setup.sh
       # set default preferences
       sh osx/sensible_defaults.sh
   fi
-
-  echo 'Tweaking OS X...'
-    source 'etc/osx.sh'
 fi
 
 # If on Linux, install zsh
