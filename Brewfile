@@ -60,6 +60,7 @@ cask 'vagrant'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'vlc'
+cask 'evernote'
 
 # Quicklook
 cask 'qlcolorcode'
