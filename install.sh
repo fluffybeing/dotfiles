@@ -1,7 +1,4 @@
-#!/usr/bin/env zsh
-
-
-# Taken from https://github.com/paulmillr/dotfiles
+#! /usr/bin/env zsh
 
 # A simple script for setting up OSX dev environment.
 dev="$HOME/Code/dotfiles"
@@ -49,8 +46,8 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # ZSH                                        #
     ##############################################
-    echo "ZSH setup"
-    if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
+    echo "Installing ZSH"
+    if [ -f /bin/zsh -o -f /usr/bin/zsh -o -f /usr/local/bin/zsh ]; then
       brew install zsh 
       brew install zsh-completions
     fi
@@ -63,13 +60,12 @@ if [[ `uname` == 'Darwin' ]]; then
     # zshrc                                      #
     ##############################################
     echo "Installing prezto \n"
-    exec zsh
     
     if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     fi
 
-    sh setopt EXTENDED_GLOB
+    setopt EXTENDED_GLOB
     for rcfile in ${ZDOTDIR:-$HOME}/.zprezto/runcoms/^README.md\(.N\); do
         ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
@@ -97,25 +93,21 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # OSX                                        #
     ##############################################
-    echo 'Do you want to install app from brew bundle?'
+    echo 'Do you want to reconfigure system setting?'
     echo 'n / y'
     read give_links
-        if [ "$give_links" == 'y' ]; then
-            echo "Set OSX defaults \n"
-            sh $dev/osx/sensible_defaults.sh 
-        fi
+        [[ "$give_links" == 'y' ]] && sh $dev/osx/sensible_defaults.sh 
     popd
-    
 
     ###############################################
     # SSH
     ###############################################
     echo 'Checking for SSH key, generating one if it does not exist...'
-    if [ ! -f '~/.ssh/id_rsa.pub' ]; then 
+    if [ ! -f '$HOME/.ssh/id_rsa.pub' ]; then 
         ssh-keygen -t rsa
 
         echo 'Copying public key to clipboard. Paste it into your Github account...'
-        [[ -f '~/.ssh/id_rsa.pub' ]] && cat '~/.ssh/id_rsa.pub' | pbcopy
+        [[ -f '$HOME/.ssh/id_rsa.pub' ]] && cat '$HOME/.ssh/id_rsa.pub' | pbcopy
         open 'https://github.com/account/ssh'
     fi
 
@@ -127,6 +119,7 @@ if [[ `uname` == 'Darwin' ]]; then
     read give_links
         [[ "$give_links" == 'y' ]] && brew bundle
     popd
+fi
 
 # If on Linux, install zsh
 if [[ `uname` != 'Darwin' ]]; then
