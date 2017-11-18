@@ -6,6 +6,8 @@
 # A simple script for setting up OSX dev environment.
 dev="$HOME/Code/dotfiles"
 
+# Ask for sudo permission at start
+sudo -v
 
 # If we on OS X, install homebrew and tweak system a bit.
 if [[ `uname` == 'Darwin' ]]; then
@@ -13,6 +15,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # Xcode Command Line                         #
     ##############################################
+    echo "Setting up commad line tools \n"
     sh $dev/osx/xcode_setup.sh
 
     #############################################
@@ -31,76 +34,99 @@ if [[ `uname` == 'Darwin' ]]; then
     # dotfiles                                   #
     ##############################################
     dir="$HOME/Code"
-    mkdir -p $dir
+    if [ ! -d "${dir}" ]; then
+        mkdir -p $dir
+    fi
+
     cd $dir
-
-    # Clone the repo from github a
-    git clone https://github.com/rahulrrixe/dotfiles.git
-    cd dotfiles
-    sudo bash bootstrap_new_system.sh
-
-    ##############################################
-    # zshrc                                      #
-    ##############################################
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
-    source ~/.zshrc
+    
+    if [ ! -d "dotfiles" ]; then
+        echo "Downloading dotfiles repo \n"
+        git clone https://github.com/rahulrrixe/dotfiles.git
+        cd dotfiles
+    fi
 
     ##############################################
-    # Pygments & Pip                             #
+    # ZSH                                        #
     ##############################################
-    sudo easy_install Pygments
-    sudo easy_install pip
-
-    ##############################################
-    # Symlinks                                  #
-    ##############################################
-    declare -a files=("zsh/oh-my-zsh" "zsh/zshrc" "zsh/zshenv" "vim/vimrc"
-                      "git/gitconfig")
-
-    for file in "${files[@]}"; do
-        f=${file}
-        f=${f##*/}
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$f ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $dev/$file ~/.$f
-    done
-    ##############################################
-    # OSX                                        #
-    ##############################################
-    sh $dev/osx/sensible_defaults.sh
-
-
-    ##############################################
-    # Oh My ZSH                                  #
-    ##############################################
+    echo "ZSH setup"
     if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
-      if [[ ! -d $dir/oh-my-zsh/ ]]; then
-        sh -c "curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh"
-      fi
+      brew install zsh 
+      brew install zsh-completions
     fi
 
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
       chsh -s $(which zsh)
     fi
 
-    # setting
-    ln -s $dev/zsh/rahul.zsh-theme $HOME/.oh-my-zsh/themes
+    ##############################################
+    # zshrc                                      #
+    ##############################################
+    echo "Installing prezto \n"
+    exec zsh
+    
+    if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
+        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+    fi
+
+    sh setopt EXTENDED_GLOB
+    for rcfile in ${ZDOTDIR:-$HOME}/.zprezto/runcoms/^README.md\(.N\); do
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done
 
     ##############################################
-    # Iterm                                      #
+    # Pygments & Pip                             #
     ##############################################
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    echo "Installing Python pip \n"
+    sudo easy_install Pygments
+    sudo easy_install pip
+
+    ##############################################
+    # Symlinks                                  #
+    ##############################################
+    echo "Symlinks config files \n"
+    declare -a files=("zsh/zshrc" "zsh/zshenv" "vim/vimrc"
+                      "git/gitconfig")
+
+    for file in "${files[@]}"; do
+        f=${file}
+        f=${f##*/}
+        echo "Creating symlink to $file in home directory."
+        ln -s $dev/$file ~/.$f
+    done
+    ##############################################
+    # OSX                                        #
+    ##############################################
+    echo 'Do you want to install app from brew bundle?'
+    echo 'n / y'
+    read give_links
+        if [ "$give_links" == 'y' ]; then
+            echo "Set OSX defaults \n"
+            sh $dev/osx/sensible_defaults.sh 
+        fi
+    popd
     
+
+    ###############################################
+    # SSH
+    ###############################################
+    echo 'Checking for SSH key, generating one if it does not exist...'
+    if [ ! -f '~/.ssh/id_rsa.pub' ]; then 
+        ssh-keygen -t rsa
+
+        echo 'Copying public key to clipboard. Paste it into your Github account...'
+        [[ -f '~/.ssh/id_rsa.pub' ]] && cat '~/.ssh/id_rsa.pub' | pbcopy
+        open 'https://github.com/account/ssh'
+    fi
+
     ##############################################
     # Apps                                       #
     ##############################################
-    brew bundle
-fi
+    echo 'Do you want to install app from brew bundle?'
+    echo 'n / y'
+    read give_links
+        [[ "$give_links" == 'y' ]] && brew bundle
+    popd
 
 # If on Linux, install zsh
 if [[ `uname` != 'Darwin' ]]; then

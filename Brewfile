@@ -6,9 +6,8 @@ tap 'homebrew/bundle'
 tap 'homebrew/dupes'
 tap 'homebrew/php'
 
-# Install ZSH
-brew 'zsh'
-brew 'zsh-completions'
+# Install VIM
+brew 'vim'
 
 # Install GNU core utilities (those that come with macOS are outdated)
 brew 'coreutils'
@@ -72,4 +71,4 @@ cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Install Mac App Store apps
-appstore 'Xcode'
+# appstore 'Xcode'
