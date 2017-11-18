@@ -119,6 +119,15 @@ if [[ `uname` == 'Darwin' ]]; then
     read give_links
         [[ "$give_links" == 'y' ]] && brew bundle
     popd
+
+    ############################################
+    # Vim 
+    ############################################
+    if [ ! -d "$HOME/.vim/bundle" ]; then
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    fi
+
+    echo "Done :)"
 fi
 
 # If on Linux, install zsh
