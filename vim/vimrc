@@ -13,9 +13,16 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Add Syntastic plugin here "
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'jerrymarino/iCompleteMe'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
 
 " Add Swift Vim
-Plugin 'toyamarinyon/vim-swift'
+Plugin 'keith/swift.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -36,6 +43,17 @@ filetype plugin indent on    " required
 
 " For Swift
 let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+
+" Nerd Tree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Color Scheme
+colorscheme gruvbox
+
+" ctrlp key map
+let g:ctrlp_map = '<c-p>'
 
 " Enhance command-line completion
 set wildmenu
@@ -67,9 +85,6 @@ syntax on
 set cursorline
 " Make tabs as wide as four spaces
 set tabstop=4
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -99,12 +114,13 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+" Let backspace work as other programs
+set backspace=indent,eol,start
 
 set tabstop=4
 set expandtab
 set softtabstop=4
 set shiftwidth=4
-filetype indent on
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace ()
