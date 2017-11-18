@@ -24,7 +24,6 @@ brew 'grep'
 
 # Install Binaries
 brew 'awscli'
-brew 'git'
 brew 'hub'
 brew 'htop'
 brew 'tree'
@@ -73,5 +72,4 @@ cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Install Mac App Store apps
-# appstore 'Xcode'
-
+appstore 'Xcode'

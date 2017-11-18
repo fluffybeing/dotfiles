@@ -21,16 +21,33 @@ if [[ `uname` == 'Darwin' ]]; then
     which -s brew
     if [[ $? != 0 ]]; then
       echo 'Installing Homebrew...'
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install)"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         brew update
         brew tap Homebrew/bundle
-        brew bundle
+        brew install git
     fi
-    #############################################
-    # Zsh                                       #
-    #############################################
-    git clone https://github.com/rupa/z.git ~/z
-    chmod +x ~/z/z.sh
+
+    ##############################################
+    # dotfiles                                   #
+    ##############################################
+    dir="$HOME/Code"
+    mkdir -p $dir
+    cd $dir
+
+    # Clone the repo from github a
+    git clone https://github.com/rahulrrixe/dotfiles.git
+    cd dotfiles
+    sudo bash bootstrap_new_system.sh
+
+    ##############################################
+    # zshrc                                      #
+    ##############################################
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+    setopt EXTENDED_GLOB
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done
+    source ~/.zshrc
 
     ##############################################
     # Pygments & Pip                             #
@@ -41,10 +58,17 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # Symlinks                                  #
     ##############################################
-    ln -fs "$dev/git/gitattributes"
-    ln -fs "$dev/git/gitconfig"
-    ln -fs "$dev/git/gitignore"
+    declare -a files=("zsh/oh-my-zsh" "zsh/zshrc" "zsh/zshenv" "vim/vimrc"
+                      "git/gitconfig")
 
+    for file in "${files[@]}"; do
+        f=${file}
+        f=${f##*/}
+        echo "Moving any existing dotfiles from ~ to $olddir"
+        mv ~/.$f ~/dotfiles_old/
+        echo "Creating symlink to $file in home directory."
+        ln -s $dev/$file ~/.$f
+    done
     ##############################################
     # OSX                                        #
     ##############################################
@@ -70,14 +94,12 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # Iterm                                      #
     ##############################################
-    # utf-8
-    defaults write com.apple.terminal StringEncodings -array 4
-
-    # Iterm theme
-    $ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
     
-    # zshrc
-    source ~/.zshrc
+    ##############################################
+    # Apps                                       #
+    ##############################################
+    brew bundle
 fi
 
 # If on Linux, install zsh
@@ -88,40 +110,4 @@ if [[ `uname` != 'Darwin' ]]; then
     sudo apt-get install zsh curl
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
   fi
-fi
-
-
-# For MacOS
-if [[ `uname` == 'Darwin' ]]; then
-  echo 'Enter new hostname of the machine (e.g. macbook-rahul)'
-    read hostname
-    echo "Setting new hostname to $hostname..."
-    scutil --set HostName "$hostname"
-    compname=$(sudo scutil --get HostName | tr '-' '.')
-    echo "Setting computer name to $compname"
-    scutil --set ComputerName "$compname"
-
-  echo 'Checking for SSH key, generating one if it does not exist...'
-    [[ -f '~/.ssh/id_rsa.pub' ]] || ssh-keygen -t rsa
-
-  echo 'Copying public key to clipboard. Paste it into your Github account...'
-    [[ -f '~/.ssh/id_rsa.pub' ]] && cat '~/.ssh/id_rsa.pub' | pbcopy
-    open 'https://github.com/account/ssh'
-
-  open_apps() {
-    echo 'Install apps:'
-    echo 'Dropbox:'
-    open https://www.dropbox.com
-    echo 'Chrome:'
-    open https://www.google.com/intl/en/chrome/browser/
-    echo 'VLC:'
-    open http://www.videolan.org/vlc/index.html
-  }
-
-
-  echo 'Should I give you links for system applications (e.g. Skype, Tower, VLC)?'
-  echo 'n / y'
-  read give_links
-  [[ "$give_links" == 'y' ]] && open_apps
-  popd
 fi
