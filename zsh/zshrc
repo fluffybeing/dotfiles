@@ -3,7 +3,6 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
-#   Rahul Ranjan <rahul@rudrakos.com>
 #
 
 # Source Prezto.
@@ -23,3 +22,7 @@ fi
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# Gems
+# use gem env to check for the gem path
+export PATH=$PATH:~/.gem/ruby/2.1.0/gems/bin

@@ -15,9 +15,9 @@ let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
 set eol
-" Centralize backups, swapfiles and undo history
+" Centralize backups, swapfiles and undo history. E303 error will appear if this directory is not availble or writable 
 set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
+set directory=~/.vim/tmp
 if exists("&undodir")
   set undodir=~/.vim/undo
 endif
