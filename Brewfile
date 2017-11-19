@@ -9,6 +9,9 @@ tap 'homebrew/php'
 # Install VIM
 brew 'vim'
 
+# Install
+brew 'tmux'
+
 # Install GNU core utilities (those that come with macOS are outdated)
 brew 'coreutils'
 

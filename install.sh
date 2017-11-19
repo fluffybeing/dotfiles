@@ -82,7 +82,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     echo "Symlinks config files \n"
     declare -a files=("zsh/zshrc" "zsh/zshenv" "vim/vimrc"
-                      "git/gitconfig")
+                      "git/gitconfig" "tmux/tmux" "tmux/tmux.conf")
 
     for file in "${files[@]}"; do
         f=${file}
