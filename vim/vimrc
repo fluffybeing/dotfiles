@@ -20,6 +20,13 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'jerrymarino/iCompleteMe'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+" Plugin 'valloric/youcompleteme'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'ervandew/supertab'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Add Swift Vim
 Plugin 'keith/swift.vim'
