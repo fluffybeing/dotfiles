@@ -26,3 +26,7 @@ eval "$(rbenv init -)"
 # Gems
 # use gem env to check for the gem path
 export PATH=$PATH:~/.gem/ruby/2.1.0/gems/bin
+
+# Convert cd to cd >> ls
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ ls -a; }
