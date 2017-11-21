@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 # Xcode/iOS
 alias cs="xcrun simctl erase all"
-
+alias spg="swift package generate-xcodeproj"
 # Exercism
 if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
   . ~/.config/exercism/exercism_completion.zsh
