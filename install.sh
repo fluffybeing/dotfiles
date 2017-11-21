@@ -22,18 +22,18 @@ create_dir() {
 create_file_and_symlink() {
     local pathname=$1 destination=$2 permission=${3:-644}
     echo "--> $pathname"
-    if [ -L "$pathname" ] && [ "$(dirname "$(readlink "$pathname")")" = "$destination" ]; then
+    if [ -L "$pathname" ] && [ -f "$destination" ]; then
         echo "$pathname is already a symbolic link to $destination"
         return
     else
-        echo "File $pathname doesn't exists. Creating it in $destination..."
+        echo "File $(basename $pathname) doesn't exists. Creating it in $destination..."
         touch "$destination"
+        chmod "$permission" "$destination"
+    
+        echo "Linking $destination to $pathname"
+        ln -sf "$pathname" "$destination"
+        echo ""
     fi
-    chmod "$permission" "$destination"
-
-    echo "Linking $destination to $pathname"
-    ln -sf "$pathname" "$destination"
-    echo ""
 }
 
 # If we on OS X, install homebrew and tweak system a bit.
@@ -74,7 +74,7 @@ if [[ `uname` == 'Darwin' ]]; then
     # ZSH                                        #
     ##############################################
     echo "Installing ZSH"
-    if [ -f /bin/zsh -o -f /usr/bin/zsh -o -f /usr/local/bin/zsh ]; then
+    if ! type "zsh" > /dev/null; then
       brew install zsh 
       brew install zsh-completions
     fi
@@ -83,6 +83,11 @@ if [[ `uname` == 'Darwin' ]]; then
       chsh -s $(which zsh)
     fi
 
+    brew_zsh_path="/usr/local/bin/zsh"
+    if [[ $(which zsh) == $brew_zsh_path ]]; then
+        # For mac user we need to change the shell for user
+        dscl . -create /Users/$USER UserShell $brew_zsh_path
+    fi
     ##############################################
     # zshrc                                      #
     ##############################################
@@ -109,7 +114,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     echo "Symlinks config files \n"
     declare -a files=("zsh/zshrc" "zsh/zshenv" "vim/vimrc" "xvim/xvimrc"
-                      "git/gitconfig" "tmux/tmux" "tmux/tmux.conf")
+                      "tmux/tmux" "tmux/tmux.conf")
 
     for file in "${files[@]}"; do
         f=${file}
