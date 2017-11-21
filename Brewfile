@@ -1,5 +1,4 @@
-# Taps
-tap 'caskroom/cask'
+# Taps tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
@@ -11,8 +10,10 @@ brew 'vim'
 brew 'diff-so-fancy'
 
 # Xcode
-brew install keith/formulae/zsh-xcode-completions
+brew 'keith/formulae/zsh-xcode-completions'
 
+# Install Karabinger
+brew 'karabiner'
 # Install
 brew 'tmux'
 
