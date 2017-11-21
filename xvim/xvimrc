@@ -1,0 +1,73 @@
+ "
+ " A configuration file for https://github.com/JugglerShu/XVim
+ "
+ "
+ "
+
+ " Comments
+ " nnoremap gcc :xcmenucmd Comment Selection<CR>
+ " vnoremap gc  :xcmenucmd Comment Selection<CR>
+ "
+ " " Emulate CTRL-P
+ " noremap <C-p> :xccmd openQuickly<CR>
+ "
+ " " Case-insensitive searching.
+ " set ignorecase
+ " " But case-sensitive if expression contains a capital letter.
+ " set smartcase
+ "
+ " set hlsearch
+ "
+ " nnoremap <Space>4 /~<CR>
+ "
+ " " Setup the number line
+ " set number
+ "
+ " " Use the system pasteboard
+ " set clipboard=unnamed
+ "
+ " " noremap <space>b to toggle a breakpoint at the current line
+ " nnoremap ,b :xccmd toggleBreakpointAtCurrentLine<CR>
+ "
+ " " Better navigation
+ " nnoremap H ^
+ " nnoremap L $
+ "
+ " " Window navigation
+ " nnoremap <C-j> <C-w>j
+ " nnoremap <C-k> <C-w>k
+ " nnoremap <C-h> <C-w>h
+ " nnoremap <C-l> <C-w>l
+ "
+ " " Tab noremappings
+ " nnoremap ,tt :xccmd newTab<CR>
+ " nnoremap ,tc :tabclose<CR>
+ "
+ " " Make computers make sense
+ " nnoremap Y y$
+ "
+ " " I'd like the following command to save too
+ " " it doesn't seem like xvim supports this: \| update<CR>
+ " vnoremap s :sort ui<CR>
+ "
+ " " vim-unimpared knock off
+ " nnoremap ]e "udd"up
+ " nnoremap [e "uddk"uP
+ "
+ " " Center after find
+ " nnoremap n nzz
+ " nnoremap N Nzz
+ "
+ " " Change the background color for searches
+ " highlight Search guibg=orange
+ "
+ " " Better move controls
+ " nnoremap j gj
+ " nnoremap k gk
+ " nnoremap gj j
+ " nnoremap gk k
+ "
+ " vnoremap j gj
+ " vnoremap k gk
+ " vnoremap gj j
+ " vnoremap gk k
