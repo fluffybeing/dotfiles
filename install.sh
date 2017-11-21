@@ -6,6 +6,36 @@ dev="$HOME/Code/dotfiles"
 # Ask for sudo permission at start
 sudo -v
 
+# Keep-alive: update existing `sudo` time stamp until the script has finished.
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+create_dir() {
+    local dirname=$1
+
+    if [ ! -d dirname]; then 
+        echo "--> $dirname"
+        mkdir -p $dirname 2>/dev/null
+        echo ""
+    fi
+}
+
+create_file_and_symlink() {
+    local pathname=$1 destination=$2 permission=${3:-644}
+    echo "--> $pathname"
+    if [ -L "$pathname" ] && [ "$(dirname "$(readlink "$pathname")")" = "$destination" ]; then
+        echo "$pathname is already a symbolic link to $destination"
+        return
+    else
+        echo "File $pathname doesn't exists. Creating it in $destination..."
+        touch "$destination"
+    fi
+    chmod "$permission" "$destination"
+
+    echo "Linking $destination to $pathname"
+    ln -sf "$pathname" "$destination"
+    echo ""
+}
+
 # If we on OS X, install homebrew and tweak system a bit.
 if [[ `uname` == 'Darwin' ]]; then
 
@@ -31,10 +61,7 @@ if [[ `uname` == 'Darwin' ]]; then
     # dotfiles                                   #
     ##############################################
     dir="$HOME/Code"
-    if [ ! -d "${dir}" ]; then
-        mkdir -p $dir
-    fi
-
+    create_dir() $dir
     cd $dir
     
     if [ ! -d "dotfiles" ]; then
@@ -81,14 +108,13 @@ if [[ `uname` == 'Darwin' ]]; then
     # Symlinks                                  #
     ##############################################
     echo "Symlinks config files \n"
-    declare -a files=("zsh/zshrc" "zsh/zshenv" "vim/vimrc"
+    declare -a files=("zsh/zshrc" "zsh/zshenv" "vim/vimrc" "xvim/xvimrc"
                       "git/gitconfig" "tmux/tmux" "tmux/tmux.conf")
 
     for file in "${files[@]}"; do
         f=${file}
         f=${f##*/}
-        echo "Creating symlink to $file in home directory."
-        ln -s $dev/$file ~/.$f
+        create_file_and_symlink $dev/$file ~/.$f
     done
     ##############################################
     # OSX                                        #
@@ -126,6 +152,10 @@ if [[ `uname` == 'Darwin' ]]; then
     if [ ! -d "$HOME/.vim/bundle" ]; then
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
+    
+    #############################################
+    # XVim
+    ############################################
 
     echo "Done :)"
 fi
