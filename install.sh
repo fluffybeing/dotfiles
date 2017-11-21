@@ -12,7 +12,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 create_dir() {
     local dirname=$1
 
-    if [ ! -d dirname]; then 
+    if [[ ! -d $dirname ]]; then 
         echo "--> $dirname"
         mkdir -p $dirname 2>/dev/null
         echo ""
@@ -62,7 +62,7 @@ if [[ `uname` == 'Darwin' ]]; then
     # dotfiles                                   #
     ##############################################
     dir="$HOME/Code"
-    create_dir() $dir
+    create_dir $dir
     cd $dir
     
     if [ ! -d "dotfiles" ]; then
@@ -129,13 +129,12 @@ if [[ `uname` == 'Darwin' ]]; then
     echo 'n / y'
     read give_links
         [[ "$give_links" == 'y' ]] && sh $dev/osx/sensible_defaults.sh 
-    popd
 
     ###############################################
     # SSH
     ###############################################
     echo 'Checking for SSH key, generating one if it does not exist...'
-    if [ ! -f '$HOME/.ssh/id_rsa.pub' ]; then 
+    if [ ! -e '$HOME/.ssh/id_rsa.pub' ]; then 
         ssh-keygen -t rsa
 
         echo 'Copying public key to clipboard. Paste it into your Github account...'
@@ -149,8 +148,7 @@ if [[ `uname` == 'Darwin' ]]; then
     echo 'Do you want to install app from brew bundle?'
     echo 'n / y'
     read give_links
-        [[ "$give_links" == 'y' ]] && brew bundle
-    popd
+        [[ "$give_links" == 'y' ]] && brew bundle --file="$dev/Brewfile" 
 
     ############################################
     # Vim 
@@ -159,6 +157,8 @@ if [[ `uname` == 'Darwin' ]]; then
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
     
+    create_dir "~/.vim/tmp"
+    create_dir "~/.vim/backup"    
     #############################################
     # XVim
     ############################################
