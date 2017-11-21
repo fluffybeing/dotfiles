@@ -21,12 +21,13 @@ create_dir() {
 
 create_file_and_symlink() {
     local pathname=$1 destination=$2 permission=${3:-644}
+
     echo "--> $pathname"
-    if [ -L "$pathname" ] && [ -f "$destination" ]; then
-        echo "$pathname is already a symbolic link to $destination"
+    if [ -L $destination ] && [ -e $destination ]; then
+        echo "$destination is already a symbolic link to $pathname"
         return
     else
-        echo "File $(basename $pathname) doesn't exists. Creating it in $destination..."
+        echo "File ~/.$(basename $pathname) doesn't exists. Creating it in $destination..."
         touch "$destination"
         chmod "$permission" "$destination"
     

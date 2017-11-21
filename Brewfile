@@ -8,6 +8,7 @@ tap 'homebrew/php'
 
 # Install VIM
 brew 'vim'
+brew 'diff-so-fancy'
 
 # Install
 brew 'tmux'
