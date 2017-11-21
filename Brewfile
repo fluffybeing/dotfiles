@@ -10,6 +10,9 @@ tap 'homebrew/php'
 brew 'vim'
 brew 'diff-so-fancy'
 
+# Xcode
+brew install keith/formulae/zsh-xcode-completions
+
 # Install
 brew 'tmux'
 
