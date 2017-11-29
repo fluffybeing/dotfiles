@@ -4,6 +4,7 @@ tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/dupes'
 tap 'homebrew/php'
+tap 'homebrew/services'
 
 # Install VIM
 brew 'vim'
@@ -37,6 +38,7 @@ brew 'rbenv'
 brew 'readline'
 brew 'ruby-build'
 brew 'cocoapods'
+brew 'httpie'
 
 # Development
 brew 'python3'
@@ -47,8 +49,6 @@ cask 'alfred'
 cask 'caffeine'
 cask 'dropbox'
 cask 'firefox'
-cask 'google-drive'
-cask 'gpgtools'
 cask 'iterm2'
 cask 'sequel-pro'
 cask 'shuttle'
@@ -60,6 +60,12 @@ cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'vlc'
 cask 'evernote'
+cask 'karabiner'
+cask "karabiner-elements"
+cask 'keybase'
+cask "sourcetree"
+cask "duet"
+cask "keyboardcleantool"
 
 # Quicklook
 cask 'qlcolorcode'
@@ -74,4 +80,9 @@ cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Install Mac App Store apps
-# appstore 'Xcode'
+mas "Xcode", id: 497799835
+mas "Todoist", id: 585829637
+mas "Pushbullet", id: 948415170
+mas "AppIcon", id: 552721621
+mas "FreeMan", id: 510934532
+mas "Display Menu", id: 549083868
