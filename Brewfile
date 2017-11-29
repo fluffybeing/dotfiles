@@ -9,8 +9,6 @@ tap 'homebrew/php'
 brew 'vim'
 brew 'diff-so-fancy'
 
-# Install Karabinger
-brew 'karabiner'
 # Install
 brew 'tmux'
 
