@@ -9,9 +9,6 @@ tap 'homebrew/php'
 brew 'vim'
 brew 'diff-so-fancy'
 
-# Xcode
-brew 'keith/formulae/zsh-xcode-completions'
-
 # Install Karabinger
 brew 'karabiner'
 # Install
@@ -51,7 +48,7 @@ cask 'aerial'
 cask 'alfred'
 cask 'caffeine'
 cask 'dropbox'
-cask 'google-chrome'
+cask 'firefox'
 cask 'google-drive'
 cask 'gpgtools'
 cask 'iterm2'
