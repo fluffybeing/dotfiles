@@ -9,13 +9,12 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Try to encapsulate the installation into methods
 print_message() {
     local message=$1
-
     echo .
     echo .
     echo $message
-    date
     echo .
     echo .
 }
@@ -45,22 +44,27 @@ create_file_and_symlink() {
 
 download_dotfile_directory() {
     # initially git will not be available
-    print_message "Downloading dotfiles repo \n"
-    curl -LOk https://github.com/rahulrrixe/dotfiles/archive/master.zip && \ 
+    print_message "Downloading dotfiles repo...."
+    curl -sSLOk https://github.com/rahulrrixe/dotfiles/archive/master.zip && \ 
                                 unzip master.zip -d $HOME && \ 
                                 rm -rf master.zip && mv $HOME/dotfiles-master $dotfile_dir
-    # git clone https://github.com/rahulrrixe/dotfiles.git
     cd $dotfile_dir
 }
 
+clone_dotfile_git_repo() {
+    create_dir $HOME/Code
+    git clone https://github.com/rahulrrixe/dotfiles.git $HOME/Code
+}
+
 change_shell() {
+    print_message "Changing shell to ZSH..."
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
       chsh -s $(which zsh)
     fi
 }
 
 install_prezto() {
-    echo "Installing prezto \n"
+    print_message "Installing prezto..."
     
     if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
@@ -73,7 +77,7 @@ install_prezto() {
 }
 
 symlink_dotfiles() {
-    echo "Symlinks config files \n"
+    print_message "Symlinking files..."
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc" "xvim/xvimrc"
                       "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig")
 
@@ -107,21 +111,23 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # Xcode Command Line                         #
     ##############################################
-    print_message "Setting up commad line tools \n"
+    print_message "Setting up commad line tools..."
+
     sh $dotfile_dir/osx/xcode_setup.sh
 
 
     ##############################################
     # dotfiles                                   #
     ##############################################
-    if [ ! -d $dotfile_dir ]; then
-        download_dotfile
+    if [ ! -d $Home/Code/dotfiles ]; then
+        clone_dotfile_git_repo
     fi
 
     ##############################################
     # ZSH                                        #
     ##############################################
-    echo "Installing ZSH"
+    print_message "Installing ZSH..."
+
     if ! type "zsh" > /dev/null; then
       brew install zsh 
       brew install zsh-completions
@@ -142,7 +148,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # Pygments & Pip                             #
     ##############################################
-    echo "Installing Python pip \n"
+    print_message "Installing Python pip...."
     sudo easy_install Pygments
     sudo easy_install pip
 
@@ -162,8 +168,9 @@ if [[ `uname` == 'Darwin' ]]; then
     ###############################################
     # SSH
     ###############################################
-    echo 'Checking for SSH key, generating one if it does not exist...'
-    if [ ! -e '$HOME/.ssh/id_rsa.pub' ]; then 
+    print_message 'Checking for SSH key, generating one if it does not exist...'
+
+    if [ ! -f '$HOME/.ssh/id_rsa.pub' ]; then 
         ssh-keygen -t rsa
 
         echo 'Copying public key to clipboard. Paste it into your Github account...'
@@ -182,6 +189,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ############################################
     # Vim 
     ############################################
+    print_message "installing VIM vundle package manager..."
     if [ ! -d "$HOME/.vim/bundle" ]; then
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     fi
