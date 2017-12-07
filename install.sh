@@ -86,6 +86,8 @@ symlink_dotfiles() {
         f=${f##*/}
         create_file_and_symlink $dotfile_dir/$file ~/.$f
     done
+    # some symlinks are not so straight forward
+    create_file_and_symlink "$dotfile_dir/karabiner" "$HOME/.config"
 }
 
 # If we on OS X, install homebrew and tweak system a bit.
