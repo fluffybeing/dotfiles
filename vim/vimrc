@@ -1,6 +1,9 @@
 " Make vim more useful
 set nocompatible
-filetype off 
+filetype off
+set t_Co=256
+set pastetoggle=<F9>
+set linebreak
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -24,13 +27,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'ervandew/supertab'
 Plugin 'nathanaelkane/vim-indent-guides'
 
-" Add Swift Vim
-Plugin 'keith/swift.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-" For Swift
-let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 " Nerd Tree
 autocmd StdinReadPre * let s:std_in=1
@@ -105,10 +103,10 @@ set scrolloff=3
 " Let backspace work as other programs
 set backspace=indent,eol,start
 
-set tabstop=4
+set tabstop=2
 set expandtab
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace ()

@@ -198,6 +198,7 @@ if [[ `uname` == 'Darwin' ]]; then
     
     create_dir "$HOME/.vim/tmp"
     create_dir "$HOME/.vim/backup"    
+    sh vim +PluginInstall
     #############################################
     # XVim
     ############################################
