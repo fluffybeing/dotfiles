@@ -60,12 +60,13 @@ cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'vlc'
 cask 'evernote'
-cask 'karabiner'
 cask "karabiner-elements"
 cask 'keybase'
 cask "sourcetree"
 cask "duet"
 cask "keyboardcleantool"
+cask "istat-menus"
+cask "coderunner"
 
 # Quicklook
 cask 'qlcolorcode'
@@ -79,10 +80,3 @@ cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
-# Install Mac App Store apps
-mas "Xcode", id: 497799835
-mas "Todoist", id: 585829637
-mas "Pushbullet", id: 948415170
-mas "AppIcon", id: 552721621
-mas "FreeMan", id: 510934532
-mas "Display Menu", id: 549083868
