@@ -67,6 +67,7 @@ cask "duet"
 cask "keyboardcleantool"
 cask "istat-menus"
 cask "coderunner"
+cask "spectacle"
 
 # Quicklook
 cask 'qlcolorcode'
