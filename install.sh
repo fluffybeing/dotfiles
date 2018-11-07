@@ -162,10 +162,12 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # OSX                                        #
     ##############################################
-    echo 'Do you want to reconfigure system setting?'
+    echo 'Do you want to reconfigure system setting? This will change your computer name and other system default settings'
     echo 'n / y'
     read give_links
-        [[ "$give_links" == 'y' ]] && sh $dotfile_dir/osx/sensible_defaults.sh 
+    if [[ "$give_links" == 'y' ]]; then 
+        sh $dotfile_dir/osx/sensible_defaults.sh 
+    fi
 
     ###############################################
     # SSH
@@ -186,7 +188,10 @@ if [[ `uname` == 'Darwin' ]]; then
     echo 'Do you want to install app from brew bundle?'
     echo 'n / y'
     read give_links
-        [[ "$give_links" == 'y' ]] && brew bundle --file="$dotfile_dir/Brewfile" 
+    
+    if [[ "$give_links" == 'y' ]]; then
+        brew bundle --file="$dotfile_dir/Brewfile" 
+    fi
 
     ############################################
     # Vim 
@@ -202,6 +207,15 @@ if [[ `uname` == 'Darwin' ]]; then
     #############################################
     # XVim
     ############################################
+
+    #############################################
+    # Powerline Fonts
+    ############################################
+    git clone https://github.com/powerline/fonts.git --depth=1
+    cd fonts
+    sh ./install.sh
+    cd ..
+    rm -rf fonts
 
     print_message "Done :)"
 fi
