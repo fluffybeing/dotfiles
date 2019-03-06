@@ -35,7 +35,6 @@ create_file_and_symlink() {
     local destination=$2 
     local permission=${3:-644}
 
-    echo "File ~/.$(basename $pathname) doesn't exists. Creating it in $destination..."
     touch "$destination"
     chmod "$permission" "$destination"
 
@@ -70,7 +69,7 @@ install_prezto() {
 symlink_dotfiles() {
     print_message "Symlinking files..."
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc" "xvim/xvimrc"
-                      "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig" "emacs/emacs.d/init.el")
+                      "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig")
 
     for file in "${files[@]}"; do
         f=${file}
@@ -79,6 +78,7 @@ symlink_dotfiles() {
     done
     # some symlinks are not so straight forward
     create_file_and_symlink "$dotfile_dir/karabiner" "$HOME/.config"
+    create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
 }
 
 # If we on OS X, install homebrew and tweak system a bit.
