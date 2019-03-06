@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 # A simple script for setting up OSX dev environment.
-dotfile_dir="$HOME/dotfiles"
+dotfile_dir="$HOME/Code/dotfiles"
 
 # Ask for sudo permission at start
 sudo -v
@@ -19,6 +19,7 @@ print_message() {
     echo .
 }
 
+# Create Directory
 create_dir() {
     local dirname=$1
 
@@ -42,18 +43,8 @@ create_file_and_symlink() {
     ln -sf "$pathname" "$destination"
 }
 
-download_dotfile_directory() {
-    # initially git will not be available
-    print_message "Downloading dotfiles repo...."
-    curl -sSLOk https://github.com/rahulrrixe/dotfiles/archive/master.zip && \ 
-                                unzip master.zip -d $HOME && \ 
-                                rm -rf master.zip && mv $HOME/dotfiles-master $dotfile_dir
-    cd $dotfile_dir
-}
-
 clone_dotfile_git_repo() {
-    create_dir $HOME/Code
-    git clone https://github.com/rahulrrixe/dotfiles.git $HOME/Code
+    git clone https://github.com/rahulrrixe/dotfiles.git $dotfile_dir
 }
 
 change_shell() {
@@ -79,7 +70,7 @@ install_prezto() {
 symlink_dotfiles() {
     print_message "Symlinking files..."
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc" "xvim/xvimrc"
-                      "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig")
+                      "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig" "emacs/emacs.d/init.el")
 
     for file in "${files[@]}"; do
         f=${file}
@@ -96,7 +87,14 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # Start the install process.                 #
     ##############################################
-    download_dotfile_directory
+    if ! xcode-select --print-path &> /dev/null; then
+        xcode-select --install &> /dev/null
+
+        # Wait until the XCode Command Line Tools are installed
+        until xcode-select --print-path &> /dev/null; do
+            sleep 5
+        done
+    fi
 
     #############################################
     # Homebrew                                  #
@@ -111,19 +109,18 @@ if [[ `uname` == 'Darwin' ]]; then
     fi
 
     ##############################################
-    # Xcode Command Line                         #
-    ##############################################
-    print_message "Setting up commad line tools..."
-
-    sh $dotfile_dir/osx/xcode_setup.sh
-
-
-    ##############################################
     # dotfiles                                   #
     ##############################################
     if [ ! -d $Home/Code/dotfiles ]; then
         clone_dotfile_git_repo
     fi
+
+    ##############################################
+    # Xcode Command Line                         #
+    ##############################################
+    print_message "Setting up commad line tools..."
+
+    sh $dotfile_dir/osx/xcode_setup.sh
 
     ##############################################
     # ZSH                                        #
