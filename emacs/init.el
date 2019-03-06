@@ -33,8 +33,8 @@
 
 ;; elpy config
 (elpy-enable)
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-(setq python-shell-interpreter "ipython3"
+(setq elpy-rpc-python-command "python3")
+(setq python-shell-interpreter "python3"
       python-shell-interpreter-args "-i")
 
 ;; flycheck
