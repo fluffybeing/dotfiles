@@ -24,6 +24,13 @@
       (package-install package)))
       myPackages)
 
+;; -*- mode: elisp -*-
+;; Disable the splash screen (to enable it again, replace the t with 0)
+(setq inhibit-splash-screen t)
+
+;; Enable transient mark mode
+(transient-mark-mode 1)
+
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
 
