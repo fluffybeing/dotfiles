@@ -1,5 +1,8 @@
 private
 
+# Remove the VSCode
+.vscode/
+
 # Git credential file
 .gitconfig.local
 
