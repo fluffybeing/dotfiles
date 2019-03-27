@@ -32,15 +32,16 @@
 (setq inhibit-startup-message t) ;; hide the startup message
 (load-theme 'material t) ;; load material theme
 (global-linum-mode t) ;; enable line numbers globally
-(setq linum-format "%d ")
 
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
+kkk
+
+
 
 (setq elpy-rpc-python-command "python3")
-(setq python-shell-interpreter "python3")
 (elpy-enable)
-
+(elpy-use-python)
 
 ;; use flycheck not flymake with elpy
 (when (require 'flycheck nil t)
