@@ -15,21 +15,16 @@
 
 (defvar myPackages
   '(better-defaults
-    flycheck ;; add the flycheck package
-    elpy ;; add the elpy package
-    material-theme))
+    ein
+    elpy
+    flycheck
+    material-theme
+    py-autopep8))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
       myPackages)
-
-;; -*- mode: elisp -*-
-;; Disable the splash screen (to enable it again, replace the t with 0)
-(setq inhibit-splash-screen t)
-
-;; Enable transient mark mode
-(transient-mark-mode 1)
 
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
@@ -38,27 +33,19 @@
 (load-theme 'material t) ;; load material theme
 (global-linum-mode t) ;; enable line numbers globally
 
-;; elpy config
-(elpy-enable)
-(setq elpy-rpc-python-command "python3")
-(setq python-shell-interpreter "python3"
-      python-shell-interpreter-args "-i")
+;; PYTHON CONFIGURATION
+;; --------------------------------------
 
-;; flycheck
+(elpy-enable)
+(elpy-use-ipython)
+
+;; use flycheck not flymake with elpy
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
+;; enable autopep8 formatting on save
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
 ;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (material-theme better-defaults))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
