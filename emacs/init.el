@@ -19,7 +19,8 @@
     elpy
     flycheck
     material-theme
-    py-autopep8))
+    py-autopep8
+    projectile))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
@@ -33,6 +34,13 @@
 (load-theme 'material t) ;; load material theme
 (global-linum-mode t) ;; enable line numbers globally
 (setq linum-format "%d ")
+
+;; PROJECTILE CONFIGURATION
+;; --------------------------------------
+
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
@@ -58,3 +66,17 @@
 (global-set-key "\C-cb" 'org-switchb)
 
 ;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (projectile py-autopep8 material-theme flycheck elpy ein better-defaults))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
