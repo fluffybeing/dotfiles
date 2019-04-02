@@ -43,7 +43,7 @@ create_file_and_symlink() {
 }
 
 clone_dotfile_git_repo() {
-    git clone https://github.com/rahulrrixe/dotfiles.git $dotfile_dir
+    git clone https://github.com/coyo8/dotfiles.git $dotfile_dir
 }
 
 change_shell() {
