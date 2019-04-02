@@ -20,7 +20,8 @@
     flycheck
     material-theme
     py-autopep8
-    projectile))
+    projectile
+    swift-mode))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
