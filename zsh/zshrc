@@ -16,6 +16,8 @@ alias cs="xcrun simctl erase all"
 alias spg="swift package generate-xcodeproj"
 alias emacs="/usr/local/Cellar/emacs/26.1_1/bin/emacs-26.1 -nw"
 
+# Open todo folder
+alias todo="emacs $HOME/Dropbox/org/"
 # Exercism
 if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
   . ~/.config/exercism/exercism_completion.zsh
