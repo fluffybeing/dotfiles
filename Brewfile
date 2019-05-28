@@ -52,22 +52,17 @@ cask 'iterm2'
 cask 'sequel-pro'
 cask 'shuttle'
 cask 'slack'
-cask 'sublime-text'
 cask 'tower'
-cask 'vagrant'
-cask 'virtualbox'
-cask 'virtualbox-extension-pack'
 cask 'vlc'
-cask 'evernote'
 cask "karabiner-elements"
 cask 'keybase'
 cask "sourcetree"
-cask "duet"
 cask "keyboardcleantool"
 cask "istat-menus"
 cask "coderunner"
 cask "keepassx"
 cask "spectacle"
+cask "zotero"
 
 # Quicklook
 cask 'qlcolorcode'
@@ -80,4 +75,3 @@ cask 'qlstephen'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
-

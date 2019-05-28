@@ -31,10 +31,10 @@
         tool = opendiff
 
 [core]
-        editor = nano
+        editor = emacs
         abbrev = 12
         attributesfile = ~/.gitattributes
-        excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
         autocrlf = input
         mergeoptions = --no-edit
         ignorecase = false
@@ -107,3 +107,10 @@
 	email = rahul.rrixe@gmail.com
 	name = Rahul Ranjan
 
+[difftool "ediff"]
+	cmd = emacs --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+[difftool "ediffclient"]
+	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+
+[commit]
+	template = /Users/rahul.ranjan/.stCommitMsg

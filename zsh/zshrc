@@ -23,14 +23,11 @@ if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
   . ~/.config/exercism/exercism_completion.zsh
 fi
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# Gems
-# use gem env to check for the gem path
-export PATH=$PATH:~/.gem/ruby/2.1.0/gems/bin
-
 # Convert cd to cd >> ls
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls -a; }
+
+# Ruby 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
