@@ -148,8 +148,9 @@
   (setq projectile-completion-system 'ivy)
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
-
+ 
 ;; Which next key you need to type
 (use-package which-key
   :ensure t
