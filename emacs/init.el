@@ -95,6 +95,12 @@
   :config
   (electric-pair-mode +1))
 
+(use-package nlinum
+  :ensure t
+  :init (setq nlinum-format "%d  ")
+  :config
+  (global-nlinum-mode))
+
 ;; highlight the current line
 (use-package hl-line
   :config
@@ -107,15 +113,28 @@
   ;; activate it for all buffers
   (setq-default save-place t))
 
+(use-package auto-package-update
+  :ensure t
+  :bind ("C-x P" . auto-package-update-now)
+  :config
+  (setq auto-package-update-delete-old-versions t))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns))
+  :config
+  (setq exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize))
+
 ;; Helps you to try a package without installing it
 (use-package try
   :ensure t)
 
 ;;; third-party packages
-(use-package dracula-theme
+(use-package afternoon-theme
   :ensure t
   :config
-  (load-theme 'dracula t))
+  (load-theme 'afternoon t))
 
 (use-package magit
   :ensure t
@@ -140,32 +159,38 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package json-mode
+  :ensure t
+  :mode (("\\.json\\'" . json-mode)
+         ("\\.tmpl\\'" . json-mode)
+         ("\\.eslintrc\\'" . json-mode))
+  :config (setq-default js-indent-level 2))
+
+(use-package json-reformat
+  :ensure t
+  :after json-mode
+  :bind (("C-c r" . json-reformat-region)))
+
+;; Autocompletion
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
   :config
-  (add-hook 'swift-mode-hook
-    '(lambda()
-       (add-to-list 'flycheck-checkers 'swift)
-       (setq flycheck-swift-sdk-path
-         (replace-regexp-in-string
-          "\n+$" "" (shell-command-to-string
-                     "xcrun --show-sdk-path --sdk macosx")))
-    )
-  ))
+  (add-to-list 'flycheck-checkers 'swift))
 
-;; Apple Swift
 (use-package swift-mode
   :ensure t
-  :interpreter "swift")
+  :mode "\\.swift\\'")
+
+(use-package company-sourcekit
+  :ensure t
+  :init (setq company-sourcekit-use-yasnippet t)
+  :config (add-to-list 'company-backends 'company-sourcekit))
 
 (use-package quickrun
-  :ensure t
-  :config
-  (add-hook 'swift-mode-hook
-            '(lambda()
-               (local-set-key "\C-c\C-c" 'quickrun)
-               (local-set-key "\C-c\C-a" 'quickrun-with-arg))))
+  :defer t
+  :bind
+  (("C-c C-c" . quickrun)))
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
