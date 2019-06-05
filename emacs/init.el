@@ -19,9 +19,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-;; smart tab behavior - indent or complete
-(setq tab-always-indent 'complete)
-
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
 
@@ -45,7 +42,6 @@
 
 ;; Keep modes indentation
 (setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
-(setq-default tab-width 8)            ;; but maintain correct appearance
 
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
@@ -58,6 +54,7 @@
 
 ;; Wrap lines at 80 characters
 (setq-default fill-column 80)
+
 ;; No blink cursor
 (blink-cursor-mode -1)
 
@@ -115,10 +112,10 @@
   :ensure t)
 
 ;;; third-party packages
-(use-package monokai-theme
+(use-package dracula-theme
   :ensure t
   :config
-  (load-theme 'monokai t))
+  (load-theme 'dracula t))
 
 (use-package magit
   :ensure t
@@ -145,19 +142,30 @@
 
 (use-package flycheck
   :ensure t
+  :init (global-flycheck-mode)
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (add-hook 'swift-mode-hook
+    '(lambda()
+       (add-to-list 'flycheck-checkers 'swift)
+       (setq flycheck-swift-sdk-path
+         (replace-regexp-in-string
+          "\n+$" "" (shell-command-to-string
+                     "xcrun --show-sdk-path --sdk macosx")))
+    )
+  ))
 
 ;; Apple Swift
 (use-package swift-mode
   :ensure t
-  :config
-  '(setq swift-mode:basic-offset 2))
+  :interpreter "swift")
 
-(use-package flycheck-swift
+(use-package quickrun
   :ensure t
   :config
-  '(eval-after-load 'flycheck '(flycheck-swift-setup)))
+  (add-hook 'swift-mode-hook
+            '(lambda()
+               (local-set-key "\C-c\C-c" 'quickrun)
+               (local-set-key "\C-c\C-a" 'quickrun-with-arg))))
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
