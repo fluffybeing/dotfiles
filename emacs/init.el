@@ -123,7 +123,6 @@
   :ensure t
   :if (memq window-system '(mac ns))
   :config
-  (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 
 ;; Helps you to try a package without installing it
@@ -180,17 +179,17 @@
 
 (use-package swift-mode
   :ensure t
-  :mode "\\.swift\\'")
+  :mode "\\.swift\\'"
+  :interpreter "swift")
 
-(use-package company-sourcekit
+(use-package elpy
   :ensure t
-  :init (setq company-sourcekit-use-yasnippet t)
-  :config (add-to-list 'company-backends 'company-sourcekit))
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package quickrun
-  :defer t
-  :bind
-  (("C-c C-c" . quickrun)))
+  :defer t )
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
