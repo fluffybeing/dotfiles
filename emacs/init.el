@@ -135,9 +135,18 @@
   :config
   (load-theme 'afternoon t))
 
+(use-package dash
+  :config (dash-enable-font-lock))
+
 (use-package magit
-  :ensure t
-  :bind (("C-x g" . magit-status)))
+  :defer t
+  :bind (("C-x g"   . magit-status)
+         ("C-x M-g" . magit-dispatch))
+  :config
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-stashes
+                          'append))
 
 (use-package ag
   :ensure t)
