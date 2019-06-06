@@ -9,7 +9,9 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Try to encapsulate the installation into methods
+######################################################
+# Utils
+######################################################
 print_message() {
     local message=$1
     echo .
@@ -19,7 +21,6 @@ print_message() {
     echo .
 }
 
-# Create Directory
 create_dir() {
     local dirname=$1
 
@@ -66,6 +67,9 @@ install_prezto() {
     done
 }
 
+################################################
+# TODO: modular
+###############################################
 symlink_dotfiles() {
     print_message "Symlinking files..."
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc" "xvim/xvimrc"
@@ -190,21 +194,6 @@ if [[ `uname` == 'Darwin' ]]; then
         brew bundle --file="$dotfile_dir/Brewfile" 
     fi
 
-    ############################################
-    # Vim 
-    ############################################
-    print_message "installing VIM vundle package manager..."
-    if [ ! -d "$HOME/.vim/bundle" ]; then
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    fi
-    
-    create_dir "$HOME/.vim/tmp"
-    create_dir "$HOME/.vim/backup"    
-    sh vim +PluginInstall
-    #############################################
-    # XVim
-    ############################################
-
     #############################################
     # Powerline Fonts
     ############################################
@@ -216,6 +205,10 @@ if [[ `uname` == 'Darwin' ]]; then
 
     print_message "Done :)"
 fi
+
+##############################################
+# TODO: Add setups for apps
+##############################################
 
 # If on Linux, install zsh
 if [[ `uname` != 'Darwin' ]]; then
