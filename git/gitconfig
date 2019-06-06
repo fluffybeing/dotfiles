@@ -108,5 +108,3 @@
 [difftool "ediffclient"]
 	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 
-[commit]
-	template = /Users/rahul.ranjan/.stCommitMsg
