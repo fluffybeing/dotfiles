@@ -226,6 +226,9 @@ defaults write com.apple.dock autohide -bool true
 ###############################################################################
 # Do some clean up work.
 ###############################################################################
+# Add emacs as the default editor
+defaults write com.apple.LaunchServices LSHandlers -array-add \
+         '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=org.gnu.Emacs;}'
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
            "Dock" "Finder" "Mail" "Messages" "Safari" "SystemUIServer" \
