@@ -97,7 +97,7 @@
 
 (use-package nlinum
   :ensure t
-  :init (setq nlinum-format "%d  ")
+  :init (setq nlinum-format " %d  ")
   :config
   (global-nlinum-mode))
 
@@ -185,6 +185,7 @@
   :ensure t
   :init (global-flycheck-mode)
   :config
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (add-to-list 'flycheck-checkers 'swift))
 
 (use-package swift-mode
@@ -199,10 +200,14 @@
   (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package quickrun
-  :defer t )
+  :ensure t
+  :bind
+  (("C-c C-q" . quickrun)
+   ("<f8>" . quickrun-compile-only)))
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (when (file-exists-p custom-file)
   (load custom-file))
+
