@@ -13,10 +13,10 @@
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
 
-;; Configurations
+;; Basic Configurations
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
 
 (setq user-full-name "Rahul Ranjan"
@@ -95,6 +95,10 @@
   :config
   (electric-pair-mode +1))
 
+(use-package term
+  :config
+  (setq default-process-coding-system '(utf-8-unix . utf-8-unix)))
+
 (use-package nlinum
   :ensure t
   :init (setq nlinum-format " %d  ")
@@ -138,6 +142,7 @@
 (use-package dash
   :config (dash-enable-font-lock))
 
+;; The awesomeness
 (use-package magit
   :defer t
   :bind (("C-x g"   . magit-status)
@@ -147,7 +152,7 @@
                           'magit-insert-modules
                           'magit-insert-stashes
                           'append))
-
+;; Files and Folders
 (use-package ag
   :ensure t)
 
@@ -165,6 +170,7 @@
   :ensure t
   :config (which-key-mode))
 
+;; Critical modes
 (use-package yaml-mode
   :ensure t)
 
@@ -180,7 +186,7 @@
   :after json-mode
   :bind (("C-c r" . json-reformat-region)))
 
-;; Autocompletion
+;; Autocompletion & systax highlight
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
@@ -199,6 +205,7 @@
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
+;; Running programs 
 (use-package quickrun
   :ensure t
   :bind
@@ -214,6 +221,27 @@
   (setq leetcode-password "vBG3762TECmDQo")
   (setq leetcode-prefer-language "swift"))
 
+(use-package multi-term
+  :ensure t
+  :config
+  (setq multi-term-program "/bin/zsh"))
+
+;; Unicode
+(use-package unicode-fonts
+  :ensure t
+  :demand t
+  :config
+  (unicode-fonts-setup))
+
+(use-package shell-pop
+  :ensure t
+  :bind (("C-t" . shell-pop))
+  :config
+  (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+  (setq shell-pop-term-shell "/bin/zsh")
+  (setq shell-pop-universal-key "C-t")
+  ;; need to do this manually or not picked up by `shell-pop'
+  (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
