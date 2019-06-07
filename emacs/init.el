@@ -186,7 +186,7 @@
   :after json-mode
   :bind (("C-c r" . json-reformat-region)))
 
-;; Autocompletion & systax highlight
+;; Syntax highlighting
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
@@ -204,6 +204,11 @@
   :defer t
   :init
   (advice-add 'python-mode :before 'elpy-enable))
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 ;; Running programs 
 (use-package quickrun
@@ -242,6 +247,36 @@
   (setq shell-pop-universal-key "C-t")
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
+
+;; AutoCompletions
+(use-package ivy
+  :ensure t
+  :diminish (ivy-mode . "")
+  :init (ivy-mode 1) ; globally at startup
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-height 20)
+  (setq ivy-count-format "%d/%d "))
+
+;; Override the basic Emacs commands
+(use-package counsel
+  :ensure t
+  :bind* ; load when pressed
+  (("M-x"     . counsel-M-x)
+   ("C-s"     . swiper)
+   ("C-x C-f" . counsel-find-file)
+   ("C-x C-r" . counsel-recentf)  ; search for recently edited
+   ("C-c g"   . counsel-git)      ; search for files in git repo
+   ("C-c j"   . counsel-git-grep) ; search for regexp in git repo
+   ("C-c /"   . counsel-ag)       ; Use ag for regexp
+   ("C-x l"   . counsel-locate)
+   ("C-x C-f" . counsel-find-file)
+   ("<f1> f"  . counsel-describe-function)
+   ("<f1> v"  . counsel-describe-variable)
+   ("<f1> l"  . counsel-find-library)
+   ("<f2> i"  . counsel-info-lookup-symbol)
+   ("<f2> u"  . counsel-unicode-char)
+   ("C-c C-r" . ivy-resume)))     ; Resume last Ivy-based completion
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
