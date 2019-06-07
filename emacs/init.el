@@ -40,6 +40,12 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
+;; replace buffer-menu with ibuffer
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+
+;; align code in a pretty way
+(global-set-key (kbd "C-x \\") #'align-regexp)
+
 ;; Keep modes indentation
 (setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
 
@@ -129,11 +135,35 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package windmove
+  :config
+  ;; use shift + arrow keys to switch between visible buffers
+  (windmove-default-keybindings))
+
 ;; Helps you to try a package without installing it
 (use-package try
   :ensure t)
 
 ;;; third-party packages
+(use-package super-save
+  :ensure t
+  :config
+  ;; add integration with ace-window
+  (add-to-list 'super-save-triggers 'ace-window)
+(super-save-mode +1))
+
+;; powerline 
+(use-package powerline
+  :ensure t
+  :config
+  (setq powerline-arrow-shape 'curve
+        powerline-display-buffer-size nil
+        powerline-display-mule-info nil)
+  (powerline-default-theme)
+  (remove-hook 'focus-out-hook 'powerline-unset-selected-window)
+  (setq powerline-height 24)
+  (defpowerline powerline-minor-modes ""))
+
 (use-package afternoon-theme
   :ensure t
   :config
@@ -249,34 +279,47 @@
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
 ;; AutoCompletions
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.5)
+  (setq company-show-numbers t)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-align-annotations t)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode))
+
 (use-package ivy
   :ensure t
-  :diminish (ivy-mode . "")
-  :init (ivy-mode 1) ; globally at startup
   :config
+  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 20)
-  (setq ivy-count-format "%d/%d "))
+  (setq enable-recursive-minibuffers t)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume))
 
-;; Override the basic Emacs commands
+(use-package swiper
+  :ensure t
+  :config
+  (global-set-key "\C-s" 'swiper))
+
 (use-package counsel
   :ensure t
-  :bind* ; load when pressed
-  (("M-x"     . counsel-M-x)
-   ("C-s"     . swiper)
-   ("C-x C-f" . counsel-find-file)
-   ("C-x C-r" . counsel-recentf)  ; search for recently edited
-   ("C-c g"   . counsel-git)      ; search for files in git repo
-   ("C-c j"   . counsel-git-grep) ; search for regexp in git repo
-   ("C-c /"   . counsel-ag)       ; Use ag for regexp
-   ("C-x l"   . counsel-locate)
-   ("C-x C-f" . counsel-find-file)
-   ("<f1> f"  . counsel-describe-function)
-   ("<f1> v"  . counsel-describe-variable)
-   ("<f1> l"  . counsel-find-library)
-   ("<f2> i"  . counsel-info-lookup-symbol)
-   ("<f2> u"  . counsel-unicode-char)
-   ("C-c C-r" . ivy-resume)))     ; Resume last Ivy-based completion
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c a") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
