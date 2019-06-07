@@ -205,6 +205,16 @@
   (("C-c C-q" . quickrun)
    ("<f8>" . quickrun-compile-only)))
 
+(use-package leetcode
+  :if (file-directory-p "~/.emacs.d/leetcode/")
+  :ensure t
+  :load-path "~/.emacs.d/leetcode/"
+  :config
+  (setq leetcode-account "coyo8")
+  (setq leetcode-password "vBG3762TECmDQo")
+  (setq leetcode-prefer-language "swift"))
+
+
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
