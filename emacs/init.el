@@ -196,11 +196,18 @@
 
 (use-package projectile
   :ensure t
+  :bind ("C-c p" . projectile-command-map)
   :init
   (setq projectile-completion-system 'ivy)
+
   :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (add-to-list 'projectile-project-root-files ".projectile")
+  (add-to-list 'projectile-project-root-files ".git")
+
+  ;; set different project types
+  (projectile-register-project-type 'xcode
+    '("*.xcodeproj")))
  
 ;; Which next key you need to type
 (use-package which-key
@@ -285,11 +292,11 @@
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
-;; AutoCompletions
+;; Autocompletion
 (use-package company
   :ensure t
   :config
-  (setq company-idle-delay 0.5)
+  (setq company-idle-delay 0.1)
   (setq company-show-numbers t)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
@@ -299,6 +306,12 @@
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
 
+(use-package company-sourcekit
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-sourcekit))
+
+;; Search and find enhancements
 (use-package ivy
   :ensure t
   :config
@@ -327,6 +340,12 @@
   :bind ("C-x C-p" . counsel-projectile-switch-project)
   :config
   (counsel-projectile-mode))
+
+
+;; Format code
+(use-package format-all
+  :ensure t)
+  
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
