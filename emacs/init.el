@@ -306,10 +306,10 @@
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
 
-(use-package company-sourcekit
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-sourcekit))
+;; (use-package company-sourcekit
+;;   :ensure t
+;;   :config
+;;   (add-to-list 'company-backends 'company-sourcekit))
 
 ;; Search and find enhancements
 (use-package ivy
