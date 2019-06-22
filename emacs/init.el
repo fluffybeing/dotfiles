@@ -13,11 +13,12 @@
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
 
-;; Basic Configurations
+;; Basic Configurations of fonts
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
+(set-frame-font "Inconsolata 12")
 
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
@@ -56,6 +57,11 @@
 
 ;; Keep modes indentation
 (setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
+(setq js-indent-level 2)
+(setq-default c-basic-offset 2)
+(setq c-basic-offset 2)
+(setq-default tab-width 2)
+(setq-default c-basic-indent 2)
 
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
@@ -229,6 +235,15 @@
   :ensure t
   :after json-mode
   :bind (("C-c r" . json-reformat-region)))
+
+;; Spelling check
+(use-package flyspell
+  :ensure t
+  :config
+  (setq ispell-program-name "aspell"
+        ispell-extra-args '("--sug-mode-ultra"))
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
 ;; Syntax highlighting
 (use-package flycheck
