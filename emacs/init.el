@@ -18,7 +18,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
-(set-frame-font "Inconsolata 12")
+(set-frame-font "Inconsolata 14")
 
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
