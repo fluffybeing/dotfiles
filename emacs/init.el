@@ -241,7 +241,7 @@
   :ensure t
   :config
   (setq ispell-program-name "aspell"
-        ispell-extra-args '("--sug-mode-ultra"))
+        ispell-extra-args '("--sug-mode-ultra" "--lang=en_US"))
   (add-hook 'text-mode-hook #'flyspell-mode)
   (add-hook 'prog-mode-hook #'flyspell-prog-mode))
 
@@ -258,11 +258,19 @@
   :mode "\\.swift\\'"
   :interpreter "swift")
 
-(use-package elpy
+(use-package company-jedi
   :ensure t
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
+  :config
+  :hook
+  (python-mode . jedi:setup))
+
+(use-package markdown-mode
+  :ensure t)
+
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode))
 
 (use-package company
   :ensure t
