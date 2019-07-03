@@ -241,8 +241,8 @@
   :config
   (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra" "--lang=en_US"))
-  (add-hook 'text-mode-hook #'flyspell-mode)
-  (add-hook 'prog-mode-hook #'flyspell-prog-mode))
+  :hook (text-mode . flyspell-mode)
+        (prog-mode . flyspell-prog-mode))
 
 ;; Syntax highlighting
 (use-package flycheck
@@ -255,7 +255,9 @@
 (use-package swift-mode
   :ensure t
   :mode "\\.swift\\'"
-  :interpreter "swift")
+  :interpreter "swift"
+  :config
+  (setq-default swift-mode:basic-offset 2))
 
 (use-package markdown-mode
   :ensure t)
