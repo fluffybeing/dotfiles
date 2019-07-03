@@ -173,15 +173,14 @@
   (setq powerline-arrow-shape 'curve
         powerline-display-buffer-size nil
         powerline-display-mule-info nil)
-  (powerline-default-theme)
+  (powerline-center-theme)
   (remove-hook 'focus-out-hook 'powerline-unset-selected-window)
-  (setq powerline-height 24)
-  (defpowerline powerline-minor-modes ""))
+  (setq powerline-height 20))
 
-(use-package afternoon-theme
+(use-package dracula-theme
   :ensure t
   :config
-  (load-theme 'afternoon t))
+  (load-theme 'dracula t))
 
 (use-package dash
   :config (dash-enable-font-lock))
@@ -257,12 +256,6 @@
   :ensure t
   :mode "\\.swift\\'"
   :interpreter "swift")
-
-(use-package company-jedi
-  :ensure t
-  :config
-  :hook
-  (python-mode . jedi:setup))
 
 (use-package markdown-mode
   :ensure t)
