@@ -57,9 +57,7 @@
 
 ;; Keep modes indentation
 (setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
-(setq js-indent-level 2)
 (setq-default c-basic-offset 2)
-(setq c-basic-offset 2)
 (setq-default tab-width 2)
 (setq-default c-basic-indent 2)
 
@@ -203,7 +201,8 @@
   :ensure t
   :bind ("C-c p" . projectile-command-map)
   :init
-  (setq projectile-completion-system 'ivy)
+  (setq projectile-completion-system 'ivy
+        projectile-git-submodule-command nil)
 
   :config
   (projectile-mode +1)
