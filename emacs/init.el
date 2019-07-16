@@ -141,6 +141,11 @@
   :config
   (setq auto-package-update-delete-old-versions t))
 
+(use-package server
+  :ensure t
+  :config
+  (unless (server-running-p) (server-start)))
+
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns))
@@ -164,7 +169,34 @@
   (add-to-list 'super-save-triggers 'ace-window)
 (super-save-mode +1))
 
-;; powerline 
+;; Desktop mode
+(use-package desktop
+  :ensure t
+  :custom
+  (desktop-restore-eager   1   "Restore only the first buffer right away")
+  (desktop-lazy-idle-delay 1   "Restore the rest of the buffers 1 seconds later")
+  (desktop-lazy-verbose    nil "Be silent about lazily opening buffers")
+  :bind
+  ("C-c d" . desktop-clear)
+  :config
+  (desktop-save-mode))
+
+(use-package recentf
+  :ensure t
+  :custom
+  (recentf-max-menu-items 100)
+  (recentf-max-saved-items 100)
+  :init
+  (recentf-mode))
+
+(use-package all-the-icons
+  :ensure t
+  :defer 3)
+
+;; powerline
+(use-package diminish
+  :ensure t)
+
 (use-package powerline
   :ensure t
   :config
