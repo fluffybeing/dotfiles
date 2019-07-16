@@ -335,9 +335,10 @@
   :ensure t
   :bind (("C-t" . shell-pop))
   :config
-  (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
-  (setq shell-pop-term-shell "/bin/zsh")
-  (setq shell-pop-universal-key "C-t")
+  (setq shell-pop-term-shell "/bin/zsh"
+        shell-pop-universal-key "C-t"
+        shell-pop-window-position "right"
+        shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
