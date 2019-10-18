@@ -335,8 +335,8 @@
   :bind (("C-t" . shell-pop))
   :config
   (setq shell-pop-term-shell "/bin/zsh"
-        shell-pop-universal-key "C-t"
         shell-pop-window-position "bottom"
+        shell-pop-universal-key "C-t"
         shell-pop-full-span t
         shell-pop-window-size 50
         shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
