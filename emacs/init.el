@@ -39,6 +39,10 @@
 (column-number-mode t)
 (size-indication-mode t)
 
+;; make the frame full screen
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(cursor-color . "white"))
+
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -178,8 +182,10 @@
   (desktop-lazy-verbose    nil "Be silent about lazily opening buffers")
   :bind
   ("C-c d" . desktop-clear)
+  :init
+  (add-hook 'after-init-hook 'desktop-read)
   :config
-  (desktop-save-mode))
+  (desktop-save-mode t))
 
 (use-package recentf
   :ensure t
@@ -252,7 +258,8 @@
 
 ;; Critical modes
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :mode "\\.yaml\\'")
 
 (use-package json-mode
   :ensure t
@@ -291,7 +298,8 @@
   (setq-default swift-mode:basic-offset 2))
 
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :mode "\\.md\\'")
 
 (use-package company-quickhelp
   :ensure t
@@ -307,17 +315,8 @@
 (use-package quickrun
   :ensure t
   :bind
-  (("C-c C-q" . quickrun)
+  (("C-c q" . quickrun)
    ("<f8>" . quickrun-compile-only)))
-
-(use-package leetcode
-  :if (file-directory-p "~/.emacs.d/leetcode/")
-  :ensure t
-  :load-path "~/.emacs.d/leetcode/"
-  :config
-  (setq leetcode-account "coyo8")
-  (setq leetcode-password "vBG3762TECmDQo")
-  (setq leetcode-prefer-language "swift"))
 
 (use-package multi-term
   :ensure t
@@ -357,11 +356,6 @@
   ;; is displayed on top (happens near the bottom of windows)
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
-
-;; (use-package company-sourcekit
-;;   :ensure t
-;;   :config
-;;   (add-to-list 'company-backends 'company-sourcekit))
 
 ;; Search and find enhancements
 (use-package ivy
@@ -405,3 +399,4 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(put 'erase-buffer 'disabled nil)
