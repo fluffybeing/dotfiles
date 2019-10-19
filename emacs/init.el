@@ -297,6 +297,13 @@
   :config
   (setq-default swift-mode:basic-offset 2))
 
+(use-package swift-playground-mode
+  :ensure t
+  :defer t
+  :init
+  (autoload 'swift-playground-global-mode "swift-playground-mode" nil t)
+  (add-hook 'swift-mode-hook #'swift-playground-global-mode))
+
 (use-package markdown-mode
   :ensure t
   :mode "\\.md\\'")
@@ -343,7 +350,7 @@
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
-;; Autocompletion
+;; Auto-completion
 (use-package company
   :ensure t
   :config
@@ -392,7 +399,6 @@
 (use-package format-all
   :ensure t)
   
-
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
