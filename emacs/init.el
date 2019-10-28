@@ -295,7 +295,13 @@
   :mode "\\.swift\\'"
   :interpreter "swift"
   :config
-  (setq-default swift-mode:basic-offset 2))
+  (setq-default swift-mode:basic-offset 2)
+  :init
+  (use-package company-sourcekit
+    :ensure t
+    :init (setq company-sourcekit-use-yasnippet t)
+    :config (add-to-list 'company-backends 'company-sourcekit))
+  (add-to-list 'flycheck-checkers 'swift))
 
 (use-package swift-playground-mode
   :ensure t
