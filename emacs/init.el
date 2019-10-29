@@ -4,6 +4,7 @@
 ;; INSTALL PACKAGES
 ;; --------------------------------------
 (setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -216,7 +217,8 @@
 (use-package dracula-theme
   :ensure t
   :config
-  (load-theme 'dracula t))
+  (if (display-graphic-p)
+    (load-theme 'dracula t)))
 
 (use-package dash
   :config (dash-enable-font-lock))
