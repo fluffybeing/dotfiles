@@ -463,7 +463,9 @@
              "* TODO %i%?")
             ("T" "Tickler" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
-             "* %i%? \n %^t")))
+             "* %i%? \n %^t")
+            ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")))
     (setq org-refile-targets
           '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
             ("~/Dropbox/org/someday.org" :level . 1)
