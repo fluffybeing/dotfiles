@@ -464,12 +464,20 @@
             ("T" "Tickler" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
-            ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+            ("j" "Journal" entry
+             (file+datetree "~/Dropbox/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("i" "idea" entry
+             (file+datetree "~/Dropbox/org/ideas.org")
              "* %?\nEntered on %U\n  %i\n  %a")))
+    (setq org-agenda-files '("~/Dropbox/org/gtd.org"
+                             "~/Dropbox/org/someday.org"
+                             "~/Dropbox/org/tickler.org"))
     (setq org-refile-targets
-          '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
-            ("~/Dropbox/org/someday.org" :level . 1)
-            ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
+          '((nil :maxlevel . 3)
+            (org-agenda-files :maxlevel . 3)))
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
     (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
     (setq org-agenda-custom-commands
           '(("@" "Contexts"
