@@ -3,6 +3,7 @@
 
 ;; INSTALL PACKAGES
 ;; --------------------------------------
+;; Remove the initial message 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
@@ -39,6 +40,10 @@
 (line-number-mode t)
 (column-number-mode t)
 (size-indication-mode t)
+(scroll-bar-mode -1)
+
+;; Symlinks
+(setq vc-follow-symlinks t)
 
 ;; make the frame full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -127,6 +132,9 @@
   :init (setq nlinum-format " %d  ")
   :config
   (global-nlinum-mode))
+
+(use-package all-the-icons
+  :ensure t)
 
 ;; highlight the current line
 (use-package hl-line
@@ -233,6 +241,12 @@
                           'magit-insert-modules
                           'magit-insert-stashes
                           'append))
+
+(use-package git-gutter-fringe
+  :ensure t
+  :diminish git-gutter-mode
+  :config (global-git-gutter-mode))
+
 ;; Files and Folders
 (use-package ag
   :ensure t)
@@ -259,6 +273,10 @@
   :config (which-key-mode))
 
 ;; Critical modes
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.md\\'")
+
 (use-package yaml-mode
   :ensure t
   :mode "\\.yaml\\'")
@@ -312,31 +330,12 @@
   (autoload 'swift-playground-global-mode "swift-playground-mode" nil t)
   (add-hook 'swift-mode-hook #'swift-playground-global-mode))
 
-(use-package markdown-mode
-  :ensure t
-  :mode "\\.md\\'")
-
-(use-package company-quickhelp
-  :ensure t
-  :config
-  (company-quickhelp-mode))
-
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
-
 ;; Running programs 
 (use-package quickrun
   :ensure t
   :bind
   (("C-c q" . quickrun)
    ("<f8>" . quickrun-compile-only)))
-
-(use-package multi-term
-  :ensure t
-  :config
-  (setq multi-term-program "/bin/zsh"))
 
 ;; Unicode
 (use-package unicode-fonts
@@ -358,9 +357,15 @@
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
+(use-package multi-term
+  :ensure t
+  :config
+  (setq multi-term-program "/bin/zsh"))
+
 ;; Auto-completion
 (use-package company
   :ensure t
+  :bind ("C-<tab>" . company-complete)
   :config
   (setq company-idle-delay 0.1)
   (setq company-show-numbers t)
@@ -371,6 +376,26 @@
   ;; is displayed on top (happens near the bottom of windows)
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
+
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode))
+
+;; Folder and navigation
+(use-package dired
+  :commands dired-mode
+  :bind (:map dired-mode-map ("C-o" . dired-omit-mode))
+  :config
+  (progn
+    (setq dired-dwim-target t)
+    (setq-default dired-omit-mode t)
+    (setq-default dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$\\|^\\.")
+    (define-key dired-mode-map "i" 'dired-subtree-insert)
+    (define-key dired-mode-map ";" 'dired-subtree-remove)))
+(use-package dired-subtree
+  :ensure t
+  :commands (dired-subtree-insert))
 
 ;; Search and find enhancements
 (use-package ivy
@@ -406,7 +431,64 @@
 ;; Format code
 (use-package format-all
   :ensure t)
-  
+
+;; Org mode
+(use-package org
+  :ensure t
+  :mode ("\\.org\\'" . org-mode)
+  :bind (("C-c l" . org-store-link)
+         ("C-c c" . org-capture)
+         ("C-c a" . org-agenda)
+         ("C-c b" . org-iswitchb)
+         ("C-c C-w" . org-refile)
+         ("C-c j" . org-clock-goto)
+         ("C-c C-x C-o" . org-clock-out))
+  :config
+  (progn
+    ;; The GTD part of this config is heavily inspired by
+    ;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
+    (setq org-directory "~/Dropbox/org/")
+    (setq org-agenda-files
+          (mapcar (lambda (path) (concat org-directory path))
+                  '("/journal.org"
+                    "/gtd.org"
+                    "/inbox.org"
+                    "/tickler.org")))
+    (setq org-log-done 'time)
+    (setq org-src-fontify-natively t)
+    (setq org-use-speed-commands t)
+    (setq org-capture-templates
+          '(("t" "Todo [inbox]" entry
+             (file+headline "~/Dropbox/org/inbox.org" "Tasks")
+             "* TODO %i%?")
+            ("T" "Tickler" entry
+             (file+headline "~/Dropbox/org/tickler.org" "Tickler")
+             "* %i%? \n %^t")))
+    (setq org-refile-targets
+          '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+            ("~/Dropbox/org/someday.org" :level . 1)
+            ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
+    (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+    (setq org-agenda-custom-commands
+          '(("@" "Contexts"
+             ((tags-todo "@email"
+                         ((org-agenda-overriding-header "Emails")))
+              (tags-todo "@phone"
+                         ((org-agenda-overriding-header "Phone")))))))
+    (setq org-clock-persist t)
+    (org-clock-persistence-insinuate)
+    (setq org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))))
+
+(use-package org-inlinetask
+  :bind (:map org-mode-map
+              ("C-c C-x t" . org-inlinetask-insert-task))
+  :after (org)
+  :commands (org-inlinetask-insert-task))
+(use-package org-bullets
+  :ensure t
+  :commands (org-bullets-mode)
+  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 

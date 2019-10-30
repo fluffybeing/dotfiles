@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+export ITERM_24BIT=1
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -14,7 +16,7 @@ fi
 # Xcode/iOS
 alias cs="xcrun simctl erase all"
 alias spg="swift package generate-xcodeproj"
-alias emacs="/usr/local/Cellar/emacs/26.1_1/bin/emacs-26.1 -nw"
+alias emacs="emacs -nw"
 
 # Open todo folder
 alias todo="emacs $HOME/Dropbox/org/"
