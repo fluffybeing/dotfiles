@@ -328,7 +328,7 @@
   :defer t
   :init
   (autoload 'swift-playground-global-mode "swift-playground-mode" nil t)
-  (add-hook 'swift-mode-hook #'swift-playground-global-mode))
+  (add-hook 'swift-mode-hook 'swift-playground-global-mode))
 
 ;; Running programs 
 (use-package quickrun
@@ -460,7 +460,7 @@
     (setq org-capture-templates
           '(("t" "Todo [inbox]" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO %i%?")
+             "* TODO %?\n%U\n" :clock-resume t)
             ("T" "Tickler" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
@@ -469,13 +469,11 @@
              "* %?\nEntered on %U\n  %i\n  %a")
             ("i" "idea" entry
              (file+datetree "~/Dropbox/org/ideas.org")
-             "* %?\nEntered on %U\n  %i\n  %a")))
-    (setq org-agenda-files '("~/Dropbox/org/gtd.org"
-                             "~/Dropbox/org/someday.org"
-                             "~/Dropbox/org/tickler.org"))
-    (setq org-refile-targets
-          '((nil :maxlevel . 3)
-            (org-agenda-files :maxlevel . 3)))
+             "* %? \n %U")))
+    (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+                               ("~/Dropbox/org/someday.org" :maxlevel . 1)
+                               ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
+
     (setq org-refile-use-outline-path 'file)
     (setq org-outline-path-complete-in-steps nil)
     (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
@@ -494,10 +492,15 @@
               ("C-c C-x t" . org-inlinetask-insert-task))
   :after (org)
   :commands (org-inlinetask-insert-task))
+
 (use-package org-bullets
   :ensure t
   :commands (org-bullets-mode)
   :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package org-journal
+  :ensure t
+  :requires org)
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
