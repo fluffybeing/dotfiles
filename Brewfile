@@ -6,7 +6,6 @@ tap 'homebrew/php'
 tap 'homebrew/services'
 
 # Install VIM
-brew 'vim'
 brew 'diff-so-fancy'
 
 # Install
@@ -43,26 +42,26 @@ brew 'httpie'
 brew 'python3'
 
 # Apps
-cask 'aerial'
+cask 'itsycal'
 cask 'alfred'
 cask 'caffeine'
 cask 'dropbox'
 cask 'firefox'
 cask 'iterm2'
 cask 'sequel-pro'
-cask 'shuttle'
 cask 'slack'
 cask 'tower'
 cask 'vlc'
 cask "karabiner-elements"
 cask 'keybase'
-cask "sourcetree"
 cask "keyboardcleantool"
-cask "istat-menus"
 cask "coderunner"
-cask "keepassx"
 cask "spectacle"
 cask "zotero"
+cask "copyclip"
+cask "lumen"
+cask "figma"
+cask "rescuetime"
 
 # Quicklook
 cask 'qlcolorcode'
