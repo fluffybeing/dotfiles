@@ -323,13 +323,6 @@
     :config (add-to-list 'company-backends 'company-sourcekit))
   (add-to-list 'flycheck-checkers 'swift))
 
-(use-package swift-playground-mode
-  :ensure t
-  :defer t
-  :init
-  (autoload 'swift-playground-global-mode "swift-playground-mode" nil t)
-  (add-hook 'swift-mode-hook 'swift-playground-global-mode))
-
 ;; Running programs 
 (use-package quickrun
   :ensure t
@@ -447,20 +440,22 @@
   (progn
     ;; The GTD part of this config is heavily inspired by
     ;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
-    (setq org-directory "~/Dropbox/org/")
-    (setq org-agenda-files
-          (mapcar (lambda (path) (concat org-directory path))
-                  '("/journal.org"
-                    "/gtd.org"
-                    "/inbox.org"
-                    "/tickler.org")))
+    (setq org-agenda-files '("~/Dropbox/org/"))
     (setq org-log-done 'time)
-    (setq org-src-fontify-natively t)
     (setq org-use-speed-commands t)
     (setq org-capture-templates
-          '(("t" "Todo [inbox]" entry
+          '(("t" "todo [inbox]" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO %?\n%U\n" :clock-resume t)
+             "* TODO %? %^G \n  %U" :empty-lines 1)
+            ("s" "Scheduled todo [inbox]" entry
+             (file+headline "~/Dropbox/org/inbox.org" "Tasks")
+             "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
+            ("d" "Deadline todo [inbox]" entry
+             (file+headline "~/Dropbox/org/inbox.org" "Tasks")
+             "* TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
+            ("p" "Priority todo [inbox]" entry
+             (file+headline "~/Dropbox/org/inbox.org" "Tasks")
+             "* TODO [#A] %? %^G \n  SCHEDULED: %^t")
             ("T" "Tickler" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
@@ -478,14 +473,27 @@
     (setq org-outline-path-complete-in-steps nil)
     (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
     (setq org-agenda-custom-commands
-          '(("@" "Contexts"
-             ((tags-todo "@email"
-                         ((org-agenda-overriding-header "Emails")))
-              (tags-todo "@phone"
-                         ((org-agenda-overriding-header "Phone")))))))
+      '(("c" "Simple agenda view"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+          (agenda "")
+          (alltodo ""))
+         ((org-agenda-tag-filter-preset '("-SOMEDAY"))))))
     (setq org-clock-persist t)
     (org-clock-persistence-insinuate)
     (setq org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))))
+    (setq org-tag-alist '(("@work" . ?w) ("@personal" . ?p)))
+
+(use-package org-protocol
+  :demand
+  :config
+  (add-to-list 'org-capture-templates
+               '("p" "Protocol" entry (file "~/Dropbox/org/inbox.org")
+                 "* TODO %?[[%:link][%:description]] %U\n%i\n" :prepend t))
+  (add-to-list 'org-capture-templates
+               '("l" "Protocol Link" entry (file "~/Dropbox/org/inbox.org")
+                 "* TODO %?[[%:link][%:description]] %U\n" :prepend t)))
 
 (use-package org-inlinetask
   :bind (:map org-mode-map
