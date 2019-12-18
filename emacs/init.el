@@ -435,7 +435,8 @@
          ("C-c b" . org-iswitchb)
          ("C-c C-w" . org-refile)
          ("C-c j" . org-clock-goto)
-         ("C-c C-x C-o" . org-clock-out))
+         ("C-c C-x C-o" . org-clock-out)
+         )
   :config
   (progn
     ;; The GTD part of this config is heavily inspired by
@@ -482,17 +483,19 @@
          ((org-agenda-tag-filter-preset '("-SOMEDAY"))))))
     (setq org-clock-persist t)
     (org-clock-persistence-insinuate)
-    (setq org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))))
-    (setq org-tag-alist '(("@work" . ?w) ("@personal" . ?p)))
+    (setq org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+    (setq org-tag-alist '(("@work" . ?w) ("@personal" . ?p) ("@health" . ?h)
+                          ("@travel" . ?t) ("@Resonance" . ?r) ("@life" . ?l)
+                          ("@algo" . ?a)))))
 
 (use-package org-protocol
   :demand
   :config
   (add-to-list 'org-capture-templates
-               '("p" "Protocol" entry (file "~/Dropbox/org/inbox.org")
+               '("c" "URL content" entry (file "~/Dropbox/org/inbox.org")
                  "* TODO %?[[%:link][%:description]] %U\n%i\n" :prepend t))
   (add-to-list 'org-capture-templates
-               '("l" "Protocol Link" entry (file "~/Dropbox/org/inbox.org")
+               '("l" "Link" entry (file "~/Dropbox/org/inbox.org")
                  "* TODO %?[[%:link][%:description]] %U\n" :prepend t)))
 
 (use-package org-inlinetask
