@@ -1,4 +1,4 @@
-
+1
 ;; init.el --- Emacs configuration
 
 ;; INSTALL PACKAGES
@@ -20,7 +20,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
-(set-frame-font "Inconsolata 14")
+(set-frame-font "DejaVu Sans Mono 14")
 
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
