@@ -54,6 +54,7 @@
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
@@ -152,7 +153,9 @@
   :ensure t
   :bind ("C-x P" . auto-package-update-now)
   :config
-  (setq auto-package-update-delete-old-versions t))
+  (setq auto-package-update-delete-old-versions t
+        auto-package-update-interval 4)
+  (auto-package-update-maybe))
 
 (use-package server
   :ensure t
