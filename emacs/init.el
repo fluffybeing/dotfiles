@@ -41,6 +41,8 @@
 (column-number-mode t)
 (size-indication-mode t)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; Symlinks
 (setq vc-follow-symlinks t)
@@ -180,6 +182,7 @@
 ;;; third-party packages
 (use-package super-save
   :ensure t
+  :diminish super-save-mode
   :config
   ;; add integration with ace-window
   (add-to-list 'super-save-triggers 'ace-window)
@@ -212,17 +215,20 @@
   :defer 3)
 
 ;; powerline
+;; Hide extra abbreviation of minor mode
 (use-package diminish
+  :ensure t)
+
+(use-package delight
   :ensure t)
 
 (use-package powerline
   :ensure t
   :config
-  (setq powerline-arrow-shape 'curve
-        powerline-display-buffer-size nil
-        powerline-display-mule-info nil)
+  (setq powerline-arrow-shape 'curve)
   (powerline-center-theme)
-  (remove-hook 'focus-out-hook 'powerline-unset-selected-window)
+  (remove-hook 'focus-out-hook
+               'powerline-unset-selected-window)
   (setq powerline-height 20))
 
 (use-package dracula-theme
@@ -234,7 +240,7 @@
 (use-package dash
   :config (dash-enable-font-lock))
 
-;; The awesomeness
+;; Git Related 
 (use-package magit
   :defer t
   :bind (("C-x g"   . magit-status)
@@ -250,7 +256,7 @@
   :diminish git-gutter-mode
   :config (global-git-gutter-mode))
 
-;; Files and Folders
+;; Project and Search 
 (use-package ag
   :ensure t)
 
@@ -260,7 +266,7 @@
   :init
   (setq projectile-completion-system 'ivy
         projectile-git-submodule-command nil)
-
+  :diminish projectile-mode
   :config
   (projectile-mode +1)
   (add-to-list 'projectile-project-root-files ".projectile")
@@ -299,6 +305,7 @@
 ;; Spelling check
 (use-package flyspell
   :ensure t
+  :diminish flyspell-mode
   :config
   (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra" "--lang=en_US"))
@@ -309,6 +316,7 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
+  :diminish flycheck-mode
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (add-to-list 'flycheck-checkers 'swift))
@@ -362,6 +370,7 @@
 (use-package company
   :ensure t
   :bind ("C-<tab>" . company-complete)
+  :diminish company-mode
   :config
   (setq company-idle-delay 0.1)
   (setq company-show-numbers t)
@@ -448,19 +457,19 @@
     (setq org-log-done 'time)
     (setq org-use-speed-commands t)
     (setq org-capture-templates
-          '(("t" "todo [inbox]" entry
+          '(("t" "todo" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO %? %^G \n  %U" :empty-lines 1)
-            ("s" "Scheduled todo [inbox]" entry
+             "* TODO %?\n%U" :empty-lines 1)
+            ("s" "Scheduled" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
              "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
-            ("d" "Deadline todo [inbox]" entry
+            ("d" "Deadline" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
              "* TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
-            ("p" "Priority todo [inbox]" entry
+            ("p" "Priority" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
              "* TODO [#A] %? %^G \n  SCHEDULED: %^t")
-            ("T" "Tickler" entry
+            ("T" "Tickler (Repeated)" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
             ("j" "Journal" entry
@@ -492,14 +501,14 @@
                           ("@algo" . ?a)))))
 
 (use-package org-protocol
-  :demand
+  :after org
   :config
   (add-to-list 'org-capture-templates
-               '("c" "URL content" entry (file "~/Dropbox/org/inbox.org")
-                 "* TODO %?[[%:link][%:description]] %U\n%i\n" :prepend t))
-  (add-to-list 'org-capture-templates
                '("l" "Link" entry (file "~/Dropbox/org/inbox.org")
-                 "* TODO %?[[%:link][%:description]] %U\n" :prepend t)))
+                 "* TODO %? |- (%:description) :BOOKMARK:\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t))
+  (add-to-list 'org-capture-templates
+               '("c" "Content" entry (file "~/Dropbox/org/inbox.org")
+                 "* TODO %? :BOOKMARK:\n%(replace-regexp-in-string \"\n.*\" \"\" \"%i\")\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t)))
 
 (use-package org-inlinetask
   :bind (:map org-mode-map
