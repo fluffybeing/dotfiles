@@ -130,14 +130,12 @@
   :config
   (setq default-process-coding-system '(utf-8-unix . utf-8-unix)))
 
+;; show lines on left side
 (use-package nlinum
   :ensure t
   :init (setq nlinum-format " %d  ")
   :config
   (global-nlinum-mode))
-
-(use-package all-the-icons
-  :ensure t)
 
 ;; highlight the current line
 (use-package hl-line
@@ -151,6 +149,7 @@
   ;; activate it for all buffers
   (setq-default save-place t))
 
+;; Update packages on four days interval
 (use-package auto-package-update
   :ensure t
   :bind ("C-x P" . auto-package-update-now)
@@ -164,12 +163,14 @@
   :config
   (unless (server-running-p) (server-start)))
 
+;; Play well with $PATH on mac 
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns))
   :config
   (exec-path-from-shell-initialize))
 
+;; C-x o alternative
 (use-package windmove
   :config
   ;; use shift + arrow keys to switch between visible buffers
@@ -231,6 +232,7 @@
                'powerline-unset-selected-window)
   (setq powerline-height 20))
 
+;; Themes
 (use-package dracula-theme
   :ensure t
   :config
@@ -312,7 +314,12 @@
   :hook (text-mode . flyspell-mode)
         (prog-mode . flyspell-prog-mode))
 
-;; Syntax highlighting
+;;; Syntax highlighting
+;; for package syntax
+(use-package flycheck-package
+  :ensure t
+  :after flycheck)
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
@@ -370,7 +377,8 @@
 (use-package company
   :ensure t
   :bind ("C-<tab>" . company-complete)
-  :diminish company-mode
+  :diminish
+  :hook (after-init . global-company-mode)
   :config
   (setq company-idle-delay 0.1)
   (setq company-show-numbers t)
@@ -380,7 +388,7 @@
   ;; invert the navigation direction if the the completion popup-isearch-match
   ;; is displayed on top (happens near the bottom of windows)
   (setq company-tooltip-flip-when-above t)
-  (global-company-mode))
+  (setq company-backends (delete 'company-semantic company-backends)))
 
 (use-package company-quickhelp
   :ensure t

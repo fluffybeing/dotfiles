@@ -108,3 +108,5 @@
 [difftool "ediffclient"]
 	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 
+[pull]
+	rebase = true
