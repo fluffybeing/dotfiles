@@ -446,6 +446,12 @@
   :ensure t)
 
 ;; Org mode
+(defun my/org-add-ids-to-headlines-in-file ()
+  "Add ID properties to all headlines in the current file which
+   do not already have one."
+  (interactive)
+  (org-map-entries 'org-id-get-create))
+
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode)
@@ -461,9 +467,15 @@
   (progn
     ;; The GTD part of this config is heavily inspired by
     ;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
+    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+    (setq org-use-fast-todo-selection t)
+    ;; TODO Keywords
+    (setq org-todo-keywords
+      (quote ((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
+              (sequence "⚑ WAITING(w@/)" "|" "✘ CANCELLED(c@/)"))))
+    (setq org-enforce-todo-dependencies t)
     (setq org-agenda-files '("~/Dropbox/org/"))
     (setq org-log-done 'time)
-    (setq org-use-speed-commands t)
     (setq org-capture-templates
           '(("t" "todo" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
@@ -492,8 +504,7 @@
 
     (setq org-refile-use-outline-path 'file)
     (setq org-outline-path-complete-in-steps nil)
-    (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
-    (setq org-agenda-custom-commands
+        (setq org-agenda-custom-commands
       '(("c" "Simple agenda view"
          ((tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
