@@ -1,4 +1,4 @@
-1
+
 ;; init.el --- Emacs configuration
 
 ;; INSTALL PACKAGES
@@ -471,24 +471,24 @@
     (setq org-use-fast-todo-selection t)
     ;; TODO Keywords
     (setq org-todo-keywords
-      (quote ((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
-              (sequence "⚑ WAITING(w@/)" "|" "✘ CANCELLED(c@/)"))))
+          '((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
+            (sequence "⚑ WAITING(w@/)" "|" "✘ CANCELLED(c@/)")))
     (setq org-enforce-todo-dependencies t)
     (setq org-agenda-files '("~/Dropbox/org/"))
     (setq org-log-done 'time)
     (setq org-capture-templates
           '(("t" "todo" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO %?\n%U" :empty-lines 1)
+             "* ☛ TODO %?\n%U" :empty-lines 1)
             ("s" "Scheduled" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
+             "* ☛ TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
             ("d" "Deadline" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
+             "* ☛ TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
             ("p" "Priority" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* TODO [#A] %? %^G \n  SCHEDULED: %^t")
+             "* ☛ TODO [#A] %? %^G \n  SCHEDULED: %^t")
             ("T" "Tickler (Repeated)" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
@@ -513,8 +513,7 @@
           (alltodo ""))
          ((org-agenda-tag-filter-preset '("-SOMEDAY"))))))
     (setq org-clock-persist t)
-    (org-clock-persistence-insinuate)
-    (setq org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+    (setq org-duration-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
     (setq org-tag-alist '(("@work" . ?w) ("@personal" . ?p) ("@health" . ?h)
                           ("@travel" . ?t) ("@Resonance" . ?r) ("@life" . ?l)
                           ("@algo" . ?a)))))
@@ -523,11 +522,11 @@
   :after org
   :config
   (add-to-list 'org-capture-templates
-               '("l" "Link" entry (file "~/Dropbox/org/inbox.org")
-                 "* TODO %? |- (%:description) :BOOKMARK:\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t))
+               '("l" "Link" entry (file "~/Dropbox/org/ideas.org")
+                 "* ☛ TODO %? |- (%:description) :BOOKMARK:\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
-               '("c" "Content" entry (file "~/Dropbox/org/inbox.org")
-                 "* TODO %? :BOOKMARK:\n%(replace-regexp-in-string \"\n.*\" \"\" \"%i\")\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t)))
+               '("c" "Content" entry (file "~/Dropbox/org/ideas.org")
+                 "* ☛ TODO %? :BOOKMARK:\n%(replace-regexp-in-string \"\n.*\" \"\" \"%i\")\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t)))
 
 (use-package org-inlinetask
   :bind (:map org-mode-map
@@ -550,4 +549,4 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(put 'erase-buffer 'disabled nil)
+(setq disabled-command-function nil)
