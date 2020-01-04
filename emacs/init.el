@@ -300,6 +300,20 @@
   :config (which-key-mode))
 
 ;; Critical modes
+(use-package web-mode
+  :defer 2
+  :after (add-node-modules-path)
+  :ensure t
+  :mode ("\\.html?\\'"
+         "/themes/.*\\.php?\\'"
+         "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'"
+         "\\.\\(handlebars\\|hbs\\)\\'")
+  :config (progn
+            (setq
+             web-mode-enable-current-element-highlight t
+             web-mode-content-types-alist
+             '(("jsx" . "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'")))))
+
 (use-package markdown-mode
   :ensure t
   :mode "\\.md\\'")
