@@ -277,7 +277,23 @@
   ;; set different project types
   (projectile-register-project-type 'xcode
     '("*.xcodeproj")))
- 
+
+
+(use-package neotree
+  :ensure t
+  :bind ("C-8" . 'neotree-toggle)
+  :init
+  ;; slow rendering
+  (setq inhibit-compacting-font-caches t)
+  ;; set icons theme
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  ;; Every time when the neotree window is opened, let it find current file and jump to node
+  (setq neo-smart-open t)
+  ;; When running ‘projectile-switch-project’ (C-c p p), ‘neotree’ will change root automatically
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  ;; show hidden files
+  (setq-default neo-show-hidden-files t))
+
 ;; Which next key you need to type
 (use-package which-key
   :ensure t
