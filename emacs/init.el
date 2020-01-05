@@ -6,11 +6,12 @@
 ;; Remove the initial message 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
+(setq initial-major-mode 'org-mode)
 
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-       '("melpa" . "http://melpa.org/packages/") t)
+       '("melpa" . "https://melpa.org/packages/") t)
 ;; keep the installed packages in .emacs.d
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
@@ -20,7 +21,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
-(set-frame-font "DejaVu Sans Mono 14")
+(set-frame-font "DejaVu Sans Mono 13")
 
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
@@ -114,6 +115,16 @@
 
 (require 'use-package)
 (setq use-package-verbose t)
+
+(use-package names
+  :ensure t)
+
+(use-package system-packages
+  :ensure t
+  :init
+  (setq system-packages-use-sudo nil)
+  (when (eq system-type 'darwin)
+    (setq system-packages-package-manager 'brew)))
 
 ;; Packages
 
@@ -230,7 +241,7 @@
   (powerline-center-theme)
   (remove-hook 'focus-out-hook
                'powerline-unset-selected-window)
-  (setq powerline-height 20))
+  (setq powerline-height 10))
 
 ;; Themes
 (use-package dracula-theme
@@ -304,15 +315,8 @@
   :defer 2
   :after (add-node-modules-path)
   :ensure t
-  :mode ("\\.html?\\'"
-         "/themes/.*\\.php?\\'"
-         "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'"
-         "\\.\\(handlebars\\|hbs\\)\\'")
-  :config (progn
-            (setq
-             web-mode-enable-current-element-highlight t
-             web-mode-content-types-alist
-             '(("jsx" . "/\\(components\\|containers\\|src\\)/.*\\.js[x]?\\'")))))
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode)))
 
 (use-package markdown-mode
   :ensure t
