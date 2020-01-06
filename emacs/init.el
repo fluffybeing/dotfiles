@@ -234,14 +234,15 @@
 (use-package delight
   :ensure t)
 
-(use-package powerline
+(use-package smart-mode-line-powerline-theme
+  :ensure t)
+
+(use-package smart-mode-line
   :ensure t
+  :init (add-hook 'after-init-hook 'sml/setup)
   :config
-  (setq powerline-arrow-shape 'curve)
-  (powerline-center-theme)
-  (remove-hook 'focus-out-hook
-               'powerline-unset-selected-window)
-  (setq powerline-height 10))
+  (setq sml/no-confirm-load-theme t)
+  (setq sml/theme 'respectful))
 
 ;; Themes
 (use-package dracula-theme
@@ -499,6 +500,7 @@
          )
   :config
   (progn
+    (setq org-modules (quote (org-protocol)))
     ;; The GTD part of this config is heavily inspired by
     ;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
     (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
