@@ -497,7 +497,6 @@
          )
   :config
   (progn
-    (setq org-modules (quote (org-protocol)))
     ;; The GTD part of this config is heavily inspired by
     ;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
     (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
@@ -533,7 +532,8 @@
              "* %? \n %U")))
     (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
                                ("~/Dropbox/org/someday.org" :maxlevel . 1)
-                               ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
+                               ("~/Dropbox/org/tickler.org" :maxlevel . 2)
+                               ("~/Dropbox/org/ideas.org" :maxlevel . 2)))
 
     (setq org-refile-use-outline-path 'file)
     (setq org-outline-path-complete-in-steps nil)
@@ -545,7 +545,7 @@
           (agenda "")
           (alltodo ""))
          ((org-agenda-tag-filter-preset '("-SOMEDAY"))))))
-    (setq org-clock-persist t)
+    (setq org-clock-continuously t)
     (setq org-duration-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
     (setq org-tag-alist '(("@work" . ?w) ("@personal" . ?p) ("@health" . ?h)
                           ("@travel" . ?t) ("@Resonance" . ?r) ("@life" . ?l)
@@ -554,11 +554,12 @@
 (use-package org-protocol
   :after org
   :config
+  (setq org-modules (quote (org-protocol)))
   (add-to-list 'org-capture-templates
-               '("l" "Link" entry (file "~/Dropbox/org/ideas.org")
+               '("l" "Link" entry (file "~/Dropbox/org/inbox.org")
                  "* ☛ TODO %? |- (%:description) :BOOKMARK:\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t))
   (add-to-list 'org-capture-templates
-               '("c" "Content" entry (file "~/Dropbox/org/ideas.org")
+               '("c" "Content" entry (file "~/Dropbox/org/inbox.org")
                  "* ☛ TODO %? :BOOKMARK:\n%(replace-regexp-in-string \"\n.*\" \"\" \"%i\")\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t)))
 
 (use-package org-inlinetask
