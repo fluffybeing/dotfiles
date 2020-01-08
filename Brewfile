@@ -37,6 +37,7 @@ brew 'readline'
 brew 'ruby-build'
 brew 'cocoapods'
 brew 'httpie'
+brew 'diff-so-fancy'
 
 # Development
 brew 'python3'
@@ -50,18 +51,14 @@ cask 'firefox'
 cask 'iterm2'
 cask 'sequel-pro'
 cask 'slack'
-cask 'tower'
 cask 'vlc'
-cask "karabiner-elements"
 cask 'keybase'
 cask "keyboardcleantool"
 cask "coderunner"
 cask "spectacle"
-cask "zotero"
-cask "copyclip"
-cask "lumen"
-cask "figma"
-cask "rescuetime"
+cask "hammerspoon"
+cask "freedom"
+cask "steam"
 
 # Quicklook
 cask 'qlcolorcode'

@@ -231,9 +231,6 @@
 (use-package diminish
   :ensure t)
 
-(use-package delight
-  :ensure t)
-
 (use-package smart-mode-line-powerline-theme
   :ensure t)
 
