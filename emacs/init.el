@@ -231,9 +231,6 @@
 (use-package diminish
   :ensure t)
 
-(use-package smart-mode-line-powerline-theme
-  :ensure t)
-
 (use-package smart-mode-line
   :ensure t
   :init (add-hook 'after-init-hook 'sml/setup)
@@ -499,7 +496,6 @@
   (progn
     ;; The GTD part of this config is heavily inspired by
     ;; https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
-    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
     (setq org-use-fast-todo-selection t)
     ;; TODO Keywords
     (setq org-todo-keywords
