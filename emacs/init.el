@@ -21,7 +21,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
-(set-frame-font "DejaVu Sans Mono 13")
+(set-frame-font "SF Mono 13")
 
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
@@ -224,7 +224,9 @@
 
 (use-package all-the-icons
   :ensure t
-  :defer 3)
+  :init
+  (unless (member "all-the-icons" (font-family-list))
+    (all-the-icons-install-fonts t)))
 
 ;; powerline
 ;; Hide extra abbreviation of minor mode

@@ -34,10 +34,17 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
-#nvm
+# NVM
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 alias kindle="/usr/local/bin/k2pdfopt"
 
+
+# Workflow
+
+# I want to limit the Xcode indexing CPU usage
+limitCPU() {
+  cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent) 
+}

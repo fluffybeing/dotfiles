@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 # A simple script for setting up OSX dev environment.
-dotfile_dir="$HOME/Code/dotfiles"
+dotfile_dir="$HOME/Dropbox/Code/dotfiles"
 
 # Ask for sudo permission at start
 sudo -v
