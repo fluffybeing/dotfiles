@@ -42,7 +42,10 @@ export NVM_DIR="$HOME/.nvm"
 alias kindle="/usr/local/bin/k2pdfopt"
 
 
-# Workflow
+#iOS  Workflow
+
+# Toolchain
+export TOOLCHAINS=swift
 
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {

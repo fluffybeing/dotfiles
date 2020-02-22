@@ -471,11 +471,6 @@
   :config
   (counsel-projectile-mode))
 
-
-;; Format code
-(use-package format-all
-  :ensure t)
-
 ;; Org mode
 (defun my/org-add-ids-to-headlines-in-file ()
   "Add ID properties to all headlines in the current file which
