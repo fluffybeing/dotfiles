@@ -209,8 +209,7 @@
   (desktop-lazy-verbose    nil "Be silent about lazily opening buffers")
   :bind
   ("C-c d" . desktop-clear)
-  :init
-  (add-hook 'after-init-hook 'desktop-read)
+  :hook (after-init . desktop-read)
   :config
   (desktop-save-mode t))
 
@@ -227,6 +226,14 @@
   :init
   (unless (member "all-the-icons" (font-family-list))
     (all-the-icons-install-fonts t)))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
+
+(use-package ivy-rich
+  :ensure t
+  :init (ivy-rich-mode 1))
 
 ;; powerline
 ;; Hide extra abbreviation of minor mode
@@ -245,16 +252,8 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (load-theme 'doom-one t)
-
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-  (doom-themes-treemacs-config)
-  
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
