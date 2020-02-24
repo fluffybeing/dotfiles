@@ -16,6 +16,10 @@
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
 
+;; Wrap text
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(setq-default fill-column 80)
+
 ;; Basic Configurations of fonts
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
