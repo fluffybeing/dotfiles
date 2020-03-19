@@ -510,24 +510,24 @@
     (setq org-use-fast-todo-selection t)
     ;; TODO Keywords
     (setq org-todo-keywords
-          '((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
-            (sequence "⚑ WAITING(w@/)" "|" "✘ CANCELLED(c@/)")))
+          '((sequence "TODO(t)" "|" "DONE(d)")
+            (sequence "WAITING(w@/)" "|" "CANCELLED(c@/)")))
     (setq org-enforce-todo-dependencies t)
     (setq org-agenda-files '("~/Dropbox/org/"))
     (setq org-log-done 'time)
     (setq org-capture-templates
           '(("t" "todo" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* ☛ TODO %?\n%U" :empty-lines 1)
+             "*TODO %?\n%U" :empty-lines 1)
             ("s" "Scheduled" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* ☛ TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
+             "*TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
             ("d" "Deadline" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* ☛ TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
+             "*TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
             ("p" "Priority" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "* ☛ TODO [#A] %? %^G \n  SCHEDULED: %^t")
+             "*TODO [#A] %? %^G \n  SCHEDULED: %^t")
             ("T" "Tickler (Repeated)" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
