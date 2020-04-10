@@ -518,13 +518,13 @@
     (setq org-capture-templates
           '(("s" "Scheduled" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "*TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
+             "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
             ("d" "Deadline" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "*TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
+             "* TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
             ("p" "Priority" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "*TODO [#A] %? %^G \n  SCHEDULED: %^t")
+             "* TODO [#A] %? %^G \n  SCHEDULED: %^t")
             ("T" "Tickler (Repeated)" entry
              (file+headline "~/Dropbox/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
@@ -561,10 +561,10 @@
   (setq org-modules (quote (org-protocol)))
   (add-to-list 'org-capture-templates
                '("l" "Link" entry (file "~/Dropbox/org/inbox.org")
-                 "* ☛ TODO %? |- (%:description) :BOOKMARK:\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t))
+                 "* TODO %? |- (%:description) :BOOKMARK:\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n"))
   (add-to-list 'org-capture-templates
                '("c" "Content" entry (file "~/Dropbox/org/inbox.org")
-                 "* ☛ TODO %? :BOOKMARK:\n%(replace-regexp-in-string \"\n.*\" \"\" \"%i\")\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n" :clock-in t :clock-resume t)))
+                 "* TODO %? :BOOKMARK:\n%(replace-regexp-in-string \"\n.*\" \"\" \"%i\")\n:PROPERTIES:\n:CREATED: %U\n:Source: %:link\n:END:\n%i\n")))
 
 (use-package org-inlinetask
   :bind (:map org-mode-map
@@ -588,3 +588,4 @@
   (load custom-file))
 
 (setq disabled-command-function nil)
+
