@@ -516,10 +516,7 @@
     (setq org-agenda-files '("~/Dropbox/org/"))
     (setq org-log-done 'time)
     (setq org-capture-templates
-          '(("t" "todo" entry
-             (file+headline "~/Dropbox/org/inbox.org" "Tasks")
-             "*TODO %?\n%U" :empty-lines 1)
-            ("s" "Scheduled" entry
+          '(("s" "Scheduled" entry
              (file+headline "~/Dropbox/org/inbox.org" "Tasks")
              "*TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
             ("d" "Deadline" entry
