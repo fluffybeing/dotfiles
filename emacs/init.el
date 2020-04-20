@@ -25,7 +25,7 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
-(set-frame-font "SF Mono 13")
+(set-frame-font "Menlo 13")
 
 (setq user-full-name "Rahul Ranjan"
       user-mail-address "rahul@rudrakos.com")
@@ -255,7 +255,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
+  (load-theme 'doom-dracula t)
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
