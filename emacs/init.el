@@ -361,17 +361,54 @@
 
 ;;; Syntax highlighting
 ;; for package syntax
+(use-package flycheck
+  :ensure t
+  :defer t)
+
 (use-package flycheck-package
   :ensure t
   :after flycheck)
 
-(use-package flycheck
+
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "s-l")
+
+(use-package lsp-mode
   :ensure t
-  :init (global-flycheck-mode)
-  :diminish flycheck-mode
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (dart-mode . lsp)
+         (swift-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+;; if you are ivy user
+(use-package lsp-ivy
+  :ensure t
+  :commands lsp-ivy-workspace-symbol)
+
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+(use-package dap-mode
+  :ensure t)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+(use-package lsp-dart 
+  :ensure t 
+  :hook (dart-mode . lsp))
+
+(use-package lsp-sourcekit
+  :ensure t
+  :after lsp-mode
   :config
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-  (add-to-list 'flycheck-checkers 'swift))
+  (setq lsp-sourcekit-executable (expand-file-name "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp")))
 
 (use-package swift-mode
   :ensure t
@@ -379,12 +416,7 @@
   :interpreter "swift"
   :config
   (setq-default swift-mode:basic-offset 2)
-  :init
-  (use-package company-sourcekit
-    :ensure t
-    :init (setq company-sourcekit-use-yasnippet t)
-    :config (add-to-list 'company-backends 'company-sourcekit))
-  (add-to-list 'flycheck-checkers 'swift))
+  :hook (swift-mode . (lambda () (lsp))))
 
 ;; Running programs 
 (use-package quickrun
@@ -432,8 +464,11 @@
   (setq company-tooltip-align-annotations t)
   ;; invert the navigation direction if the the completion popup-isearch-match
   ;; is displayed on top (happens near the bottom of windows)
-  (setq company-tooltip-flip-when-above t)
-  (setq company-backends (delete 'company-semantic company-backends)))
+  (setq company-tooltip-flip-when-above t))
+
+(use-package company-lsp
+  :ensure t
+  :config (push 'company-lsp company-backends))
 
 (use-package company-quickhelp
   :ensure t
