@@ -51,3 +51,4 @@ export TOOLCHAINS=swift
 limitCPU() {
   cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent) 
 }
+export PATH="$PATH:/usr/local/opt/flutter/bin"
