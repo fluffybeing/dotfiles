@@ -1,18 +1,21 @@
 # Taps 
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
+tap 'd12frosted/emacs-plus'
 
 # Install VIM
 brew 'diff-so-fancy'
 
 # Install
-brew 'tmux git ripgrep'
+brew 'tmux'
+brew 'git'
+brew 'ripgrep'
 
 # Install GNU core utilities (those that come with macOS are outdated)
-brew 'coreutils fd'
+brew 'coreutils'
+brew 'fd'
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew 'findutils'
@@ -39,6 +42,7 @@ brew 'cocoapods'
 brew 'httpie'
 brew 'diff-so-fancy'
 brew 'mackup'
+brew 'emacs-plus'
 
 # Development
 brew 'python3'
@@ -75,8 +79,6 @@ cask 'quicklook-json'
 cask 'quicklook-csv'
 cask 'qlstephen'
 
-brew tap d12frosted/emacs-plus
-brew install emacs-plus
 
 # Fonts
 cask 'font-source-code-pro'
