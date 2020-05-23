@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#! /bin/zsh -
 
 # A simple script for setting up OSX dev environment.
 dotfile_dir="$HOME/Dropbox/Code/dotfiles"
@@ -62,8 +62,8 @@ install_prezto() {
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     fi
 
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}/.zprezto/runcoms/^README.md\(.N\)"; do
+    sh setopt EXTENDED_GLOB
+    for rcfile in "'${ZDOTDIR:-$HOME}'/.zprezto/runcoms/^README.md\(.N\)"; do
         ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
 }
@@ -80,6 +80,7 @@ symlink_dotfiles() {
     done
     # some symlinks are not so straight forward
     create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
+    create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
     # create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
 }
 
@@ -188,20 +189,21 @@ if [[ $(uname) == 'Darwin' ]]; then
     rm -rf fonts
 
     ##############################################
+    # zshrc                                      #
+    ##############################################
+    install_prezto
+
+    ##############################################
     # Symlinks                                  #
     ##############################################
-    chown -R `whoami` ~/.config   
+    user=$USER
+    chown -R $user ~/.config   
     symlink_dotfiles
 
     # symlink for special emacs
     ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.app
     git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
     sh $HOME/.emacs.d/bin/doom install
-
-    ##############################################
-    # zshrc                                      #
-    ##############################################
-    install_prezto
 
     print_message "Done :)"
 fi
