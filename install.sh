@@ -32,18 +32,19 @@ create_dir() {
 }
 
 create_file_and_symlink() {
-    local pathname=$1 
-    local destination=$2 
+    local realfile=$1 
+    local virtualfile=$2 
     local permission=${3:-644}
 
-    touch "$destination"
-    chmod "$permission" "$destination"
+    touch "$virtualfile"
+    chmod "$permission" "$virtualfile"
 
-    print_message "Linking $destination to $pathname"
-    ln -sf "$pathname" "$destination"
+    print_message "Linking $virtualfile to $realfile"
+    ln -sf "$realfile" "$virtualfile"
 }
 
 clone_dotfile_git_repo() {
+    create_dir "$HOME/Dropbox/Code"
     git clone https://github.com/coyo8/dotfiles.git $dotfile_dir
 }
 
@@ -67,9 +68,6 @@ install_prezto() {
     done
 }
 
-################################################
-# TODO: modular
-###############################################
 symlink_dotfiles() {
     print_message "Symlinking files..."
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc" "xvim/xvimrc"
@@ -81,15 +79,18 @@ symlink_dotfiles() {
         create_file_and_symlink $dotfile_dir/$file ~/.$f
     done
     # some symlinks are not so straight forward
-    create_file_and_symlink "$dotfile_dir/karabiner" "$HOME/.config"
+    create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
     create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
 }
 
+#############################
+# Start                     #
+#############################
 # If we on OS X, install homebrew and tweak system a bit.
 if [[ `uname` == 'Darwin' ]]; then
 
     ##############################################
-    # Start the install process.                 #
+    # Xcode utils                                #
     ##############################################
     if ! xcode-select --print-path &> /dev/null; then
         xcode-select --install &> /dev/null
@@ -115,7 +116,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ##############################################
     # dotfiles                                   #
     ##############################################
-    if [ ! -d $Home/Code/dotfiles ]; then
+    if [ ! -d $dotfile_dir ]; then
         clone_dotfile_git_repo
     fi
 
@@ -149,13 +150,6 @@ if [[ `uname` == 'Darwin' ]]; then
     install_prezto
 
     ##############################################
-    # Pygments & Pip                             #
-    ##############################################
-    print_message "Installing Python pip...."
-    sudo easy_install Pygments
-    sudo easy_install pip
-
-    ##############################################
     # Symlinks                                  #
     ##############################################
     symlink_dotfiles
@@ -174,7 +168,6 @@ if [[ `uname` == 'Darwin' ]]; then
     # SSH
     ###############################################
     print_message 'Checking for SSH key, generating one if it does not exist...'
-
     if [ ! -f '$HOME/.ssh/id_rsa.pub' ]; then 
         ssh-keygen -t rsa
 
@@ -182,6 +175,7 @@ if [[ `uname` == 'Darwin' ]]; then
         [[ -f '$HOME/.ssh/id_rsa.pub' ]] && cat '$HOME/.ssh/id_rsa.pub' | pbcopy
         open 'https://github.com/account/ssh'
     fi
+    print_message "The keys exists"
 
     ##############################################
     # Apps                                       #
@@ -189,9 +183,10 @@ if [[ `uname` == 'Darwin' ]]; then
     echo 'Do you want to install app from brew bundle?'
     echo 'n / y'
     read give_links
-    
     if [[ "$give_links" == 'y' ]]; then
         brew bundle --file="$dotfile_dir/Brewfile" 
+        # symlink for special emacs
+        ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.app
     fi
 
     #############################################

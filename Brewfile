@@ -1,18 +1,18 @@
-# Taps tap 'caskroom/cask'
+# Taps 
+tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
-tap 'homebrew/php'
 tap 'homebrew/services'
 
 # Install VIM
 brew 'diff-so-fancy'
 
 # Install
-brew 'tmux'
+brew 'tmux git ripgrep'
 
 # Install GNU core utilities (those that come with macOS are outdated)
-brew 'coreutils'
+brew 'coreutils fd'
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew 'findutils'
@@ -38,6 +38,7 @@ brew 'ruby-build'
 brew 'cocoapods'
 brew 'httpie'
 brew 'diff-so-fancy'
+brew 'mackup'
 
 # Development
 brew 'python3'
@@ -47,18 +48,25 @@ cask 'itsycal'
 cask 'alfred'
 cask 'caffeine'
 cask 'dropbox'
-cask 'firefox'
+cask 'google-chrome'
 cask 'iterm2'
-cask 'sequel-pro'
 cask 'slack'
 cask 'vlc'
-cask 'keybase'
+cask 'karabiner-elements'
 cask "keyboardcleantool"
-cask "coderunner"
-cask "spectacle"
+cask "rectangle"
 cask "hammerspoon"
 cask "freedom"
 cask "steam"
+cask "dozer"
+cask "pock"
+cask "visual-studio-code"
+cask "franz"
+cask "anki"
+cask "skitch"
+cask "licecap"
+cask "flycut"
+
 
 # Quicklook
 cask 'qlcolorcode'
@@ -66,6 +74,9 @@ cask 'qlmarkdown'
 cask 'quicklook-json'
 cask 'quicklook-csv'
 cask 'qlstephen'
+
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
 
 # Fonts
 cask 'font-source-code-pro'
