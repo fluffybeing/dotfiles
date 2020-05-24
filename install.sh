@@ -201,7 +201,6 @@ if [[ $(uname) == 'Darwin' ]]; then
     symlink_dotfiles
 
     # symlink for special emacs
-    ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications/Emacs.app
     git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
     sh $HOME/.emacs.d/bin/doom install
 

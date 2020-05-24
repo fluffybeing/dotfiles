@@ -12,14 +12,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-# Xcode/iOS
-alias cs="xcrun simctl erase all"
-alias spg="swift package generate-xcodeproj"
-alias emacs="emacs -nw"
 
-# Open todo folder
-alias todo="emacs $HOME/Dropbox/org/"
+# Open org folder
+alias org="emacs $HOME/Dropbox/org/"
+
 # Exercism
 if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
   . ~/.config/exercism/exercism_completion.zsh
@@ -29,10 +25,15 @@ fi
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls -a; }
 
-# Ruby 
+# Paths
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
+
+export PATH="$PATH:/usr/local/opt/flutter/bin"
+export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH=/usr/local/bin:$PATH
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -42,7 +43,11 @@ export NVM_DIR="$HOME/.nvm"
 alias kindle="/usr/local/bin/k2pdfopt"
 
 
+###################
 #iOS  Workflow
+####################
+alias cs="xcrun simctl erase all"
+alias spg="swift package generate-xcodeproj"
 
 # Toolchain
 export TOOLCHAINS=swift
@@ -52,6 +57,4 @@ limitCPU() {
   cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent) 
 }
 
-export PATH="$PATH:/usr/local/opt/flutter/bin"
-export PATH="$HOME/.emacs.d/bin:$PATH"
 

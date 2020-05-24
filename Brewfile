@@ -42,7 +42,7 @@ brew 'cocoapods'
 brew 'httpie'
 brew 'diff-so-fancy'
 brew 'mackup'
-brew 'emacs-plus'
+brew 'emacs-plus --with-modern-icon-black-variant'
 
 # Development
 brew 'python3'
@@ -85,3 +85,4 @@ cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 cask 'font-dejavu-sans'
+cask 'font-fira-code'
