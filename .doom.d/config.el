@@ -332,10 +332,11 @@
                      (t (error "No entry available")))))))
           (when buffer (kill-buffer buffer))))))
   (advice-add 'org-mks :override #'org-mks-pretty)
-  (setq +org-capture-recipies  "~/Dropbox/org/recipies.org")
+  (setq +org-capture-someday-file  "~/Dropbox/org/someday.org")
   (setq +org-capture-todo-file "~/Dropbox/org/inbox.org")
   (setq +org-capture-central-project-todo-file "~/Dropbox/org/gtd.org")
   (setq +org-capture-central-project-notes-file "~/Dropbox/org/notes.org")
+  (setq +org-capture-tickler-file "~/Dropbox/org/tickler.org")
 
   (defun +doct-icon-declaration-to-icon (declaration)
     "Convert :icon declaration to icon"
@@ -372,11 +373,12 @@
                    )
                   ("Personal note" :keys "n"
                    :icon ("sticky-note-o" :set "faicon" :color "green")
-                   :file +org-capture-todo-file
+                   :file +org-capture-central-project-notes-file
                    :prepend t
-                   :headline "Inbox"
+                   :headline "Personal"
                    :type entry
                    :template ("* %?"
+                              "Entered on %U"
                               "%i %a")
                    )
                   ("Email" :keys "e"
@@ -436,46 +438,35 @@
                               ("Scheduled Task" :keys "s"
                                :icon ("calendar" :set "octicon" :color "orange")
                                :extra "\nSCHEDULED: %^{Start time:}t"
-                               )
-                              ))
-                  ("Project" :keys "p"
-                   :icon ("repo" :set "octicon" :color "silver")
-                   :prepend t
-                   :type entry
-                   :headline "Inbox"
-                   :template ("* %{time-or-todo} %?"
-                              "%i"
-                              "%a")
-                   :file ""
-                   :custom (:time-or-todo "")
-                   :children (("Project-local todo" :keys "t"
-                               :icon ("checklist" :set "octicon" :color "green")
-                               :time-or-todo "TODO"
-                               :file +org-capture-project-todo-file)
-                              ("Project-local note" :keys "n"
-                               :icon ("sticky-note" :set "faicon" :color "yellow")
-                               :time-or-todo "%U"
-                               :file +org-capture-project-notes-file)
-                              ("Project-local changelog" :keys "c"
-                               :icon ("list" :set "faicon" :color "blue")
-                               :time-or-todo "%U"
-                               :heading "Unreleased"
-                               :file +org-capture-project-changelog-file))
-                   )
-                  ("\tCentralised project templates"
-                   :keys "o"
+                               )))
+                   ("Tickler" :keys "r"
+                    :icon ("gear" :set "octicon" :color "orange")
+                    :file +org-capture-tickler-file
+                    :prepend t
+                    :headline "Tickler"
+                    :type entry
+                    :template ("* %i%? \n %^t")
+                    :children (("Bill" :keys "b"
+                                :icon ("gear" :set "octicon" :color "yellow")
+                                :extra ""
+                               )))
+                  ("Projects"
+                  :icon ("repo" :set "octicon" :color "pink")
+                   :keys "p"
                    :type entry
                    :prepend t
                    :template ("* %{time-or-todo} %?"
                               "%i"
                               "%a")
                    :children (("Project todo"
+                               :icon ("checklist" :set "octicon" :color "blue")
                                :keys "t"
                                :prepend nil
                                :time-or-todo "TODO"
                                :heading "Tasks"
                                :file +org-capture-central-project-todo-file)
                               ("Project note"
+                               :icon ("diff" :set "octicon" :color "yellow")
                                :keys "n"
                                :time-or-todo "%U"
                                :heading "Notes"
@@ -601,3 +592,7 @@ is selected, only the bare key is returned."
         (interactive)
         (set-window-parameter nil 'mode-line-format 'none)
         (org-capture)))
+
+;; Show the tasks folded
+(setq org-startup-folded +1)
+
