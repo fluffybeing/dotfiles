@@ -34,6 +34,7 @@ export PATH="$PATH:/usr/local/opt/flutter/bin"
 export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
+export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -48,9 +49,6 @@ alias kindle="/usr/local/bin/k2pdfopt"
 ####################
 alias cs="xcrun simctl erase all"
 alias spg="swift package generate-xcodeproj"
-
-# Toolchain
-export TOOLCHAINS=swift
 
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {

@@ -12,6 +12,7 @@ brew 'diff-so-fancy'
 brew 'tmux'
 brew 'git'
 brew 'ripgrep'
+brew 'openssl'
 
 # Install GNU core utilities (those that come with macOS are outdated)
 brew 'coreutils'
@@ -70,6 +71,7 @@ cask "anki"
 cask "skitch"
 cask "licecap"
 cask "flycut"
+cask "menumeters"
 
 
 # Quicklook

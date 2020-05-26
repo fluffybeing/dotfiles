@@ -1,4 +1,4 @@
-#! /bin/zsh -
+#! /usr/bin/zsh
 
 # A simple script for setting up OSX dev environment.
 dotfile_dir="$HOME/Dropbox/Code/dotfiles"
@@ -62,25 +62,36 @@ install_prezto() {
         git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
     fi
 
-    sh setopt EXTENDED_GLOB
+    setopt EXTENDED_GLOB
     for rcfile in "'${ZDOTDIR:-$HOME}'/.zprezto/runcoms/^README.md\(.N\)"; do
         ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
 }
 
 symlink_dotfiles() {
-    print_message "Symlinking files..."
-    declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc" "xvim/xvimrc"
-        "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig")
+    create_dir "$HOME/.doom.d"
+    user=$USER
+    chown -R "$user" "$HOME/.config/" 
+    print_message "Symlinking files... $user"
+
+    declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc"
+     "xvim/xvimrc" "tmux/tmux" "tmux/tmux.conf" "git/gitignore" 
+     "git/gitconfig")
 
     for file in "${files[@]}"; do
         f=${file}
         f=${f##*/}
         create_file_and_symlink $dotfile_dir/$file ~/.$f
     done
-    # some symlinks are not so straight forward
-    create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
+
+    # some symlinks are in separate directory
+    create_file_and_symlink "$dotfile_dir/.doom.d/config.el" "$HOME/.doom.d/config.el" 
+    create_file_and_symlink "$dotfile_dir/.doom.d/init.el" "$HOME/.doom.d/init.el" 
+    create_file_and_symlink "$dotfile_dir/.doom.d/packages.el" "$HOME/.doom.d/packages.el"
     create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
+    create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
+    
+    # old emacs config
     # create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
 }
 
@@ -195,14 +206,14 @@ if [[ $(uname) == 'Darwin' ]]; then
 
     ##############################################
     # Symlinks                                  #
-    ##############################################
-    user=$USER
-    chown -R $user ~/.config   
+    ##############################################  
     symlink_dotfiles
 
     # symlink for special emacs
-    git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-    sh $HOME/.emacs.d/bin/doom install
+    if [ ! -d "$HOME/.doom.d" ]; then
+        git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+        sh $HOME/.emacs.d/bin/doom install
+    fi
 
     print_message "Done :)"
 fi
