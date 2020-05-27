@@ -101,18 +101,18 @@
 (setq lsp-prefer-capf t)
 (setq lsp-idle-delay 0.1)
 (setq lsp-print-performance t)
-
-(setq company-idle-delay 0.1
-      company-minimum-prefix-length 3)
+(setq company-minimum-prefix-length 2)
 (setq flycheck-check-syntax-automatically '(save mode-enable))
 
 ;; C-x o alternative
 (use-package! windmove
   :config
-  ;; use shift + arrow keys to switch between visible buffers
-  (windmove-default-keybindings))
+  ;; use command + arrow keys to switch between visible buffers
+  (windmove-default-keybindings 'super)
+  (setq windmove-wrap-around t))
 
 ;; Key binding
+(setq mac-command-modifier 'super)
 (map! "C-s" 'swiper)
 (map! "C-x g" 'magit-status)
 
