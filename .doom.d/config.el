@@ -98,10 +98,15 @@
 
 ;; Some lsp optimization
 (setq gcmh-high-cons-threshold most-positive-fixnum)
+(setq lsp-auto-guess-root nil)
+(setq lsp-prefer-flymake nil)
+(setq lsp-file-watch-threshold 2000)
 (setq lsp-prefer-capf t)
-(setq lsp-idle-delay 0.1)
+(setq read-process-output-max (* 1024 1024))
 (setq lsp-print-performance t)
-(setq company-minimum-prefix-length 2)
+
+(setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 1)
 (setq flycheck-check-syntax-automatically '(save mode-enable))
 
 ;; C-x o alternative

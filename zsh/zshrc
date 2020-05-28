@@ -25,15 +25,18 @@ fi
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls -a; }
 
+eval "$(rbenv init -)"
+
 # Paths
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
 
 export PATH="$PATH:/usr/local/opt/flutter/bin"
 export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
+
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
+
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
 # NVM
