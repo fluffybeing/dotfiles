@@ -58,4 +58,10 @@ limitCPU() {
   cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent) 
 }
 
-
+# build flutter
+fbuild() {
+  flutter pub get
+  flutter packages pub run build_runner build --delete-conflicting-outputs
+  flutter build ios --debug --no-codesign --simulator
+  flutter attach
+}

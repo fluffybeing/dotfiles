@@ -120,7 +120,10 @@
 (setq mac-command-modifier 'super)
 (map! "C-s" 'swiper)
 (map! "C-x g" 'magit-status)
+(map! "s-t" '+term/toggle)
 
+(map! "s-n" 'org-capture)
+(map! "s-a" 'org-agenda)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;                     orgmode
@@ -339,8 +342,8 @@
   (advice-add 'org-mks :override #'org-mks-pretty)
   (setq +org-capture-someday-file  "~/Dropbox/org/someday.org")
   (setq +org-capture-todo-file "~/Dropbox/org/inbox.org")
-  (setq +org-capture-central-project-todo-file "~/Dropbox/org/gtd.org")
-  (setq +org-capture-central-project-notes-file "~/Dropbox/org/notes.org")
+  (setq +org-capture-project-todo-file "~/Dropbox/org/gtd.org")
+  (setq +org-capture-notes-file "~/Dropbox/org/notes.org")
   (setq +org-capture-tickler-file "~/Dropbox/org/tickler.org")
 
   (defun +doct-icon-declaration-to-icon (declaration)
@@ -371,7 +374,7 @@
                    :icon ("checklist" :set "octicon" :color "green")
                    :file +org-capture-todo-file
                    :prepend t
-                   :headline "Inbox"
+                   :headline "Personal"
                    :type entry
                    :template ("* TODO %?"
                               "%i %a")
@@ -390,7 +393,7 @@
                    :icon ("envelope" :set "faicon" :color "blue")
                    :file +org-capture-todo-file
                    :prepend t
-                   :headline "Inbox"
+                   :headline "Personal"
                    :type entry
                    :template ("* TODO %^{type|reply to|contact} %\\3 %? :email:"
                               "Send an email %^{urgancy|soon|ASAP|anon|at some point|eventually} to %^{recipiant}"
@@ -402,7 +405,7 @@
                    :prepend t
                    :headline "Interesting"
                    :type entry
-                   :template ("* [ ] %{desc}%? :%{i-type}:"
+                   :template ("* READ %{desc}%? :%{i-type}:"
                               "%i %a")
                    :children (("Webpage" :keys "w"
                                :icon ("globe" :set "faicon" :color "green")
@@ -424,11 +427,11 @@
                                :desc ""
                                :i-type "idea"
                                )))
-                  ("Tasks" :keys "k"
+                  ("Inbox" :keys "k"
                    :icon ("inbox" :set "octicon" :color "yellow")
                    :file +org-capture-todo-file
                    :prepend t
-                   :headline "Tasks"
+                   :headline "Inbox"
                    :type entry
                    :template ("* TODO %? %^G%{extra}"
                               "%i %a")
@@ -456,26 +459,25 @@
                                 :extra ""
                                )))
                   ("Projects"
-                  :icon ("repo" :set "octicon" :color "pink")
+                   :icon ("repo" :set "octicon" :color "pink")
+                   :file +org-capture-todo-file
                    :keys "p"
                    :type entry
                    :prepend t
+                   :headline "Projects"
                    :template ("* %{time-or-todo} %?"
                               "%i"
                               "%a")
-                   :children (("Project todo"
+                   :children (("Todo" :keys "t"
                                :icon ("checklist" :set "octicon" :color "blue")
-                               :keys "t"
-                               :prepend nil
                                :time-or-todo "TODO"
-                               :heading "Tasks"
-                               :file +org-capture-central-project-todo-file)
-                              ("Project note"
+                               :i-type "project"
+                               )
+                              ("Note" :keys "n"
                                :icon ("diff" :set "octicon" :color "yellow")
-                               :keys "n"
                                :time-or-todo "%U"
-                               :heading "Notes"
-                               :file +org-capture-central-project-notes-file))
+                               :i-type "project:note"
+                               ))
                    ))))))
 
 (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
