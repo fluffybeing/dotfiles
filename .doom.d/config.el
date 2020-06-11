@@ -148,6 +148,9 @@
                                       (:tangle . "no")
                                       (:comments . "link")))
 
+(setq org-todo-keywords
+      '(sequence "TODO" "WAITING" "|" "DONE" "CANCELLED"))
+
 (remove-hook 'text-mode-hook #'visual-line-mode)
 (add-hook 'text-mode-hook #'auto-fill-mode)
 
@@ -341,9 +344,8 @@
           (when buffer (kill-buffer buffer))))))
   (advice-add 'org-mks :override #'org-mks-pretty)
   (setq +org-capture-someday-file  "~/Dropbox/org/someday.org")
-  (setq +org-capture-todo-file "~/Dropbox/org/inbox.org")
-  (setq +org-capture-project-todo-file "~/Dropbox/org/gtd.org")
-  (setq +org-capture-notes-file "~/Dropbox/org/notes.org")
+  (setq +org-capture-todo-file "~/Dropbox/org/gtd.org")
+  (setq +org-capture-inbox-file "~/Dropbox/org/inbox.org")
   (setq +org-capture-tickler-file "~/Dropbox/org/tickler.org")
 
   (defun +doct-icon-declaration-to-icon (declaration)
@@ -370,7 +372,7 @@
 
   (add-transient-hook! 'org-capture-select-template
     (setq org-capture-templates
-          (doct `(("Personal todo" :keys "t"
+          (doct `(("Personal todo" :keys "p"
                    :icon ("checklist" :set "octicon" :color "green")
                    :file +org-capture-todo-file
                    :prepend t
@@ -385,6 +387,7 @@
                    :prepend t
                    :headline "Personal"
                    :type entry
+                   :i-type "note:flow"
                    :template ("* %?"
                               "Entered on %U"
                               "%i %a")
@@ -427,7 +430,7 @@
                                :desc ""
                                :i-type "idea"
                                )))
-                  ("Inbox" :keys "k"
+                  ("Inbox" :keys "t"
                    :icon ("inbox" :set "octicon" :color "yellow")
                    :file +org-capture-todo-file
                    :prepend t
@@ -458,27 +461,7 @@
                                 :icon ("gear" :set "octicon" :color "yellow")
                                 :extra ""
                                )))
-                  ("Projects"
-                   :icon ("repo" :set "octicon" :color "pink")
-                   :file +org-capture-todo-file
-                   :keys "p"
-                   :type entry
-                   :prepend t
-                   :headline "Projects"
-                   :template ("* %{time-or-todo} %?"
-                              "%i"
-                              "%a")
-                   :children (("Todo" :keys "t"
-                               :icon ("checklist" :set "octicon" :color "blue")
-                               :time-or-todo "TODO"
-                               :i-type "project"
-                               )
-                              ("Note" :keys "n"
-                               :icon ("diff" :set "octicon" :color "yellow")
-                               :time-or-todo "%U"
-                               :i-type "project:note"
-                               ))
-                   ))))))
+                  )))))
 
 (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/org/someday.org" :maxlevel . 1)
