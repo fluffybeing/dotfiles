@@ -90,3 +90,4 @@ flycheck_*.el
 /server/
 .projectile
 .dir-locals.el
+.projectile

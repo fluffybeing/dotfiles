@@ -124,6 +124,7 @@
 
 (map! "s-n" 'org-capture)
 (map! "s-a" 'org-agenda)
+(map! "s-i" 'org-mac-grab-link)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;                     orgmode
@@ -147,9 +148,13 @@
                                       (:hlines . "no")
                                       (:tangle . "no")
                                       (:comments . "link")))
+(after! org
+  (setq org-todo-keywords
+          '((sequence "TODO(t)" "|" "DONE(d)")
+            (sequence "WAITING(w@/)" "|" "CANCELLED(c@/)")))
+  (setq org-enforce-todo-dependencies t)
+  (setq org-use-fast-todo-selection t))
 
-(setq org-todo-keywords
-      '(sequence "TODO" "WAITING" "|" "DONE" "CANCELLED"))
 
 (remove-hook 'text-mode-hook #'visual-line-mode)
 (add-hook 'text-mode-hook #'auto-fill-mode)
@@ -383,11 +388,11 @@
                    )
                   ("Personal note" :keys "n"
                    :icon ("sticky-note-o" :set "faicon" :color "green")
-                   :file +org-capture-central-project-notes-file
+                   :file +org-capture-todo-file
                    :prepend t
-                   :headline "Personal"
+                   :headline "Notes"
                    :type entry
-                   :i-type "note:flow"
+                   :i-type "note:"
                    :template ("* %?"
                               "Entered on %U"
                               "%i %a")
@@ -402,13 +407,13 @@
                               "Send an email %^{urgancy|soon|ASAP|anon|at some point|eventually} to %^{recipiant}"
                               "about %^{topic}"
                               "%U %i %a"))
-                  ("Interesting" :keys "i"
+                  ("Interesting Links" :keys "l"
                    :icon ("eye" :set "faicon" :color "lcyan")
                    :file +org-capture-todo-file
                    :prepend t
                    :headline "Interesting"
                    :type entry
-                   :template ("* READ %{desc}%? :%{i-type}:"
+                   :template ("* TODO %{desc}%? :%{i-type}:"
                               "%i %a")
                    :children (("Webpage" :keys "w"
                                :icon ("globe" :set "faicon" :color "green")
@@ -430,7 +435,7 @@
                                :desc ""
                                :i-type "idea"
                                )))
-                  ("Inbox" :keys "t"
+                  ("Inbox" :keys "i"
                    :icon ("inbox" :set "octicon" :color "yellow")
                    :file +org-capture-todo-file
                    :prepend t
@@ -456,11 +461,7 @@
                     :prepend t
                     :headline "Tickler"
                     :type entry
-                    :template ("* %i%? \n %^t")
-                    :children (("Bill" :keys "b"
-                                :icon ("gear" :set "octicon" :color "yellow")
-                                :extra ""
-                               )))
+                    :template ("* %i%? \n %^t"))
                   )))))
 
 (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
