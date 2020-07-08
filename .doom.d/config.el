@@ -37,7 +37,11 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
+;; word wrap
+(+global-word-wrap-mode +1)
+
 ;; Some basic configuration
+(setq max-lisp-eval-depth 10000)
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  tab-width 2                                      ; Set width for tabs
@@ -94,19 +98,15 @@
 ;; Make swift indendation to 2 spaces
 (after! swift-mode
   :config
-  (setq lsp-sourcekit-executable "/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp"))
+  (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
 
 ;; Some lsp optimization
-(setq gcmh-high-cons-threshold most-positive-fixnum)
 (setq lsp-auto-guess-root nil)
 (setq lsp-prefer-flymake nil)
-(setq lsp-file-watch-threshold 2000)
 (setq lsp-prefer-capf t)
 (setq read-process-output-max (* 1024 1024))
 (setq lsp-print-performance t)
-
-(setq company-idle-delay 0.1)
-(setq company-minimum-prefix-length 1)
+(setq +lsp-company-backend 'company-capf)
 (setq flycheck-check-syntax-automatically '(save mode-enable))
 
 ;; C-x o alternative
