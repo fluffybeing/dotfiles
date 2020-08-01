@@ -94,9 +94,6 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 # Prevent Time Machine from prompting to use new hard drives as backup volume? 
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable local Time Machine backups? (This can take up a ton of SSD space on <128GB SSDs) (y/n)"
-hash tmutil &> /dev/null && sudo tmutil disablelocal
-
 ###############################################################################
 # Mail
 ###############################################################################
