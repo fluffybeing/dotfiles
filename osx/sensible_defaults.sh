@@ -40,6 +40,18 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 defaults write -g WebKitDeveloperExtras -bool true
 
+# Adding a context menu item for showing the Web Inspector in web views
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Disabling the annoying backswipe in Chrome
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+
+# Using the system-native print preview dialog in Chrome
+defaults write com.google.Chrome DisablePrintPreview -bool true
+defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+
+
 # Privacy: don’t send search queries to Apple
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
@@ -67,6 +79,10 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
+defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
+defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
+
+
 
 # Disable some menu bar icons: Time Machine, Volume and User
 # for domain in ~/Library/Preferences/ByHost/com.apple.stytemuiserver.*; do
@@ -74,6 +90,19 @@ defaults write com.apple.terminal StringEncodings -array 4
 #   "/System/Library/CoreServices/Menu Extras/Volume.menu" \
 #   "/System/Library/CoreServices/Menu Extras/User.menu"
 # done
+
+# Prevent Time Machine from prompting to use new hard drives as backup volume? 
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Disable local Time Machine backups? (This can take up a ton of SSD space on <128GB SSDs) (y/n)"
+hash tmutil &> /dev/null && sudo tmutil disablelocal
+
+###############################################################################
+# Mail
+###############################################################################
+
+# Setting email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -101,12 +130,15 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCorner
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
 
 # Set a really fast keyboard repeat rate.
-defaults write -g KeyRepeat -int 0
+defaults write -g KeyRepeat -int 2
 
 # Disable press-and-hold for keys in favor of key repeat.
-defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool true
 
 # Set language and text formats. (USD and Imperial Units)
 defaults write -g AppleLanguages -array "en" "nl"
@@ -130,8 +162,8 @@ defaults write -g AppleMetricUnits -bool false
 #  10: Put display to sleep
 #  11: Launchpad
 #  12: Notification Center
-# defaults write com.apple.dock wvous-bl-corner -int 5
-# defaults write com.apple.dock wvous-bl-modifier -int 0
+defaults write com.apple.dock wvous-bl-corner -int 5
+defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Require password immediately after sleep or screen saver.
 defaults write com.apple.screensaver askForPassword -int 1
@@ -200,6 +232,12 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 # Disable the crash reporter
 defaults write com.apple.CrashReporter DialogType -string "none"
 
+# Use column view in all Finder windows by default
+defaults write com.apple.finder FXPreferredViewStyle Clmv
+
+# Avoid creation of .DS_Store files on network volumes? (y/n)
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
 ###############################################################################
 # SSD
 ###############################################################################
@@ -223,9 +261,33 @@ defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-ty
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
+# Disable spell check messages
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+
+
+# System
+sudo pmset -a hibernatemode 0
+sudo pmset -a sms 0
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+defaults write com.apple.universalaccess reduceTransparency -bool true
+sudo pmset -a standbydelay 86400
+
+# Save to disk rather than iCloud
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Removing duplicates in the 'Open With' menu
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+#Disable Photos.app from starting everytime a device is plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
 ###############################################################################
 # Do some clean up work.
 ###############################################################################
+
 # Add emacs as the default editor
 defaults write com.apple.LaunchServices LSHandlers -array-add \
          '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=org.gnu.Emacs;}'
