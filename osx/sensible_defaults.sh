@@ -266,7 +266,6 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 sudo pmset -a hibernatemode 0
 sudo pmset -a sms 0
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-defaults write com.apple.universalaccess reduceTransparency -bool true
 sudo pmset -a standbydelay 86400
 
 # Save to disk rather than iCloud
