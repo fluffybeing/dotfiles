@@ -24,6 +24,9 @@ let mapleader=","
 set binary
 set eol
 " Centralize backups, swapfiles and undo history. E303 error will appear if this directory is not availble or writable 
+if empty(glob('~/.vim/tmp'))
+    silent !mkdir -p ~/.vim/tmp
+endif
 set backupdir=~/.vim/backups
 set directory=~/.vim/tmp
 if exists("&undodir")

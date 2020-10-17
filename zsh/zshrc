@@ -1,4 +1,4 @@
-#
+
 # Executes commands at the start of an interactive session.
 #
 # Authors:
@@ -34,8 +34,11 @@ export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export PATH="$PATH:/usr/local/opt/flutter/bin"
 export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
+
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
@@ -65,3 +68,4 @@ fbuild() {
   flutter build ios --debug --no-codesign --simulator
   flutter attach
 }
+
