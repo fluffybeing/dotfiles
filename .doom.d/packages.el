@@ -50,3 +50,4 @@
 (package! org-ref)
 (package! org-super-agenda)
 (package! doct)
+(package! protobuf-mode)

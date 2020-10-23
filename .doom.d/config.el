@@ -76,6 +76,8 @@
   )
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t) ;; Maximize the window size on startup
+(add-hook 'before-save-hook
+          'delete-trailing-whitespace)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -85,7 +87,7 @@
 ;; let's define some of the projectile project types
 (after! projectile
   :config
-  (setq projectile-project-search-path '("~/Projects/"))   ; let projectile finds the projects
+  (setq projectile-project-search-path '("~/Code/"))   ; let projectile finds the projects
   (add-to-list 'projectile-project-root-files ".projectile")
   (add-to-list 'projectile-project-root-files ".git")
   (projectile-register-project-type 'xcode '("*.xcodeproj")))
@@ -125,6 +127,10 @@
 (map! "s-n" 'org-capture)
 (map! "s-a" 'org-agenda)
 (map! "s-i" 'org-mac-grab-link)
+
+(after! protobuf-mode
+  :mode "\\.proto$")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;                     orgmode
