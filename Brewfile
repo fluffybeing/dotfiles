@@ -44,6 +44,7 @@ brew 'httpie'
 brew 'diff-so-fancy'
 brew 'mackup'
 brew 'emacs-plus --with-modern-icon-black-variant'
+brew 'languagetool'
 
 # Development
 brew 'python3'

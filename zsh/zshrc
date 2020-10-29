@@ -39,8 +39,11 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 
 export PATH="$PATH:$(go env GOPATH)/bin"
-
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
+
+# JAVA
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

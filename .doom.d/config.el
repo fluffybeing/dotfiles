@@ -131,6 +131,24 @@
 (after! protobuf-mode
   :mode "\\.proto$")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;                Writing
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(after! langtool
+  :bind ("s-l" . langtool-check)
+  :config
+  (setq langtool-bin "/usr/local/bin/languagetool")
+  (setq langtool-default-language "en-US"))
+
+(after! writegood-mode
+  :bind ("C-c g" . writegood-mode)
+  :config
+  (add-to-list 'writegood-weasel-words "actionable"))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;                     orgmode
@@ -592,4 +610,3 @@ is selected, only the bare key is returned."
 
 ;; Show the tasks folded
 (setq org-startup-folded +1)
-
