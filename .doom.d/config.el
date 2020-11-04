@@ -138,10 +138,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! langtool
-  :bind ("s-l" . langtool-check)
   :config
   (setq langtool-bin "/usr/local/bin/languagetool")
-  (setq langtool-default-language "en-US"))
+  (setq langtool-default-language "en-US")
+  (setq langtool-mother-tongue "en"))
 
 (after! writegood-mode
   :bind ("C-c g" . writegood-mode)
