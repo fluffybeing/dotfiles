@@ -64,6 +64,9 @@
 [url "git@github.com:npsolve/"]
         insteadOf = "git://github.com/npsolve/"
 
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
 # Rewrites of repo paths
 [url "git@github.com:"]
         insteadOf = "gh:"

@@ -100,6 +100,7 @@
 ;; Make swift indendation to 2 spaces
 (after! swift-mode
   :config
+  (setenv "SOURCEKIT_TOOLCHAIN_PATH" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain")
   (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
 
 ;; Some lsp optimization
@@ -142,12 +143,6 @@
   (setq langtool-bin "/usr/local/bin/languagetool")
   (setq langtool-default-language "en-US")
   (setq langtool-mother-tongue "en"))
-
-(after! writegood-mode
-  :bind ("C-c g" . writegood-mode)
-  :config
-  (add-to-list 'writegood-weasel-words "actionable"))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

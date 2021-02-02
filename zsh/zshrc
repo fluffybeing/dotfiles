@@ -85,3 +85,10 @@ syncf() {
   git checkout $current_branch
   git rebase master
 }
+# GoLang
+export GOROOT=/Users/rahulr/.go
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=/Users/rahulr/go
+export PATH=$GOPATH/bin:$PATH
+
+
