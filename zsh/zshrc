@@ -93,3 +93,4 @@ export GOPATH=/Users/rahulr/go
 export PATH=$GOPATH/bin:$PATH
 
 
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
