@@ -92,5 +92,6 @@ export PATH=$GOROOT/bin:$PATH
 export GOPATH=/Users/rahulr/go
 export PATH=$GOPATH/bin:$PATH
 
-
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
