@@ -58,6 +58,7 @@ alias kindle="/usr/local/bin/k2pdfopt"
 ####################
 alias cs="xcrun simctl erase all"
 alias spg="swift package generate-xcodeproj"
+alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {
@@ -72,7 +73,7 @@ fbuild() {
   flutter attach
 }
 
-# sync fork with the remove
+# sync fork with the remote
 syncf() {
   # Assumes that the git repository has upstream and remote urls set
   # Assumes that you've committed your work on your current branch
