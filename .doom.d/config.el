@@ -19,14 +19,15 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 12))
+(setq doom-font (font-spec :family "Fira Code" :size 13)
+  doom-variable-pitch-font (font-spec :family "Alegreya" :size 13))
 (unless (find-font doom-font)
   (setq doom-font (font-spec :family "SF Mono" :size 13)))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-one)
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
@@ -40,6 +41,10 @@
 ;; word wrap
 (+global-word-wrap-mode +1)
 
+;; Allow mixed font in the buffer
+(add-hook! 'org-mode-hook #'mixed-pitch-mode)
+(setq mixed-pitch-variable-pitch-cursor nil)
+
 ;; Some basic configuration
 (setq max-lisp-eval-depth 10000)
 (setq-default
@@ -50,9 +55,10 @@
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
-      inhibit-compacting-font-caches t)           ; When there are lots of glyphs, keep them in memory
+  evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+  auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+  make-backup-files t
+  inhibit-compacting-font-caches t)           ; When there are lots of glyphs, keep them in memory
 
 (delete-selection-mode 1)                         ; Replace selection when inserting text
 (display-time-mode 1)                             ; Enable time in the mode-line
@@ -66,6 +72,9 @@
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+(setq kill-whole-line t)                        ; Kill whole line
+(setq confirm-kill-emacs nil)                   ; Disable exit confirmation.
 
 ;; Start maximised (cross-platf)
 (when IS-MAC
@@ -123,7 +132,7 @@
 (setq mac-command-modifier 'super)
 (map! "C-s" 'swiper)
 (map! "C-x g" 'magit-status)
-(map! "s-t" '+term/toggle)
+(map! "s-t" '+vterm/toggle)
 
 (map! "s-n" 'org-capture)
 (map! "s-a" 'org-agenda)
@@ -131,6 +140,20 @@
 
 (after! protobuf-mode
   :mode "\\.proto$")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;              Bluetooth
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun my/connect-to-bose-35 ()
+  (interactive)
+  (shell-command "bluetoothctl -- connect 60:AB:D2:46:02:40"))
+
+(defun my/disconnect-to-bose-35 ()
+  (interactive)
+  (shell-command "bluetoothctl -- disconnect 60:AB:D2:46:02:40"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -153,11 +176,12 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/"
-      org-use-property-inheritance t              ; it's convenient to have properties inherited
-      org-log-done 'time                          ; having the time a item is done sounds convininet
-      org-list-allow-alphabetical t               ; have a. A. a) A) list bullets
-      org-export-in-background t                  ; run export processes in external emacs process
-      org-catch-invisible-edits 'smart)           ; try not to accidently do weird stuff in invisible regions
+  org-roam-directory "~/Dropbox/roam/"
+  org-use-property-inheritance t              ; it's convenient to have properties inherited
+  org-log-done 'time                          ; having the time a item is done sounds convininet
+  org-list-allow-alphabetical t               ; have a. A. a) A) list bullets
+  org-export-in-background t                  ; run export processes in external emacs process
+  org-catch-invisible-edits 'smart)           ; try not to accidently do weird stuff in invisible regions
 
 (setq org-babel-default-header-args '((:session . "none")
                                       (:results . "replace")
