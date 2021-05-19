@@ -1,4 +1,4 @@
-# Taps 
+# Taps
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
@@ -45,6 +45,7 @@ brew 'diff-so-fancy'
 brew 'mackup'
 brew 'emacs-plus --with-modern-icon-black-variant'
 brew 'languagetool'
+brew 'keith/formulae/reminders-cli'
 
 # Development
 brew 'python3'
