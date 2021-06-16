@@ -51,8 +51,6 @@ brew 'keith/formulae/reminders-cli'
 brew 'python3'
 
 # Apps
-cask 'itsycal'
-cask 'alfred'
 cask 'caffeine'
 cask 'dropbox'
 cask 'google-chrome'
@@ -66,21 +64,13 @@ cask "hammerspoon"
 cask "freedom"
 cask "steam"
 cask "dozer"
-cask "pock"
 cask "visual-studio-code"
-cask "franz"
 cask "anki"
 cask "skitch"
 cask "licecap"
-cask "flycut"
-cask "menumeters"
-
+cask "raycast"
 
 # Quicklook
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'quicklook-json'
-cask 'quicklook-csv'
 cask 'qlstephen'
 
 

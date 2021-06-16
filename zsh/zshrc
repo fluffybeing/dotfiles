@@ -60,6 +60,11 @@ alias cs="xcrun simctl erase all"
 alias spg="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
+# run magit from a shell
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient"
+alias magit="emacsclient -n -e '(magit-status)'"
+
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {
   cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent) 
@@ -86,6 +91,20 @@ syncf() {
   git checkout $current_branch
   git rebase master
 }
+
+# Use lazygit
+lg()
+{
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
+
 # GoLang
 export GOROOT=/Users/rahulr/.go
 export PATH=$GOROOT/bin:$PATH
