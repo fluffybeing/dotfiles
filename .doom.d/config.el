@@ -19,20 +19,20 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 13)
-  doom-variable-pitch-font (font-spec :family "Helvetica" :size 13))
+(setq doom-font (font-spec :family "Fira Code" :size 12)
+  doom-variable-pitch-font (font-spec :family "Helvetica" :size 12))
 (unless (find-font doom-font)
-  (setq doom-font (font-spec :family "SF Mono" :size 13)))
+  (setq doom-font (font-spec :family "SF Mono" :size 12)))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dracula)
 (custom-set-faces!
   '(doom-modeline-buffer-modified :foreground "orange"))
 
-(setq doom-fallback-buffer-name "► Doom"
-      +doom-dashboard-name "► Doom")
+(setq doom-fallback-buffer-name "Emacs"
+      +doom-dashboard-name "Emacs")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
