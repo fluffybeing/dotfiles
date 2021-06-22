@@ -69,6 +69,7 @@ cask "anki"
 cask "skitch"
 cask "licecap"
 cask "raycast"
+cask "trader-workstation"
 
 # Quicklook
 cask 'qlstephen'
