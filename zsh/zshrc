@@ -67,7 +67,7 @@ alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 ################
 # Spotify
 ################
-alias bs=SPT_CLIENT="../client" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all
+alias bs="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
 
 
 # run magit from a shell
