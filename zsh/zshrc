@@ -50,8 +50,11 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
+##############
+# Utils
+##############
 alias kindle="/usr/local/bin/k2pdfopt"
-
+alias hg='history | grep'
 
 ###################
 #iOS  Workflow
@@ -60,6 +63,13 @@ alias cs="xcrun simctl erase all"
 alias spg="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
+
+################
+# Spotify
+################
+alias bs=SPT_CLIENT="../client" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all
+
+
 # run magit from a shell
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient"
@@ -67,7 +77,7 @@ alias magit="emacsclient -n -e '(magit-status)'"
 
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {
-  cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent) 
+  cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent)
 }
 
 # build flutter
