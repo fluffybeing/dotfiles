@@ -113,10 +113,10 @@
 	email = rahul.rrixe@gmail.com
 	name = Rahul Ranjan
 
-[difftool "ediff"]
-	cmd = emacs --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
-[difftool "ediffclient"]
-	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 
 [pull]
 	rebase = true
