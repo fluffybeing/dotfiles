@@ -170,6 +170,9 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 " Syntax Highlighting 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Git signs 
+Plug 'lewis6991/gitsigns.nvim'
+
 " Initialize plugin system
 call plug#end()
 

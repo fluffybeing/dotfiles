@@ -71,11 +71,11 @@ install_prezto() {
 symlink_dotfiles() {
     create_dir "$HOME/.doom.d"
     user=$USER
-    chown -R "$user" "$HOME/.config/" 
+    chown -R "$user" "$HOME/.config/"
     print_message "Symlinking files... $user"
 
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc"
-     "xvim/xvimrc" "tmux/tmux" "tmux/tmux.conf" "git/gitignore" 
+     "xvim/xvimrc" "tmux/tmux" "tmux/tmux.conf" "git/gitignore"
      "git/gitconfig")
 
     for file in "${files[@]}"; do
@@ -85,10 +85,10 @@ symlink_dotfiles() {
     done
 
   # some symlinks are in separate directory
-  # create_file_and_symlink "$dotfile_dir/.doom.d/config.el" "$HOME/.doom.d/config.el" 
-  # create_file_and_symlink "$dotfile_dir/.doom.d/init.el" "$HOME/.doom.d/init.el" 
-  # create_file_and_symlink "$dotfile_dir/.doom.d/packages.el" "$HOME/.doom.d/packages.el"
-  # create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
+  create_file_and_symlink "$dotfile_dir/.doom.d/config.el" "$HOME/.doom.d/config.el"
+  create_file_and_symlink "$dotfile_dir/.doom.d/init.el" "$HOME/.doom.d/init.el"
+  create_file_and_symlink "$dotfile_dir/.doom.d/packages.el" "$HOME/.doom.d/packages.el"
+  create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
   create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
 
   # old emacs config
@@ -209,16 +209,16 @@ if [[ $(uname) == 'Darwin' ]]; then
     ###############################################
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    
+
     echo 'set runtimepath^=/.vim runtimepath+=~/.vim/after\n
     let &packpath = &runtimepath\n
     source ~/.vimrc\n' > $HOME/.config/nvim/init.vim
-    
+
     nvim .vimrc +PlugInstall +qall
 
     ##############################################
     # Symlinks                                  #
-    ##############################################  
+    ##############################################
     symlink_dotfiles
 
 #    # symlink for special emacs

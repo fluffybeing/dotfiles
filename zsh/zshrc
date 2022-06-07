@@ -79,9 +79,16 @@ alias view="nvim -R"
 alias vimdiff="nvim -d"
 
 # run magit from a shell
-#export ALTERNATE_EDITOR=""
-#export EDITOR="emacsclient"
-#alias magit="emacsclient -n -e '(magit-status)'"
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient"
+function magit () {
+    git_root=$(git rev-parse --show-toplevel)
+    emacsclient -a emacs \
+        -e "(magit-status \"${git_root}\")"
+    if [[ -f `which osascript` ]]; then
+        osascript -e "tell application \"Emacs\" to activate"
+    fi
+}
 
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {
