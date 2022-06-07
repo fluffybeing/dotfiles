@@ -160,6 +160,16 @@ Plug 'rmagatti/auto-session'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Diff view 
+Plug 'sindrets/diffview.nvim'
+
+" Auto Save 
+Plug '907th/vim-auto-save'
+let g:auto_save = 1  " enable AutoSave on Vim startup
+
+" Syntax Highlighting 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " Initialize plugin system
 call plug#end()
 
