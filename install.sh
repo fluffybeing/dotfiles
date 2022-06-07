@@ -84,15 +84,15 @@ symlink_dotfiles() {
         create_file_and_symlink $dotfile_dir/$file ~/.$f
     done
 
-    # some symlinks are in separate directory
-    create_file_and_symlink "$dotfile_dir/.doom.d/config.el" "$HOME/.doom.d/config.el" 
-    create_file_and_symlink "$dotfile_dir/.doom.d/init.el" "$HOME/.doom.d/init.el" 
-    create_file_and_symlink "$dotfile_dir/.doom.d/packages.el" "$HOME/.doom.d/packages.el"
-    create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
-    create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
-    
-    # old emacs config
-    # create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
+  # some symlinks are in separate directory
+  # create_file_and_symlink "$dotfile_dir/.doom.d/config.el" "$HOME/.doom.d/config.el" 
+  # create_file_and_symlink "$dotfile_dir/.doom.d/init.el" "$HOME/.doom.d/init.el" 
+  # create_file_and_symlink "$dotfile_dir/.doom.d/packages.el" "$HOME/.doom.d/packages.el"
+  # create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
+  create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
+
+  # old emacs config
+  # create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
 }
 
 #############################
@@ -209,12 +209,12 @@ if [[ $(uname) == 'Darwin' ]]; then
     ##############################################  
     symlink_dotfiles
 
-    # symlink for special emacs
-    if [ ! -d "$HOME/.doom.d" ]; then
-        git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-        sh $HOME/.emacs.d/bin/doom install
-    fi
-
+#    # symlink for special emacs
+#    if [ ! -d "$HOME/.doom.d" ]; then
+#        git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+#        sh $HOME/.emacs.d/bin/doom install
+#    fi
+#
     print_message "Done :)"
 fi
 
