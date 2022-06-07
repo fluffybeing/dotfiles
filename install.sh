@@ -205,6 +205,18 @@ if [[ $(uname) == 'Darwin' ]]; then
     install_prezto
 
     ##############################################
+    #  NeoVim
+    ###############################################
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    
+    echo 'set runtimepath^=/.vim runtimepath+=~/.vim/after\n
+    let &packpath = &runtimepath\n
+    source ~/.vimrc\n' > $HOME/.config/nvim/init.vim
+    
+    nvim .vimrc +PlugInstall +qall
+
+    ##############################################
     # Symlinks                                  #
     ##############################################  
     symlink_dotfiles

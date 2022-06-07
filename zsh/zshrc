@@ -70,10 +70,18 @@ alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 alias bs="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
 
 
+################
+# Neovim
+################
+alias vi="nvim"
+alias vim="nvim"
+alias view="nvim -R"
+alias vimdiff="nvim -d"
+
 # run magit from a shell
-export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient"
-alias magit="emacsclient -n -e '(magit-status)'"
+#export ALTERNATE_EDITOR=""
+#export EDITOR="emacsclient"
+#alias magit="emacsclient -n -e '(magit-status)'"
 
 # I want to limit the Xcode indexing CPU usage
 limitCPU() {
@@ -124,3 +132,5 @@ export PATH=$GOPATH/bin:$PATH
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

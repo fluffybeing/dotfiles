@@ -46,6 +46,7 @@ brew 'mackup'
 brew 'emacs-plus --with-modern-icon-black-variant'
 brew 'languagetool'
 brew 'keith/formulae/reminders-cli'
+brew 'neovim'
 
 # Development
 brew 'python3'
