@@ -111,6 +111,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Make sure to use single quotes
 " Install with `:PlugInstall`
 
+" For lua support
+Plug 'nvim-lua/plenary.nvim'
+
 " https://github.com/itchyny/lightline.vim
 Plug 'itchyny/lightline.vim'
 
@@ -132,8 +135,30 @@ Plug 'fenetikm/falcon'
 " Dracula colorscheme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
+" Python 
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+" Startup screen
+Plug 'mhinz/vim-startify'
+
+" Which Key 
+Plug 'folke/which-key.nvim'
+
 " Magit for neovim
 Plug 'TimUntersberger/neogit'
+
+" Fuzzy finder 
+Plug 'nvim-telescope/telescope.nvim'
+
+" Status line 
+Plug 'feline-nvim/feline.nvim'
+
+" AutoSession 
+Plug 'rmagatti/auto-session'
+
+" File searcher 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
