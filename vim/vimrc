@@ -173,6 +173,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Git signs 
 Plug 'lewis6991/gitsigns.nvim'
 
+" Magit for vim 
+Plug 'TimUntersberger/neogit'
+
 " Initialize plugin system
 call plug#end()
 

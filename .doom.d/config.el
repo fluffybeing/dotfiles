@@ -81,8 +81,8 @@
   (setq ns-use-thin-smoothing t) ; better looking font rendering
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)) ; support macos integrated titlebar
   (add-to-list 'default-frame-alist '(ns-appearance . dark)) ; support macos dark mode
-  (setq ns-right-alternate-modifier (quote none)) ; un-hijack right alt to do symbols
-  )
+  (setq ns-right-alternate-modifier (quote none))) ; un-hijack right alt to do symbols
+
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t) ;; Maximize the window size on startup
 (add-hook 'before-save-hook
@@ -141,6 +141,10 @@
 (after! protobuf-mode
   :mode "\\.proto$")
 
+(after! company
+  (define-key company-active-map (kbd "<return>") nil)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "C-SPC") #'company-complete-selection))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -277,7 +281,7 @@
                           (:name "Trivial"
                            :priority<= "E"
                            :tag ("Trivial" "Unimportant")
-                           :todo ("SOMEDAY" )
+                           :todo ("SOMEDAY")
                            :order 90)
                           (:discard (:tag ("Chore" "Routine" "Daily")))))))))))
 
@@ -427,8 +431,8 @@
                    :headline "Personal"
                    :type entry
                    :template ("* TODO %?"
-                              "%i %a")
-                   )
+                              "%i %a"))
+
                   ("Personal note" :keys "n"
                    :icon ("sticky-note-o" :set "faicon" :color "green")
                    :file +org-capture-todo-file
@@ -438,8 +442,8 @@
                    :i-type "note:"
                    :template ("* %?"
                               "Entered on %U"
-                              "%i %a")
-                   )
+                              "%i %a"))
+
                   ("Email" :keys "e"
                    :icon ("envelope" :set "faicon" :color "blue")
                    :file +org-capture-todo-file
@@ -461,23 +465,23 @@
                    :children (("Webpage" :keys "w"
                                :icon ("globe" :set "faicon" :color "green")
                                :desc "%(org-cliplink-capture) "
-                               :i-type "read:web"
-                               )
+                               :i-type "read:web")
+
                               ("Article" :keys "a"
                                :icon ("file-text" :set "octicon" :color "yellow")
                                :desc ""
-                               :i-type "read:reaserch"
-                               )
+                               :i-type "read:reaserch")
+
                               ("Information" :keys "i"
                                :icon ("info-circle" :set "faicon" :color "blue")
                                :desc ""
-                               :i-type "read:info"
-                               )
+                               :i-type "read:info")
+
                               ("Idea" :keys "I"
                                :icon ("bubble_chart" :set "material" :color "silver")
                                :desc ""
-                               :i-type "idea"
-                               )))
+                               :i-type "idea")))
+
                   ("Inbox" :keys "i"
                    :icon ("inbox" :set "octicon" :color "yellow")
                    :file +org-capture-todo-file
@@ -488,24 +492,24 @@
                               "%i %a")
                    :children (("General Task" :keys "k"
                                :icon ("inbox" :set "octicon" :color "yellow")
-                               :extra ""
-                               )
+                               :extra "")
+
                               ("Task with deadline" :keys "d"
                                :icon ("timer" :set "material" :color "orange" :v-adjust -0.1)
-                               :extra "\nDEADLINE: %^{Deadline:}t"
-                               )
+                               :extra "\nDEADLINE: %^{Deadline:}t")
+
                               ("Scheduled Task" :keys "s"
                                :icon ("calendar" :set "octicon" :color "orange")
-                               :extra "\nSCHEDULED: %^{Start time:}t"
-                               )))
-                   ("Tickler" :keys "r"
-                    :icon ("gear" :set "octicon" :color "orange")
-                    :file +org-capture-tickler-file
-                    :prepend t
-                    :headline "Tickler"
-                    :type entry
-                    :template ("* %i%? \n %^t"))
-                  )))))
+                               :extra "\nSCHEDULED: %^{Start time:}t")))
+
+                  ("Tickler" :keys "r"
+                   :icon ("gear" :set "octicon" :color "orange")
+                   :file +org-capture-tickler-file
+                   :prepend t
+                   :headline "Tickler"
+                   :type entry
+                   :template ("* %i%? \n %^t")))))))
+
 
 (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/org/someday.org" :maxlevel . 1)
