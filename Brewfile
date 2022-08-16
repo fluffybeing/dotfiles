@@ -1,84 +1,112 @@
-# Taps
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
-tap 'homebrew/bundle'
-tap 'homebrew/services'
-tap 'd12frosted/emacs-plus'
+tap "d12frosted/emacs-plus"
+tap "facebook/fb"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "keith/formulae"
+tap "mongodb/brew"
+tap "spotify/sptaps", "git@ghe.spotify.net:shared/homebrew-spotify.git"
 
-# Install VIM
-brew 'diff-so-fancy'
 
-# Install
-brew 'tmux'
-brew 'git'
-brew 'ripgrep'
-brew 'openssl'
+brew "apr-util"
+brew "aspell"
+brew "automake"
+brew "awscli"
+brew "bash"
+brew "bazel", link: false
+brew "bazelisk", link: false
+brew "boost"
+brew "glib"
+brew "pkg-config"
+brew "cairo"
+brew "cmake"
+brew "cocoapods"
+brew "coreutils"
+brew "diff-so-fancy"
+brew "direnv"
+brew "guile"
+brew "unbound"
+brew "gnutls"
+brew "fd"
+brew "harfbuzz"
+brew "libass"
+brew "srt"
+brew "ffmpeg"
+brew "findutils"
+brew "git"
+brew "git-lfs"
+brew "go"
+brew "grep"
+brew "grpc"
+brew "htop"
+brew "httpie"
+brew "hub"
+brew "jq"
+brew "languagetool"
+brew "lazygit"
+brew "libvterm"
+brew "luv"
+brew "mackup"
+brew "mas"
+brew "maven"
+brew "node@16"
+brew "mongosh"
+brew "neovim"
+brew "nghttp2"
+brew "node"
+brew "nvm"
+brew "poppler"
+brew "qt"
+brew "ruby-build"
+brew "rbenv"
+brew "ripgrep"
+brew "ruby"
+brew "shellcheck"
+brew "subversion"
+brew "swift-format"
+brew "swiftlint"
+brew "the_silver_searcher"
+brew "tmux"
+brew "trash"
+brew "tree"
+brew "wget"
+brew "yarn"
+brew "youtube-dl"
+brew "spotify/sptaps/hmtools"
 
-# Install GNU core utilities (those that come with macOS are outdated)
-brew 'coreutils'
-brew 'fd'
 
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew 'findutils'
-
-# Install Bash 4
-brew 'bash'
-
-# Install more recent versions of some macOS tools
-brew 'grep'
-
-# Install Binaries
-brew 'awscli'
-brew 'hub'
-brew 'htop'
-brew 'tree'
-brew 'mackup'
-brew 'mas'
-brew 'trash'
-brew 'wget'
-brew 'rbenv'
-brew 'readline'
-brew 'ruby-build'
-brew 'cocoapods'
-brew 'httpie'
-brew 'diff-so-fancy'
-brew 'mackup'
-brew 'emacs-plus --with-modern-icon-black-variant'
-brew 'languagetool'
-brew 'keith/formulae/reminders-cli'
-brew 'neovim'
-
-# Development
-brew 'python3'
-
-# Apps
-cask 'caffeine'
-cask 'dropbox'
-cask 'google-chrome'
-cask 'iterm2'
-cask 'slack'
-cask 'vlc'
-cask 'karabiner-elements'
-cask "keyboardcleantool"
-cask "rectangle"
-cask "hammerspoon"
-cask "freedom"
-cask "steam"
-cask "dozer"
-cask "visual-studio-code"
+# Apps 
 cask "anki"
-cask "skitch"
-cask "licecap"
+cask "arduino"
+cask "cheatsheet"
+cask "dozer"
+cask "dropbox"
+cask "eul"
+cask "flipper"
+cask "flycut"
+cask "font-fira-code"
+cask "font-source-code-pro"
+cask "font-source-sans-pro"
+cask "font-source-serif-pro"
+cask "franz"
+cask "hammerspoon"
+cask "iterm2"
+cask "kap"
+cask "keyboardcleantool"
+cask "qlcolorcode"
+cask "qlmarkdown"
+cask "qlstephen"
+cask "quicklook-csv"
+cask "quicklook-json"
 cask "raycast"
+cask "razorsql"
+cask "rectangle"
+cask "skitch"
+cask "steam"
 cask "trader-workstation"
-
-# Quicklook
-cask 'qlstephen'
-
-
-# Fonts
-cask 'font-source-code-pro'
-cask 'font-source-sans-pro'
-cask 'font-source-serif-pro'
-cask 'font-dejavu-sans'
-cask 'font-fira-code'
+cask "transmission"
+cask "visual-studio-code"
+cask "vlc"
