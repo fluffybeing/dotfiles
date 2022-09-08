@@ -12,9 +12,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-
-# Open org folder
-alias org="emacs $HOME/Dropbox/org/"
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Exercism
 if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
@@ -80,8 +79,11 @@ alias vimdiff="nvim -d"
 
 # run magit from a shell
 export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient"
-function magit () {
+export EDITOR="emacs -nw"
+
+alias magit='emacs -nw -e "(magit-status \"$(git rev-parse --show-toplevel)\")"'
+
+function mg () {
     git_root=$(git rev-parse --show-toplevel)
     emacsclient -a emacs \
         -e "(magit-status \"${git_root}\")"
@@ -136,8 +138,13 @@ export PATH=$GOROOT/bin:$PATH
 export GOPATH=/Users/rahulr/go
 export PATH=$GOPATH/bin:$PATH
 
+# Not using anymore
+# Open org folder
+alias org="emacs $HOME/Dropbox/org/"
+
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

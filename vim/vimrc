@@ -7,7 +7,11 @@
 " ---------------------------------------------------------------------------
 " drop vi support - kept for vim compatibility but not needed for nvim
 " Probably not needed with Vim 8+
-"set nocompatible
+set nocompatible
+
+" Keybinding 
+" This clear the search highlight on after return key pressed 
+nnoremap <CR> :noh<CR><CR>
 
 " Search recursively downward from CWD; provides TAB completion for filenames
 " e.g., `:find vim* <TAB>`
