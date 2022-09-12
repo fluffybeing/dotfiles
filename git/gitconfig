@@ -1,59 +1,63 @@
 # A good list of alises http://haacked.com/archive/2014/07/28/github-flow-aliases/
 
 [color "branch"]
-        current = green bold
-        local = green
-        remote = yellow
+  current = green bold
+  local = green
+  remote = yellow
 
 [color "diff"]
-        frag = magenta
-        meta = yellow
-        new = green
-        old = red
+  frag = magenta
+  meta = yellow
+  new = green
+  old = red
 
 [color "diff-highlight"]
-        oldNormal = red bold
-        oldHighlight = "red bold 52"
-        newNormal = "green bold"
-        newHighlight = "green bold 22"
+  oldNormal = red bold
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
 
 [color "status"]
-        added = green reverse
-        changed = yellow reverse
-        untracked = red reverse
+  added = green reverse
+  changed = yellow reverse
+  untracked = red reverse
 
 # Git mergetool
 [merge]
-        tool = opendiff
+  tool = vimdiff
+  conflictstyle = diff3
+
+[mergetool]
+  prompt = false 
 
 [core]
-        editor = emacs
-        abbrev = 12
-        attributesfile = ~/.gitattributes
-	excludesfile = ~/.gitignore
-        autocrlf = input
-        mergeoptions = --no-edit
-        ignorecase = false
-	preloadIndex = true
-	fscache = true
-	ignoreStat = false
+  editor = /opt/homebrew/bin/nvim 
+  abbrev = 12
+  attributesfile = ~/.gitattributes
+  excludesfile = ~/.gitignore
+  autocrlf = input
+  mergeoptions = --no-edit
+  ignorecase = false
+  preloadIndex = true
+  fscache = true
+  ignoreStat = false
 
 [pager]
         # Insanely beautiful diffs ==> npm install -g diff-so-fancy
-        diff = diff-so-fancy | less --tabs=4 -RFX
-        show = diff-so-fancy | less --tabs=4 -RFX
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
 
 [diff "bin"]
         # Use `hexdump` to diff binary files
-        textconv = hexdump -v -C
+  textconv = hexdump -v -C
 
 [diff]
         # ignore submodules
-        ignoreSubmodules = dirty
+  ignoreSubmodules = dirty
 
 
 [pretty]
-        custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+  custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
         #                     │        │            │            │             └─ author name
         #                     │        │            │            └─ message
         #                     │        │            └─ date (relative)
@@ -62,64 +66,65 @@
 
 [help]
         # Correct typos
-        autocorrect = 1
+  autocorrect = 1
 
-[url "git@github.com:npsolve/"]
-        insteadOf = "git://github.com/npsolve/"
+[url "git@github.com:rakontuh/"]
+  insteadOf = "git://github.com/rakontuh/"
 
 [url "git@github.com:"]
-    insteadOf = https://github.com/
+  insteadOf = https://github.com/
 
 # Rewrites of repo paths
 [url "git@github.com:"]
-        insteadOf = "gh:"
-        insteadOf = "git://github.com"
-        pushInsteadOf = "github:"
-        pushInsteadOf = "git://github.com/"
-        pushInsteadOf = "https://github.com/"
+  insteadOf = "gh:"
+  insteadOf = "git://github.com"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+  pushInsteadOf = "https://github.com/"
 
 [url "git://github.com/"]
-        insteadOf = "github:"
+  insteadOf = "github:"
 
 [url "git@gist.github.com:"]
-        insteadOf = "gst:"
-        pushInsteadOf = "gist:"
-        pushInsteadOf = "git://gist.github.com/"
-        pushInsteadOf = "https://gist.github.com/"
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+  pushInsteadOf = "https://gist.github.com/"
 
 [url "git://gist.github.com/"]
-        insteadOf = "gist:"
+  insteadOf = "gist:"
 
 # Push easily http://stackoverflow.com/a/23918418/89484
 [push]
         # Make `git push` automatically push relevant
         # annotated tags when pushing branches out
-        followTags = true
-	default = simple
+  followTags = true
+  default = current
 
 # Use separate file for username / github token / etc
 [include]
-        path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
 
 [fetch]
-        prune = true
+  prune = true
 [user]
-	email = rahul.rrixe@gmail.com
-	name = Rahul Ranjan
+  email = rahul.rrixe@gmail.com
+  name = Rahul Ranjan
 
 [diff]
-    tool = default-difftool
+  tool = default-difftool
+
 [difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 [pull]
-	rebase = true
+  rebase = true
 
 [branch]
   autosetupmerge = always
