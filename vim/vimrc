@@ -148,8 +148,10 @@ Plug 'mhinz/vim-startify'
 " Which Key 
 Plug 'folke/which-key.nvim'
 
-" Magit for neovim
-Plug 'TimUntersberger/neogit'
+" Git related
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
 
 " Fuzzy finder 
 Plug 'nvim-telescope/telescope.nvim'
