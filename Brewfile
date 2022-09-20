@@ -13,6 +13,7 @@ tap "spotify/sptaps", "git@ghe.spotify.net:shared/homebrew-spotify.git"
 
 brew "apr-util"
 brew "aspell"
+brew "fzf"
 brew "automake"
 brew "awscli"
 brew "bash"
@@ -76,6 +77,9 @@ brew "wget"
 brew "yarn"
 brew "youtube-dl"
 brew "spotify/sptaps/hmtools"
+brew "midnight-commander"
+brew "inav"
+
 
 
 # Apps 
@@ -105,3 +109,6 @@ cask "trader-workstation"
 cask "transmission"
 cask "visual-studio-code"
 cask "vlc"
+cask "shottr"
+cask "mate-translate"
+cask "browserosaurus"

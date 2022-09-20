@@ -46,27 +46,32 @@ export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 ##############
 # Utils
 ##############
 alias kindle="/usr/local/bin/k2pdfopt"
-alias hg='history | grep'
+alias hs='history | grep'
 
 ###################
 #iOS  Workflow
 ####################
-alias cs="xcrun simctl erase all"
-alias spg="swift package generate-xcodeproj"
-alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
+alias cleanSimulator="xcrun simctl erase all"
+alias swiftGenerateProject="swift package generate-xcodeproj"
+alias deleteDeriveData="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 
 ################
 # Spotify
 ################
-alias bs="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
+alias sourcebuild="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
+
+rakeBuild() {
+  rake build:all
+  open Spotify.xcodeproj
+}
 
 
 ################
@@ -119,24 +124,11 @@ syncf() {
   git rebase master
 }
 
-# Use lazygit
-lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-    lazygit "$@"
-
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
-}
-
-# GoLang
-export GOROOT=/Users/rahulr/.go
-export PATH=$GOROOT/bin:$PATH
-export GOPATH=/Users/rahulr/go
-export PATH=$GOPATH/bin:$PATH
+# Go related
+#export GOROOT=/Users/rahulr/.go
+#export PATH=$GOROOT/bin:$PATH
+#export GOPATH=/Users/rahulr/go
+#export PATH=$GOPATH/bin:$PATH
 
 # Not using anymore
 # Open org folder

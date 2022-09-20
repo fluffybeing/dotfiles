@@ -3,7 +3,7 @@
 
 ;; INSTALL PACKAGES
 ;; --------------------------------------
-;; Remove the initial message 
+;; Remove the initial message
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'org-mode)
@@ -28,7 +28,7 @@
 (set-frame-font "Menlo 13")
 
 (setq user-full-name "Rahul Ranjan"
-      user-mail-address "rahul@rudrakos.com")
+      user-mail-address "rahul.rrixe@gmail.com")
 
 ;; nice scrolling
 (setq scroll-margin 0
@@ -53,8 +53,8 @@
 (setq vc-follow-symlinks t)
 
 ;; make the frame full screen
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(cursor-color . "white"))
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(cursor-color . "white"))
 
 ;; enable y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -178,7 +178,7 @@
   :config
   (unless (server-running-p) (server-start)))
 
-;; Play well with $PATH on mac 
+;; Play well with $PATH on mac
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns))
@@ -264,7 +264,7 @@
 (use-package dash
   :config (dash-enable-font-lock))
 
-;; Git Related 
+;; Git Related
 (use-package magit
   :defer t
   :bind (("C-x g"   . magit-status)
@@ -280,7 +280,7 @@
   :diminish git-gutter-mode
   :config (global-git-gutter-mode))
 
-;; Project and Search 
+;; Project and Search
 (use-package ag
   :ensure t)
 
@@ -400,8 +400,8 @@
   :ensure t)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
-(use-package lsp-dart 
-  :ensure t 
+(use-package lsp-dart
+  :ensure t
   :hook (dart-mode . lsp))
 
 (use-package lsp-sourcekit
@@ -418,7 +418,7 @@
   (setq-default swift-mode:basic-offset 2)
   :hook (swift-mode . (lambda () (lsp))))
 
-;; Running programs 
+;; Running programs
 (use-package quickrun
   :ensure t
   :bind
@@ -623,4 +623,3 @@
   (load custom-file))
 
 (setq disabled-command-function nil)
-

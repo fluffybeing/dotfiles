@@ -9,6 +9,9 @@
 " Probably not needed with Vim 8+
 set nocompatible
 
+" fzf 
+set rtp+=/opt/homebrew/opt/fzf
+
 " Keybinding 
 " This clear the search highlight on after return key pressed 
 nnoremap <CR> :noh<CR><CR>
@@ -152,6 +155,10 @@ Plug 'folke/which-key.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
+
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 " Fuzzy finder 
 Plug 'nvim-telescope/telescope.nvim'
