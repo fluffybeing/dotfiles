@@ -152,7 +152,7 @@ Plug 'mhinz/vim-startify'
 Plug 'folke/which-key.nvim'
 
 " Git related
-Plug 'tpope/vim-fugitive'
+Plug 'TimUntersberger/neogit'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 

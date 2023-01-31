@@ -1,9 +1,13 @@
-
 # Executes commands at the start of an interactive session.
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+DISABLE_AUTO_TITLE="true"
+
+function set_terminal_title() {
+  echo -en "\e]2;$@\a"
+}
 
 export ITERM_24BIT=1
 
@@ -40,9 +44,15 @@ export PATH=/usr/local/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
+export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+
 # JAVA
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+# Python
+alias python="/opt/homebrew/bin/python3"
+alias pip="/opt/homebrew/bin/pip3"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -66,13 +76,28 @@ alias deleteDeriveData="rm -rf ~/Library/Developer/Xcode/DerivedData"
 ################
 # Spotify
 ################
-alias sourcebuild="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
+alias bfs="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
 
-rakeBuild() {
+rb() {
   rake build:all
   open Spotify.xcodeproj
 }
 
+cb() {
+  kill $(ps aux | grep 'Xcode' | awk '{print $2}')
+  make xcode_SPTRemoteConfigurationSDK
+  open tools/apple/rules_xcodeproj/projects/SPTRemoteConfigurationSDK.xcodeproj 
+}
+
+###################
+#    Git 
+###################
+alias gpr='git pull upstream master --rebase'
+alias gpp='"$(gpr)" && git push origin "$(git-branch-current 2> /dev/null)"'
+
+gcu() {
+  git switch -c "$1" upstream/master
+}
 
 ################
 # Neovim
@@ -84,17 +109,31 @@ alias vimdiff="nvim -d"
 
 # run magit from a shell
 export ALTERNATE_EDITOR=""
-export EDITOR="emacs -nw"
+export EDITOR=emacsclient
 
-alias magit='emacs -nw -e "(magit-status \"$(git rev-parse --show-toplevel)\")"'
+alias magit='emacs -nw -a " " "(magit-status \"$(git rev-parse --show-toplevel)\")"'
 
-function mg () {
+mg() {
     git_root=$(git rev-parse --show-toplevel)
-    emacsclient -a emacs \
-        -e "(magit-status \"${git_root}\")"
-    if [[ -f `which osascript` ]]; then
-        osascript -e "tell application \"Emacs\" to activate"
+    if [ $? -eq 0 ]; then 
+      emacs -e "(magit-status \"${git_root}\")"
+      if [[ -f `which osascript` ]]; then
+         osascript -e "tell application \"Emacs\" to activate"
+      fi
+    else 
+      return $?
     fi
+}
+
+lg() {
+  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+  lazygit "$@"
+
+  if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+    rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+  fi
 }
 
 # I want to limit the Xcode indexing CPU usage
@@ -140,3 +179,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

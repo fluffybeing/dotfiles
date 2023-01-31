@@ -29,6 +29,7 @@
 
 [mergetool]
   prompt = false 
+  keepBackup = false  
 
 [core]
   editor = /opt/homebrew/bin/nvim 
@@ -114,7 +115,7 @@
 [fetch]
   prune = true
 [user]
-  email = rahul.rrixe@gmail.com
+	email = rahulr@spotify.com
   name = Rahul Ranjan
 
 [diff]

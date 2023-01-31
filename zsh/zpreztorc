@@ -48,6 +48,7 @@ zstyle ':prezto:load' pmodule \
   'syntax-highlighting' \
   'homebrew' \
   'emacs' \
+  'fzf-tab' \
   
 #
 # Autosuggestions
