@@ -28,11 +28,11 @@
   conflictstyle = diff3
 
 [mergetool]
-  prompt = false 
-  keepBackup = false  
+  prompt = false
+  keepBackup = false
 
 [core]
-  editor = /opt/homebrew/bin/nvim 
+  editor = /opt/homebrew/bin/nvim
   abbrev = 12
   attributesfile = ~/.gitattributes
   excludesfile = ~/.gitignore
@@ -55,7 +55,7 @@
 [diff]
         # ignore submodules
   ignoreSubmodules = dirty
-
+  tool = vimdiff
 
 [pretty]
   custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
@@ -101,6 +101,7 @@
         # annotated tags when pushing branches out
   followTags = true
   default = current
+  autoSetupRemote = true
 
 # Use separate file for username / github token / etc
 [include]
@@ -114,8 +115,9 @@
 
 [fetch]
   prune = true
+
 [user]
-	email = rahulr@spotify.com
+	email = rahul.ranjan@flir.com
   name = Rahul Ranjan
 
 [diff]

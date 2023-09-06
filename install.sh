@@ -45,7 +45,7 @@ create_file_and_symlink() {
 
 clone_dotfile_git_repo() {
     create_dir "$HOME/Dropbox/Code"
-    git clone https://github.com/coyo8/dotfiles.git $dotfile_dir
+    git clone https://github.com/riftinwild/dotfiles.git $dotfile_dir
 }
 
 change_shell() {
@@ -69,7 +69,7 @@ install_prezto() {
 }
 
 symlink_dotfiles() {
-    create_dir "$HOME/.doom.d"
+    create_dir "$HOME/.config"
     user=$USER
     chown -R "$user" "$HOME/.config/"
     print_message "Symlinking files... $user"
@@ -84,15 +84,10 @@ symlink_dotfiles() {
         create_file_and_symlink $dotfile_dir/$file ~/.$f
     done
 
-  # some symlinks are in separate directory
-  create_file_and_symlink "$dotfile_dir/.doom.d/config.el" "$HOME/.doom.d/config.el"
-  create_file_and_symlink "$dotfile_dir/.doom.d/init.el" "$HOME/.doom.d/init.el"
-  create_file_and_symlink "$dotfile_dir/.doom.d/packages.el" "$HOME/.doom.d/packages.el"
-  create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
-  create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
-
-  # old emacs config
-  # create_file_and_symlink "$dotfile_dir/emacs/init.el" "$HOME/.emacs.d/init.el"
+    # some symlinks are in separate directory
+    create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
+    create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
+    create_file_and_symlink "$dotfile_dir/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 }
 
 #############################
@@ -205,6 +200,16 @@ if [[ $(uname) == 'Darwin' ]]; then
     install_prezto
 
     ##############################################
+    # Symlinks                                  #
+    ##############################################
+     # symlink for special emacs
+    if [ ! -d "$HOME/.config/nvim" ]; then
+        create_dir "$HOME/.config/nvim"  
+    fi
+
+    symlink_dotfiles
+
+    ##############################################
     #  NeoVim
     ###############################################
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -216,17 +221,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 
     nvim .vimrc +PlugInstall +qall
 
-    ##############################################
-    # Symlinks                                  #
-    ##############################################
-    symlink_dotfiles
-
-#    # symlink for special emacs
-#    if [ ! -d "$HOME/.doom.d" ]; then
-#        git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-#        sh $HOME/.emacs.d/bin/doom install
-#    fi
-#
     print_message "Done :)"
 fi
 

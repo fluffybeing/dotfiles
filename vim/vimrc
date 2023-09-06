@@ -9,11 +9,11 @@
 " Probably not needed with Vim 8+
 set nocompatible
 
-" fzf 
+" fzf
 set rtp+=/opt/homebrew/opt/fzf
 
-" Keybinding 
-" This clear the search highlight on after return key pressed 
+" Keybinding
+" This clear the search highlight on after return key pressed
 nnoremap <CR> :noh<CR><CR>
 
 " Search recursively downward from CWD; provides TAB completion for filenames
@@ -45,8 +45,8 @@ set nobackup
 set noswapfile
 
 " line numbers and distances
-set relativenumber 
-set number 
+set relativenumber
+set number
 
 " number of lines offset when jumping
 set scrolloff=2
@@ -54,7 +54,7 @@ set scrolloff=2
 " Tab key enters 2 spaces
 " To enter a TAB character when `expandtab` is in effect,
 " CTRL-v-TAB
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2 
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " Indent new line the same as the preceding line
 set autoindent
@@ -106,6 +106,23 @@ set foldlevelstart=1
 " netrw and vim-vinegar
 let g:netrw_browse_split = 3
 
+" For podfile
+autocmd BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+" Default to not read-only in vimdiff
+set noro
+
 " Plugins, syntax, and colors
 " ---------------------------------------------------------------------------
 " vim-plug
@@ -142,13 +159,13 @@ Plug 'fenetikm/falcon'
 " Dracula colorscheme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
-" Python 
+" Python
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Startup screen
 Plug 'mhinz/vim-startify'
 
-" Which Key 
+" Which Key
 Plug 'folke/which-key.nvim'
 
 " Git related
@@ -160,37 +177,37 @@ Plug 'tpope/vim-rhubarb'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 
-" Fuzzy finder 
+" Fuzzy finder
 Plug 'nvim-telescope/telescope.nvim'
 
-" Status line 
+" Status line
 Plug 'feline-nvim/feline.nvim'
 
-" AutoSession 
+" AutoSession
 Plug 'rmagatti/auto-session'
 
-" File searcher 
+" File searcher
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Diff view 
+" Diff view
 Plug 'sindrets/diffview.nvim'
 
-" Auto Save 
+" Auto Save
 Plug '907th/vim-auto-save'
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
-" Syntax Highlighting 
+" Syntax Highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Git signs 
+" Git signs
 Plug 'lewis6991/gitsigns.nvim'
 
-" Bazel related 
+" Bazel related
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 
-" Swift related 
+" Swift related
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -208,7 +225,7 @@ call plug#end()
 
 syntax enable
 " Neovim only
-set termguicolors 
+set termguicolors
 
 " Light scheme
 " colorscheme night

@@ -45,10 +45,12 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
 export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
 # JAVA
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+export PATH=$JAVA_HOME/bin:$PATH
 
 # Python
 alias python="/opt/homebrew/bin/python3"
@@ -62,7 +64,6 @@ export NVM_DIR="$HOME/.nvm"
 ##############
 # Utils
 ##############
-alias kindle="/usr/local/bin/k2pdfopt"
 alias hs='history | grep'
 
 ###################
@@ -70,29 +71,17 @@ alias hs='history | grep'
 ####################
 alias cleanSimulator="xcrun simctl erase all"
 alias swiftGenerateProject="swift package generate-xcodeproj"
-alias deleteDeriveData="rm -rf ~/Library/Developer/Xcode/DerivedData"
+alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 
 ################
-# Spotify
+# Flir
 ################
-alias bfs="SPT_CLIENT=\"../client\" SPT_SPTREMOTECONFIGURATION_USE_SOURCE=1 rake build:all"
-
-rb() {
-  rake build:all
-  open Spotify.xcodeproj
-}
-
-cb() {
-  kill $(ps aux | grep 'Xcode' | awk '{print $2}')
-  make xcode_SPTRemoteConfigurationSDK
-  open tools/apple/rules_xcodeproj/projects/SPTRemoteConfigurationSDK.xcodeproj 
-}
 
 ###################
-#    Git 
+#    Git
 ###################
-alias gpr='git pull upstream master --rebase'
+alias gpr='git pull origin development --rebase'
 alias gpp='"$(gpr)" && git push origin "$(git-branch-current 2> /dev/null)"'
 
 gcu() {
@@ -106,24 +95,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias view="nvim -R"
 alias vimdiff="nvim -d"
-
-# run magit from a shell
-export ALTERNATE_EDITOR=""
-export EDITOR=emacsclient
-
-alias magit='emacs -nw -a " " "(magit-status \"$(git rev-parse --show-toplevel)\")"'
-
-mg() {
-    git_root=$(git rev-parse --show-toplevel)
-    if [ $? -eq 0 ]; then 
-      emacs -e "(magit-status \"${git_root}\")"
-      if [[ -f `which osascript` ]]; then
-         osascript -e "tell application \"Emacs\" to activate"
-      fi
-    else 
-      return $?
-    fi
-}
 
 lg() {
   export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
