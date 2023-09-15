@@ -6,8 +6,6 @@
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="false"
 
-alias gcc="nocorrect gcc"
-
 function set_terminal_title() {
   echo -en "\e]2;$@\a"
 }
@@ -17,6 +15,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
+export SDKROOT="`xcrun --show-sdk-path`"
 
 # Flags for C++
 export ITERM_24BIT=1
