@@ -42,20 +42,31 @@
   preloadIndex = true
   fscache = true
   ignoreStat = false
+  pager = delta
 
-[pager]
-        # Insanely beautiful diffs ==> npm install -g diff-so-fancy
-  diff = diff-so-fancy | less --tabs=4 -RFX
-  show = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+  diffFilter = delta --color-only
 
-[diff "bin"]
-        # Use `hexdump` to diff binary files
-  textconv = hexdump -v -C
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  line-numbers = true
+  side-by-side = true
+  hyperlinks = true
+  hyperlinks-file-link-format = "file-line://{path}:{line}"
+
+[merge]
+  conflictstyle = diff3
 
 [diff]
-        # ignore submodules
+  colorMoved = default
+  cmd = code --wait --diff $LOCAL $REMOTE
   ignoreSubmodules = dirty
   tool = vimdiff
+
+[diff "bin"]
+  # Use `hexdump` to diff binary files
+  textconv = hexdump -v -C
 
 [pretty]
   custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
@@ -66,7 +77,7 @@
         #                     └─ hash (abbreviated)
 
 [help]
-        # Correct typos
+  # Correct typos
   autocorrect = 1
 
 [url "git@github.com:rakontuh/"]
@@ -97,8 +108,8 @@
 
 # Push easily http://stackoverflow.com/a/23918418/89484
 [push]
-        # Make `git push` automatically push relevant
-        # annotated tags when pushing branches out
+  # Make `git push` automatically push relevant
+  # annotated tags when pushing branches out
   followTags = true
   default = current
   autoSetupRemote = true
@@ -119,12 +130,6 @@
 [user]
 	email = 137078342+rahulflir@users.noreply.github.com
   name = Rahul Ranjan
-
-[diff]
-  tool = default-difftool
-
-[difftool "default-difftool"]
-  cmd = code --wait --diff $LOCAL $REMOTE
 
 [pull]
   rebase = true

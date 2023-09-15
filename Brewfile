@@ -73,8 +73,8 @@ brew "yarn"
 brew "youtube-dl"
 brew "midnight-commander"
 brew "inav"
-brew "clangd"
-brew "gcc"
+brew "less"
+brew "git-delta"
 
 # Apps
 cask "cheatsheet"
