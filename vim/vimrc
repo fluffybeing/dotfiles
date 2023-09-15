@@ -6,105 +6,105 @@
 " https://learnvimscriptthehardway.stevelosh.com/
 " ---------------------------------------------------------------------------
 " drop vi support - kept for vim compatibility but not needed for nvim
-@REM " Probably not needed with Vim 8+
-@REM set nocompatible
+" Probably not needed with Vim 8+
+set nocompatible
 
-@REM " fzf
-@REM set rtp+=/opt/homebrew/opt/fzf
+" fzf
+set rtp+=/opt/homebrew/opt/fzf
 
-@REM " Keybinding
-@REM " This clear the search highlight on after return key pressed
-@REM nnoremap <CR> :noh<CR><CR>
+" Keybinding
+" This clear the search highlight on after return key pressed
+nnoremap <CR> :noh<CR><CR>
 
-@REM " Search recursively downward from CWD; provides TAB completion for filenames
-@REM " e.g., `:find vim* <TAB>`
-@REM set path+=**
+" Search recursively downward from CWD; provides TAB completion for filenames
+" e.g., `:find vim* <TAB>`
+set path+=**
 
-@REM " number of lines at the beginning and end of files checked for file-specific vars
-@REM set modelines=0
+" number of lines at the beginning and end of files checked for file-specific vars
+set modelines=0
 
-@REM " reload files changed outside of Vim not currently modified in Vim (needs below)
-@REM set autoread
+" reload files changed outside of Vim not currently modified in Vim (needs below)
+set autoread
 
-@REM " http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
-@REM au FocusGained,BufEnter * :silent! !
+" http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
+au FocusGained,BufEnter * :silent! !
 
-@REM " use Unicode
-@REM set encoding=utf-8
+" use Unicode
+set encoding=utf-8
 
-@REM " errors flash screen rather than emit beep
-@REM set visualbell
+" errors flash screen rather than emit beep
+set visualbell
 
-@REM " make Backspace work like Delete
-@REM set backspace=indent,eol,start
+" make Backspace work like Delete
+set backspace=indent,eol,start
 
-@REM " don't create `filename~` backups
-@REM set nobackup
+" don't create `filename~` backups
+set nobackup
 
-@REM " don't create temp files
-@REM set noswapfile
+" don't create temp files
+set noswapfile
 
-@REM " line numbers and distances
-@REM set relativenumber
-@REM set number
+" line numbers and distances
+set relativenumber
+set number
 
-@REM " number of lines offset when jumping
-@REM set scrolloff=2
+" number of lines offset when jumping
+set scrolloff=2
 
-@REM " Tab key enters 2 spaces
-@REM " To enter a TAB character when `expandtab` is in effect,
-@REM " CTRL-v-TAB
-@REM set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+" Tab key enters 2 spaces
+" To enter a TAB character when `expandtab` is in effect,
+" CTRL-v-TAB
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-@REM " Indent new line the same as the preceding line
-@REM set autoindent
+" Indent new line the same as the preceding line
+set autoindent
 
-@REM " statusline indicates insert or normal mode
-@REM set showmode showcmd
+" statusline indicates insert or normal mode
+set showmode showcmd
 
-@REM " make scrolling and painting fast
-@REM " ttyfast kept for vim compatibility but not needed for nvim
-@REM set ttyfast lazyredraw
+" make scrolling and painting fast
+" ttyfast kept for vim compatibility but not needed for nvim
+set ttyfast lazyredraw
 
-@REM " highlight matching parens, braces, brackets, etc
-@REM set showmatch
+" highlight matching parens, braces, brackets, etc
+set showmatch
 
-@REM " http://vim.wikia.com/wiki/Searching
-@REM set hlsearch incsearch ignorecase smartcase
+" http://vim.wikia.com/wiki/Searching
+set hlsearch incsearch ignorecase smartcase
 
-@REM " As opposed to `wrap`
-@REM "set nowrap
+" As opposed to `wrap`
+"set nowrap
 
-@REM " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
-@REM set autochdir
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+set autochdir
 
-@REM " open new buffers without saving current modifications (buffer remains open)
-@REM set hidden
+" open new buffers without saving current modifications (buffer remains open)
+set hidden
 
-@REM " http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
-@REM set wildmenu wildmode=list:longest,full
+" http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+set wildmenu wildmode=list:longest,full
 
-@REM " StatusLine always visible, display full path
-@REM " http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
-@REM set laststatus=2 statusline=%F
+" StatusLine always visible, display full path
+" http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
+set laststatus=2 statusline=%F
 
-@REM " Use system clipboard
-@REM " http://vim.wikia.com/wiki/Accessing_the_system_clipboard
-@REM " for linux
-@REM "set clipboard=unnamedplus
-@REM " for macOS
-@REM set clipboard=unnamed
+" Use system clipboard
+" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+" for linux
+"set clipboard=unnamedplus
+" for macOS
+set clipboard=unnamed
 
-@REM " Folding
-@REM " https://vim.fandom.com/wiki/Folding
-@REM " https://vim.fandom.com/wiki/All_folds_open_when_opening_a_file
-@REM " https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
-@REM set foldmethod=indent
-@REM set foldnestmax=1
-@REM set foldlevelstart=1
+" Folding
+" https://vim.fandom.com/wiki/Folding
+" https://vim.fandom.com/wiki/All_folds_open_when_opening_a_file
+" https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
+set foldmethod=indent
+set foldnestmax=1
+set foldlevelstart=1
 
-@REM " netrw and vim-vinegar
-@REM let g:netrw_browse_split = 3
+" netrw and vim-vinegar
+let g:netrw_browse_split = 3
 
-@REM " For podfile
-@REM autocmd BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
+" For podfile
+autocmd BufNewFile,BufRead Podfile,*.podspec set filetype=ruby

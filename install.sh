@@ -216,6 +216,12 @@ if [[ $(uname) == 'Darwin' ]]; then
     #  NeoVim
     ###############################################
     git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+
+    # Architecture issue with M macs
+    brew unlink tree-sitter
+    arch -arm64 brew install --HEAD tree-sitter
+    brew unlink nvim
+    arch -arm64 brew install --HEAD nvim
     
     print_message "Done :)"
 fi

@@ -4,17 +4,22 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 DISABLE_AUTO_TITLE="true"
+ENABLE_CORRECTION="false"
+
+alias gcc="nocorrect gcc"
 
 function set_terminal_title() {
   echo -en "\e]2;$@\a"
 }
 
-# Flags for C++
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+# Path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
 
+# Flags for C++
 export ITERM_24BIT=1
-export TERM=xterm-256color
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -51,8 +56,6 @@ export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBR
 export PATH="$PATH:/usr/local/opt/flutter/bin"
 export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
 
-export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
-
 # Android
 export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
@@ -85,8 +88,7 @@ alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 ###################
 # Library path
 ####################
-_sdk_root=`xcrun --sdk macosx --show-sdk-path`
-export LIBRARY_PATH="${_sdk_root}/usr/lib"
+export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 
 ################
 # Flir
