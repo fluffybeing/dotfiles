@@ -9,7 +9,12 @@ function set_terminal_title() {
   echo -en "\e]2;$@\a"
 }
 
+# Flags for C++
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+
 export ITERM_24BIT=1
+export TERM=xterm-256color
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -33,18 +38,22 @@ eval "$(rbenv init -)"
 # Paths
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
-
-export PATH="$PATH:/usr/local/opt/flutter/bin"
-export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
-
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 
+# Go
 export PATH="$PATH:$(go env GOPATH)/bin"
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
+# Flutter
+export PATH="$PATH:/usr/local/opt/flutter/bin"
+export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
+
 export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+
+# Android
 export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
 # JAVA
@@ -73,13 +82,18 @@ alias cleanSimulator="xcrun simctl erase all"
 alias swiftGenerateProject="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
+###################
+# Library path
+####################
+_sdk_root=`xcrun --sdk macosx --show-sdk-path`
+export LIBRARY_PATH="${_sdk_root}/usr/lib"
 
 ################
 # Flir
 ################
 
 ###################
-#    Git
+# Git
 ###################
 alias gpr='git pull origin development --rebase'
 alias gpp='"$(gpr)" && git push origin "$(git-branch-current 2> /dev/null)"'
@@ -120,36 +134,13 @@ fbuild() {
   flutter attach
 }
 
-# sync fork with the remote
-syncf() {
-  # Assumes that the git repository has upstream and remote urls set
-  # Assumes that you've committed your work on your current branch
-  current_branch=$(git rev-parse --abbrev-ref HEAD)
-  git checkout master
-  git pull --rebase
-
-  git push # origin
-
-  git checkout $current_branch
-  git rebase master
-}
-
-# Go related
-#export GOROOT=/Users/rahulr/.go
-#export PATH=$GOROOT/bin:$PATH
-#export GOPATH=/Users/rahulr/go
-#export PATH=$GOPATH/bin:$PATH
-
-# Not using anymore
-# Open org folder
+# Emacs
 alias org="emacs $HOME/Dropbox/org/"
 
+# OpenSSL
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

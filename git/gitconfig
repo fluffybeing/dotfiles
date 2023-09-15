@@ -108,16 +108,16 @@
   path = ~/.gitconfig.local
 
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
 
 [fetch]
   prune = true
 
 [user]
-	email = rahul.ranjan@flir.com
+	email = 137078342+rahulflir@users.noreply.github.com
   name = Rahul Ranjan
 
 [diff]

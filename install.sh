@@ -114,10 +114,13 @@ if [[ $(uname) == 'Darwin' ]]; then
     which -s brew
     if [[ $? != 0 ]]; then
         print_message 'Installing Homebrew...'
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
         brew update
         brew tap Homebrew/bundle
         brew install git
+        brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install --cask {} || true
     fi
 
     ##############################################
@@ -212,15 +215,8 @@ if [[ $(uname) == 'Darwin' ]]; then
     ##############################################
     #  NeoVim
     ###############################################
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-    echo 'set runtimepath^=/.vim runtimepath+=~/.vim/after\n
-    let &packpath = &runtimepath\n
-    source ~/.vimrc\n' > $HOME/.config/nvim/init.vim
-
-    nvim .vimrc +PlugInstall +qall
-
+    git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+    
     print_message "Done :)"
 fi
 

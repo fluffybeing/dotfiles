@@ -6,248 +6,105 @@
 " https://learnvimscriptthehardway.stevelosh.com/
 " ---------------------------------------------------------------------------
 " drop vi support - kept for vim compatibility but not needed for nvim
-" Probably not needed with Vim 8+
-set nocompatible
+@REM " Probably not needed with Vim 8+
+@REM set nocompatible
 
-" fzf
-set rtp+=/opt/homebrew/opt/fzf
+@REM " fzf
+@REM set rtp+=/opt/homebrew/opt/fzf
 
-" Keybinding
-" This clear the search highlight on after return key pressed
-nnoremap <CR> :noh<CR><CR>
+@REM " Keybinding
+@REM " This clear the search highlight on after return key pressed
+@REM nnoremap <CR> :noh<CR><CR>
 
-" Search recursively downward from CWD; provides TAB completion for filenames
-" e.g., `:find vim* <TAB>`
-set path+=**
+@REM " Search recursively downward from CWD; provides TAB completion for filenames
+@REM " e.g., `:find vim* <TAB>`
+@REM set path+=**
 
-" number of lines at the beginning and end of files checked for file-specific vars
-set modelines=0
+@REM " number of lines at the beginning and end of files checked for file-specific vars
+@REM set modelines=0
 
-" reload files changed outside of Vim not currently modified in Vim (needs below)
-set autoread
+@REM " reload files changed outside of Vim not currently modified in Vim (needs below)
+@REM set autoread
 
-" http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
-au FocusGained,BufEnter * :silent! !
+@REM " http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
+@REM au FocusGained,BufEnter * :silent! !
 
-" use Unicode
-set encoding=utf-8
+@REM " use Unicode
+@REM set encoding=utf-8
 
-" errors flash screen rather than emit beep
-set visualbell
+@REM " errors flash screen rather than emit beep
+@REM set visualbell
 
-" make Backspace work like Delete
-set backspace=indent,eol,start
+@REM " make Backspace work like Delete
+@REM set backspace=indent,eol,start
 
-" don't create `filename~` backups
-set nobackup
+@REM " don't create `filename~` backups
+@REM set nobackup
 
-" don't create temp files
-set noswapfile
+@REM " don't create temp files
+@REM set noswapfile
 
-" line numbers and distances
-set relativenumber
-set number
+@REM " line numbers and distances
+@REM set relativenumber
+@REM set number
 
-" number of lines offset when jumping
-set scrolloff=2
+@REM " number of lines offset when jumping
+@REM set scrolloff=2
 
-" Tab key enters 2 spaces
-" To enter a TAB character when `expandtab` is in effect,
-" CTRL-v-TAB
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+@REM " Tab key enters 2 spaces
+@REM " To enter a TAB character when `expandtab` is in effect,
+@REM " CTRL-v-TAB
+@REM set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-" Indent new line the same as the preceding line
-set autoindent
+@REM " Indent new line the same as the preceding line
+@REM set autoindent
 
-" statusline indicates insert or normal mode
-set showmode showcmd
+@REM " statusline indicates insert or normal mode
+@REM set showmode showcmd
 
-" make scrolling and painting fast
-" ttyfast kept for vim compatibility but not needed for nvim
-set ttyfast lazyredraw
+@REM " make scrolling and painting fast
+@REM " ttyfast kept for vim compatibility but not needed for nvim
+@REM set ttyfast lazyredraw
 
-" highlight matching parens, braces, brackets, etc
-set showmatch
+@REM " highlight matching parens, braces, brackets, etc
+@REM set showmatch
 
-" http://vim.wikia.com/wiki/Searching
-set hlsearch incsearch ignorecase smartcase
+@REM " http://vim.wikia.com/wiki/Searching
+@REM set hlsearch incsearch ignorecase smartcase
 
-" As opposed to `wrap`
-"set nowrap
+@REM " As opposed to `wrap`
+@REM "set nowrap
 
-" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
-set autochdir
+@REM " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+@REM set autochdir
 
-" open new buffers without saving current modifications (buffer remains open)
-set hidden
+@REM " open new buffers without saving current modifications (buffer remains open)
+@REM set hidden
 
-" http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
-set wildmenu wildmode=list:longest,full
+@REM " http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+@REM set wildmenu wildmode=list:longest,full
 
-" StatusLine always visible, display full path
-" http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
-set laststatus=2 statusline=%F
+@REM " StatusLine always visible, display full path
+@REM " http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
+@REM set laststatus=2 statusline=%F
 
-" Use system clipboard
-" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
-" for linux
-"set clipboard=unnamedplus
-" for macOS
-set clipboard=unnamed
+@REM " Use system clipboard
+@REM " http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+@REM " for linux
+@REM "set clipboard=unnamedplus
+@REM " for macOS
+@REM set clipboard=unnamed
 
-" Folding
-" https://vim.fandom.com/wiki/Folding
-" https://vim.fandom.com/wiki/All_folds_open_when_opening_a_file
-" https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
-set foldmethod=indent
-set foldnestmax=1
-set foldlevelstart=1
+@REM " Folding
+@REM " https://vim.fandom.com/wiki/Folding
+@REM " https://vim.fandom.com/wiki/All_folds_open_when_opening_a_file
+@REM " https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
+@REM set foldmethod=indent
+@REM set foldnestmax=1
+@REM set foldlevelstart=1
 
-" netrw and vim-vinegar
-let g:netrw_browse_split = 3
+@REM " netrw and vim-vinegar
+@REM let g:netrw_browse_split = 3
 
-" For podfile
-autocmd BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
-
-" Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
-" Run PlugInstall if there are missing plugins
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
-
-" Default to not read-only in vimdiff
-set noro
-
-" Plugins, syntax, and colors
-" ---------------------------------------------------------------------------
-" vim-plug
-" https://github.com/junegunn/vim-plug
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.local/share/nvim/plugged')
-
-" Make sure to use single quotes
-" Install with `:PlugInstall`
-
-" For lua support
-Plug 'nvim-lua/plenary.nvim'
-
-" https://github.com/itchyny/lightline.vim
-Plug 'itchyny/lightline.vim'
-
-" https://github.com/tpope/vim-commentary
-Plug 'tpope/vim-commentary'
-
-" https://github.com/tpope/vim-surround
-Plug 'tpope/vim-surround'
-
-" https://github.com/tpope/vim-vinegar
-Plug 'tpope/vim-vinegar'
-
-" https://github.com/APZelos/blamer.nvim
-Plug 'APZelos/blamer.nvim'
-
-" https://github.com/fenetikm/falcon/wiki/Installation
-Plug 'fenetikm/falcon'
-
-" Dracula colorscheme
-Plug 'dracula/vim', { 'as': 'dracula' }
-
-" Python
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
-" Startup screen
-Plug 'mhinz/vim-startify'
-
-" Which Key
-Plug 'folke/which-key.nvim'
-
-" Git related
-Plug 'TimUntersberger/neogit'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-rhubarb'
-
-" Markdown
-Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
-
-" Fuzzy finder
-Plug 'nvim-telescope/telescope.nvim'
-
-" Status line
-Plug 'feline-nvim/feline.nvim'
-
-" AutoSession
-Plug 'rmagatti/auto-session'
-
-" File searcher
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Diff view
-Plug 'sindrets/diffview.nvim'
-
-" Auto Save
-Plug '907th/vim-auto-save'
-let g:auto_save = 1  " enable AutoSave on Vim startup
-
-" Syntax Highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" Git signs
-Plug 'lewis6991/gitsigns.nvim'
-
-" Bazel related
-Plug 'google/vim-maktaba'
-Plug 'bazelbuild/vim-bazel'
-
-" Swift related
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-if executable('sourcekit-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'sourcekit-lsp',
-        \ 'cmd': {server_info->['sourcekit-lsp']},
-        \ 'whitelist': ['swift'],
-        \ })
-endif
-
-" Initialize plugin system
-call plug#end()
-
-syntax enable
-" Neovim only
-set termguicolors
-
-" Light scheme
-" colorscheme night
-
-" Dark scheme
-colorscheme dracula
-
-" Show character column
-set colorcolumn=80
-
-" lightline config - add file 'absolutepath'
-" Delete colorscheme line below if using Dark scheme
-
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor_light',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'absolutepath', 'modified' ] ]
-      \ }
-      \ }
-
-let g:blamer_enabled = 1
-" %a is the day of week, in case it's needed
-let g:blamer_date_format = '%e %b %Y'
-highlight Blamer guifg=darkorange
+@REM " For podfile
+@REM autocmd BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
