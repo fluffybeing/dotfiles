@@ -37,6 +37,7 @@ fi
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls -a; }
 
+# Ruby
 eval "$(rbenv init -)"
 
 # Paths
@@ -72,16 +73,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
-##############
-# Utils
-##############
-alias hs='history | grep'
 
 ###################
 #iOS  Workflow
 ####################
-alias cleanSimulator="xcrun simctl erase all"
-alias swiftGenerateProject="swift package generate-xcodeproj"
+alias cs="xcrun simctl erase all"
+alias sgp="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 ###################
@@ -89,9 +86,31 @@ alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 ####################
 export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 
+#############
+# Utility
+# ###############
+alias untar='tar -zxvf' # Unpack .tar file
+alias hs='history | grep'
+alias wget='wget -c' # Download and resume
+alias getpass='openssl rand -base64 20' # Generate password
+alias sha='shasum -a 256' # Check shasum
+alias ping='ping -c 5' # Limit ping to 5'
+alias www='php -S localhost:8000' # Run local web server
+
 ################
 # Flir
 ################
+xbuild() {
+  XCODE_SCHEME="FLIR One Preview"
+  XCODE_WORKSPACE="FLIR One.xcworkspace"
+  /opt/homebrew/bin/pod install
+  xcrun xcodebuild \
+  -scheme $XCODE_SCHEME \
+  -workspace $XCODE_WORKSPACE \
+  -configuration Debug \
+  -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0' \
+  build
+}
 
 ###################
 # Git
@@ -99,9 +118,6 @@ export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 alias gpr='git pull origin development --rebase'
 alias gpp='"$(gpr)" && git push origin "$(git-branch-current 2> /dev/null)"'
 
-gcu() {
-  git switch -c "$1" upstream/master
-}
 
 ################
 # Neovim
@@ -122,9 +138,9 @@ lg() {
   fi
 }
 
-# I want to limit the Xcode indexing CPU usage
+# Limit CPU usage of a process
 limitCPU() {
-  cpulimit -l 20 -p $(pgrep -f com.apple.dt.SKAgent)
+  cpulimit -l 20 -p $(pgrep -f $1)
 }
 
 # build flutter
