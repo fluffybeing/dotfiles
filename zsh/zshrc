@@ -60,9 +60,12 @@ export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
 export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
 # JAVA
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
+# export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH=$JAVA_HOME/bin:$PATH
+export PATH="/opt/homebrew/opt/gradle@7/bin:$PATH"
 
 # Python
 alias python="/opt/homebrew/bin/python3"
@@ -160,4 +163,7 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+
+# bun completions
+[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"

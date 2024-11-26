@@ -80,22 +80,6 @@
   # Correct typos
   autocorrect = 1
 
-[url "git@github.com:rakontuh/"]
-  insteadOf = "git://github.com/rakontuh/"
-
-[url "git@github.com:"]
-  insteadOf = https://github.com/
-
-# Rewrites of repo paths
-[url "git@github.com:"]
-  insteadOf = "gh:"
-  insteadOf = "git://github.com"
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git://github.com/"
-  pushInsteadOf = "https://github.com/"
-
-[url "git://github.com/"]
-  insteadOf = "github:"
 
 [url "git@gist.github.com:"]
   insteadOf = "gst:"
