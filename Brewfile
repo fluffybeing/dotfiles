@@ -14,8 +14,8 @@ brew "lf"
 brew "automake"
 brew "awscli"
 brew "bash"
-brew "bazel", link: false
-brew "bazelisk", link: false
+brew "bazel",   
+brew "bazelisk",
 brew "boost"
 brew "glib"
 brew "pkg-config"
@@ -75,27 +75,29 @@ brew "midnight-commander"
 brew "inav"
 brew "less"
 brew "git-delta"
+brew "jordanbaird-ice"      # Menu bar organiser
 
 # Apps
 cask "cheatsheet"
-cask "dozer"
 cask "dropbox"
-cask "eul"
-cask "flipper"
-cask "franz"
+cask "eul"                  # System monitor
+cask "flipper"              # App debugger
 cask "hammerspoon"
+cask "proxyman"
 cask "iterm2"
-cask "kap"
-cask "keyboardcleantool"
 cask "raycast"
-cask "razorsql"
 cask "steam"
 cask "trader-workstation"
 cask "transmission"
-cask "visual-studio-code"
+cask "cursor"               # Text editor
 cask "vlc"
 cask "shottr"
 cask "mate-translate"
-cask "fig"
 cask "sf-symbols"
 cask "android-studio"
+cask "arc"                   # browser
+cask "clop"                  # Image, Video & PDF optimizer
+cask "monitorcontrol"        # When working with external monitors
+cask "slack"
+cask "nikitabobko/tap/aerospace"
+
