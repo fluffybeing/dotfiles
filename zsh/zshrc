@@ -165,15 +165,8 @@ take() {
   \mkdir -p "$1" && cd "$1"
 }
 
-# Cd into the directory shown by the front-most Finder window
-# Based on https://scriptingosx.com/2017/02/terminal-finder-interaction/
-cdf() {
-  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
-}
-
 # Emacs
 alias org="emacs $HOME/Dropbox/org/"
-
 
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
