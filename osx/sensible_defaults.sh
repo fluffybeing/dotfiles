@@ -333,7 +333,7 @@ defaults write com.apple.dock no-glass -bool true
 defaults write com.apple.dock autohide -bool true
 
 # Set 1 second delay when showing and hiding the Dock (to discourage using the Dock)
-defaults write com.apple.dock autohide-delay -float 1
+defaults write com.apple.dock autohide-delay -float 0.5
 
 # Remove the animation when hiding/showing the Dock
 defaults write com.apple.dock autohide-time-modifier -float 0
@@ -470,11 +470,12 @@ defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Fi
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
+# TODO: Add dracula theme color
 # Use a modified version of the Pro theme by default in Terminal.app
-open "$HOME/dotfiles/color/Squirrelsong.terminal"
-sleep 1 # Wait a bit to make sure the theme is loaded
-defaults write com.apple.terminal "Default Window Settings" -string "Squirrelsong"
-defaults write com.apple.terminal "Startup Window Settings" -string "Squirrelsong"
+# open "$HOME/dotfiles/color/Squirrelsong.terminal"
+# sleep 1 # Wait a bit to make sure the theme is loaded
+# defaults write com.apple.terminal "Default Window Settings" -string "Squirrelsong"
+# defaults write com.apple.terminal "Startup Window Settings" -string "Squirrelsong"
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
