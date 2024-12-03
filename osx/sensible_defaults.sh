@@ -2,6 +2,7 @@
 
 # Sane macOS defaults
 # ~/.macos — https://mths.be/macos
+# https://github.com/nicksp/dotfiles (For reference)
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
   echo "Configuring macOS..."
