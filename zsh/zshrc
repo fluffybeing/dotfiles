@@ -76,22 +76,29 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
+# OpenSSL
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
-###################
-#iOS  Workflow
-####################
-alias cs="xcrun simctl erase all"
-alias sgp="swift package generate-xcodeproj"
-alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# bun completions
+[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
+
 
 ###################
 # Library path
 ####################
 export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 
-#############
-# Utility
-# ###############
+################################
+# Alias
+# ##############################
+# ##############################
+
+
 alias untar='tar -zxvf' # Unpack .tar file
 alias hs='history | grep'
 alias wget='wget -c' # Download and resume
@@ -99,6 +106,13 @@ alias getpass='openssl rand -base64 20' # Generate password
 alias sha='shasum -a 256' # Check shasum
 alias ping='ping -c 5' # Limit ping to 5'
 alias www='php -S localhost:8000' # Run local web server
+
+###################
+#iOS  Workflow
+####################
+alias cs="xcrun simctl erase all"
+alias sgp="swift package generate-xcodeproj"
+alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 ################
 # Flir
@@ -111,7 +125,7 @@ xbuild() {
   -scheme $XCODE_SCHEME \
   -workspace $XCODE_WORKSPACE \
   -configuration Debug \
-  -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0' \
+  -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
   build
 }
 
@@ -146,24 +160,133 @@ limitCPU() {
   cpulimit -l 20 -p $(pgrep -f $1)
 }
 
-# build flutter
-fbuild() {
-  flutter pub get
-  flutter packages pub run build_runner build --delete-conflicting-outputs
-  flutter build ios --debug --no-codesign --simulator
-  flutter attach
+# Make a new directory and cd into it
+take() {
+  \mkdir -p "$1" && cd "$1"
+}
+
+# Cd into the directory shown by the front-most Finder window
+# Based on https://scriptingosx.com/2017/02/terminal-finder-interaction/
+cdf() {
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
 
 # Emacs
 alias org="emacs $HOME/Dropbox/org/"
 
-# OpenSSL
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Enable aliases to be sudo’ed
+alias sudo="sudo "
 
+# Easier navigation
+alias .='pwd'
+alias ..='cd ..'
+alias 2..='cd ../..'
+alias 3..='cd ../../..'
+alias 4..='cd ../../../..'
+alias 5..='cd ../../../../..'
+alias cd..='cd ..'
+alias -- -="cd -" # previous working directory
 
-# bun completions
-[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
+# Hot-access directories
+alias library="cd $HOME/Library"
+alias projects="cd $WORKSPACE"
+
+# zshrc config
+alias zshrc="$EDITOR ~/.zshrc"
+alias reload="source ~/.zshrc && echo 'Shell config reloaded from ~/.zshrc'"
+alias s="reload"
+
+# Sane defaults for built-ins (verbose and interactive)
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias grep="grep -i --color=auto"
+alias mkdir="mkdir -p"
+
+# Typos
+alias sl="ls"
+alias gut="git"
+alias gti="git"
+alias mdkir="mkdir"
+alias brwe="brew"
+
+# Shortcuts
+alias ls="ls --color"
+alias l="ls -l"
+alias -- +x="chmod +x"
+alias o="open"
+alias oo="open ."
+alias g="git"
+alias d="docker"
+alias dc="docker compose"
+alias e="$EDITOR"
+alias c="code ."
+alias cc="code ."
+alias where="which"
+alias pn="pnpm"
+alias nvm="fnm"
+
+# Apps
+
+# Git client
+alias t="github ."
+
+# Lazydocker
+alias ld="lazydocker"
+
+# Lazygit
+alias lg="lazygit --use-config-dir $DOTFILES/lazygit"
+
+# File Manager
+alias ff="open -a 'Marta' ."
+
+#
+# Built-ins upgrades
+#
+
+command_exists() {
+  command -v "$@" &> /dev/null
+}
+
+# Bat: https://github.com/sharkdp/bat
+command_exists bat && alias cat="bat --style=plain"
+
+# Fd: https://github.com/sharkdp/fd
+command_exists fd && alias find="fd"
+
+# Eza: https://eza.rocks/
+# Display all clickable entries (incl. hidden files) as a grid with icons
+command_exists eza && alias ls="eza -a --hyperlink --icons=auto --group-directories-first --color-scale=age"
+# Display a detailed list of clickable entries (incl. hidden files) with a Git status
+command_exists eza && alias ll="ls --long --no-user --header -g --git"
+# Display clickable directory tree
+command_exists eza && alias llt="ls --tree --git-ignore"
+
+# Safer reversible file removal: https://github.com/sindresorhus/trash-cli
+command_exists trash && alias rm="trash"
+
+# Htop: https://htop.dev/
+command_exists htop && alias top="htop"
+
+# Tlrc: https://github.com/tldr-pages/tlrc
+command_exists tldr && alias man="tldr --config ~/.tlrc.toml"
+
+# Prettyping: https://denilson.sa.nom.br/prettyping/
+command_exists prettyping && alias ping="prettyping --nolegend"
+
+# Download file and save it with the name of the remote file in the current working directory
+# Usage: get <URL>
+alias get="curl -O -L"
+
+#
+# macOS
+#
+
+# System
+alias shut="sudo shutdown -h now"
+alias restart="sudo shutdown -r now"
+
+# Show/hide all desktop icons (useful when presenting)
+alias showdesk="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
