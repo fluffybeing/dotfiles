@@ -102,6 +102,7 @@ brew "trash-cli"                # Record/remove/restore files (better `rm`)
 brew "webp"                     # Image format optimization
 brew "zsh-autosuggestions"      # Autosuggestions for Zsh
 brew "zsh-syntax-highlighting"  # Syntax highlighting for Zsh
+brew "eza"                      # modern ls
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands

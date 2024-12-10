@@ -172,7 +172,7 @@ alias -- -="cd -" # previous working directory
 
 # Hot-access directories
 alias library="cd $HOME/Library"
-alias projects="cd $WORKSPACE"
+alias projects="cd $HOME/Code"
 
 # zshrc config
 alias zshrc="$EDITOR ~/.zshrc"
@@ -216,9 +216,6 @@ alias t="github ."
 
 # Lazydocker
 alias ld="lazydocker"
-
-# Lazygit
-alias lg="lazygit --use-config-dir $DOTFILES/lazygit"
 
 # File Manager
 alias ff="open -a 'Marta' ."
