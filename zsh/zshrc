@@ -12,45 +12,12 @@ _set_terminal_title() {
 # Call the function before displaying the prompt
 precmd_functions+=(_set_terminal_title)
 
-# Activate Fish-like autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#homebrew
-[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Enable Fish-like syntax highlighting: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
-[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Path
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
 export SDKROOT="`xcrun --show-sdk-path`"
-
-# Flags for C++
-export ITERM_24BIT=1
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# Brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Convert cd to cd >> ls
-autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ ls -a; }
-
-# Ruby
-eval "$(rbenv init -)"
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# bun completions
-[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
-
-
-# Paths
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
@@ -76,6 +43,38 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH="/opt/homebrew/opt/gradle@7/bin:$PATH"
+
+# Flags for C++
+export ITERM_24BIT=1
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Activate Fish-like autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#homebrew
+[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Enable Fish-like syntax highlighting: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# Convert cd to cd >> ls
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ ls -a; }
+
+# Ruby
+eval "$(rbenv init -)"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# bun completions
+[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
+
 
 # Python
 alias python="/opt/homebrew/bin/python3"
