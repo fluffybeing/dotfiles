@@ -523,7 +523,7 @@ command -v tmutil &> /dev/null && sudo tmutil disablelocal
 defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Enable the debug menu in iCal (pre-10.8)
-#defaults write com.apple.iCal IncludeDebugMenu -bool true
+defaults write com.apple.iCal IncludeDebugMenu -bool true
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
@@ -532,8 +532,8 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # Enable the debug menu in Disk Utility
-#defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
-#defaults write com.apple.DiskUtility advanced-image-options -bool true
+defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+defaults write com.apple.DiskUtility advanced-image-options -bool true
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #

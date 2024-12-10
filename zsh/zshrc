@@ -1,14 +1,22 @@
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="false"
 
-function set_terminal_title() {
-  echo -en "\e]2;$@\a"
+# Sets the window title nicely no matter where you are
+DISABLE_AUTO_TITLE="true"
+_set_terminal_title() {
+  local title="$(basename "$PWD")"
+  if [[ -n $SSH_CONNECTION ]]; then
+    title="$title \xE2\x80\x94 $HOSTNAME"
+  fi
+  print -Pn "\e]2;$title\a"
 }
+# Call the function before displaying the prompt
+precmd_functions+=(_set_terminal_title)
+
+# Activate Fish-like autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#homebrew
+[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Enable Fish-like syntax highlighting: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
@@ -28,17 +36,19 @@ fi
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Exercism
-if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
-  . ~/.config/exercism/exercism_completion.zsh
-fi
-
 # Convert cd to cd >> ls
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls -a; }
 
 # Ruby
 eval "$(rbenv init -)"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# bun completions
+[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
+
 
 # Paths
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
@@ -81,12 +91,6 @@ export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-# bun completions
-[ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
-
 
 ###################
 # Library path
@@ -97,8 +101,6 @@ export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 # Alias
 # ##############################
 # ##############################
-
-
 alias untar='tar -zxvf' # Unpack .tar file
 alias hs='history | grep'
 alias wget='wget -c' # Download and resume
@@ -143,17 +145,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias view="nvim -R"
 alias vimdiff="nvim -d"
-
-lg() {
-  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-  lazygit "$@"
-
-  if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-    rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-  fi
-}
 
 # Limit CPU usage of a process
 limitCPU() {
@@ -283,3 +274,8 @@ alias restart="sudo shutdown -r now"
 # Show/hide all desktop icons (useful when presenting)
 alias showdesk="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+
+# Starship powerline
+export STARSHIP_CONFIG=~/.starship.toml
+eval "$(starship init zsh)"

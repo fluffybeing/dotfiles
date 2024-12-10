@@ -88,6 +88,7 @@ symlink_dotfiles() {
     create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
     create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
     create_file_and_symlink "$dotfile_dir/nvim/init.vim" "$HOME/.config/nvim/init.vim"
+    create_file_and_symlink "$dotfile_dir/config/.startship.toml" "$HOME/.starship.toml"
 }
 
 #############################
