@@ -277,5 +277,4 @@ alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && kil
 
 
 # Starship powerline
-export STARSHIP_CONFIG=~/.starship.toml
 eval "$(starship init zsh)"
