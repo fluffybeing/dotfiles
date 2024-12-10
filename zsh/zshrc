@@ -235,8 +235,28 @@ command_exists bat && alias cat="bat --style=plain"
 command_exists fd && alias find="fd"
 
 # Eza: https://eza.rocks/
+# ---------------------
+# eza universal Dracula
+# ---------------------
+export EZA_COLORS="\
+uu=36:\
+uR=31:\
+un=35:\
+gu=37:\
+da=2;34:\
+ur=34:\
+uw=95:\
+ux=36:\
+ue=36:\
+gr=34:\
+gw=35:\
+gx=36:\
+tr=34:\
+tw=35:\
+tx=36:\
+xx=95:"
 # Display all clickable entries (incl. hidden files) as a grid with icons
-command_exists eza && alias ls="eza -a --hyperlink --icons=auto --group-directories-first --color-scale=age"
+command_exists eza && alias ls="eza -a --icons=auto --color=always --group-directories-first"
 # Display a detailed list of clickable entries (incl. hidden files) with a Git status
 command_exists eza && alias ll="ls --long --no-user --header -g --git"
 # Display clickable directory tree

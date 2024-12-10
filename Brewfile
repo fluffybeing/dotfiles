@@ -140,6 +140,7 @@ cask "orbstack"              # docker containers
 cask "syntax-highlight", args: { no_quarantine: true } # Preview many different source code files
 cask "optimage"              # Image optimization
 cask "jordanbaird-ice"       # Menu bar organiser
+cask "dropzone"              # Temporary file container
 
 
 # Apps which is not available via brew
