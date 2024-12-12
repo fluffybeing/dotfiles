@@ -124,12 +124,12 @@ cask "steam"
 cask "trader-workstation"   
 cask "transmission"
 cask "cursor"               # Text editor
-cask "iina"                 # Media player
+cask "iina"                 # Video media player
 cask "shottr"               # Screenshot App
 cask "mate-translate"
 cask "sf-symbols"
 cask "android-studio"
-cask "arc"                   # browser
+cask "arc"                   # Browser of choice
 cask "clop"                  # Image, Video & PDF optimizer
 cask "monitorcontrol"        # When working with external monitors
 cask "slack"
@@ -142,6 +142,7 @@ cask "syntax-highlight", args: { no_quarantine: true } # Preview many different 
 cask "optimage"              # Image optimization
 cask "jordanbaird-ice"       # Menu bar organiser
 cask "dropzone"              # Temporary file container
+cask "cleanclip"             # clipboard and snippet manager
 
 
 # Apps which is not available via brew

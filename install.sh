@@ -1,7 +1,7 @@
 #! /usr/bin/zsh
 
 # A simple script for setting up OSX dev environment.
-dotfile_dir="$HOME/Code/dotfiles"
+dotfile_dir="$HOME/dotfiles"
 
 # Ask for sudo permission at start
 sudo -v
@@ -31,23 +31,14 @@ create_dir() {
     fi
 }
 
-create_file_and_symlink() {
-    local realfile=$1
-    local virtualfile=$2
-    local permission=${3:-644}
-
-    touch "$virtualfile"
-    chmod "$permission" "$virtualfile"
-
-    print_message "Linking $virtualfile to $realfile"
-    ln -sf "$realfile" "$virtualfile"
-}
 
 clone_dotfile_git_repo() {
-    create_dir "$HOME/Dropbox/Code"
-    git clone https://github.com/riftinwild/dotfiles.git $dotfile_dir
+    git clone https://github.com/fluffybeing/dotfiles.git $dotfile_dir
 }
 
+############
+# Use Zsh
+###############
 change_shell() {
     print_message "Changing shell to ZSH..."
     if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
@@ -68,6 +59,22 @@ install_prezto() {
     done
 }
 
+##########################
+# Symlinks helper
+###########################
+create_file_and_symlink() {
+    local realfile=$1
+    local virtualfile=$2
+    local permission=${3:-644}
+
+    touch "$virtualfile"
+    chmod "$permission" "$virtualfile"
+
+    print_message "Linking $virtualfile to $realfile"
+    ln -sf "$realfile" "$virtualfile"
+}
+
+
 symlink_dotfiles() {
     create_dir "$HOME/.config"
     user=$USER
@@ -75,7 +82,7 @@ symlink_dotfiles() {
     print_message "Symlinking files... $user"
 
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc"
-     "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig")
+    "git/gitignore" "git/gitconfig")
 
     for file in "${files[@]}"; do
         f=${file}
@@ -85,16 +92,12 @@ symlink_dotfiles() {
 
     # some symlinks are in separate directory
     create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
-    create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
-    create_file_and_symlink "$dotfile_dir/.config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
-    create_file_and_symlink "$dotfile_dir/.config/startship.toml" "$HOME/.config/starship.toml"
-    create_file_and_symlink "$dotfile_dir/.config/aerospace.toml" "$HOME/.config/aerospace.toml"
-    create_file_and_symlink "$dotfile_dir/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
 }
 
-#############################
-# Start                     #
-#############################
+##########################################################################
+##########################################################################
+# Start                                                                  #
+##########################################################################
 # If we on OS X, install homebrew and tweak system a bit.
 if [[ $(uname) == 'Darwin' ]]; then
 
@@ -102,6 +105,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     # Xcode utils                                #
     ##############################################
     if ! xcode-select --print-path &>/dev/null; then
+        print_message "[info] command line tools setup"
         xcode-select --install &>/dev/null
 
         # Wait until the XCode Command Line Tools are installed
@@ -115,13 +119,14 @@ if [[ $(uname) == 'Darwin' ]]; then
     #############################################
     which -s brew
     if [[ $? != 0 ]]; then
-        print_message 'Installing Homebrew...'
+        print_message '[info] Installing Homebrew...'
         
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         
         brew update
         brew tap Homebrew/bundle
         brew install git
+        brew tap homebrew/cask-fonts
         brew search '/font-.*-nerd-font/' | awk '{ print $1 }' | xargs -I{} brew install --cask {} || true
     fi
 
@@ -129,14 +134,19 @@ if [[ $(uname) == 'Darwin' ]]; then
     # dotfiles                                   #
     ##############################################
     if [ ! -d $dotfile_dir ]; then
+        print_message "[info] Cloning the dotfiles in $dotfile_dir"
         clone_dotfile_git_repo
+
+        if [ ! -d $dotfile_dir ]; then 
+            print_message "[error] Dotfile directory is not available"
+            exit
+        fi
     fi
 
     ##############################################
     # Xcode Command Line                         #
     ##############################################
-    print_message "Setting up commad line tools..."
-
+    print_message "[info] Setting up commad line tools..."
     sh $dotfile_dir/osx/xcode_setup.sh
 
     ##############################################
@@ -190,15 +200,6 @@ if [[ $(uname) == 'Darwin' ]]; then
         brew bundle --file="$dotfile_dir/Brewfile"
     fi
 
-    #############################################
-    # Powerline Fonts
-    ############################################
-    git clone https://github.com/powerline/fonts.git --depth=1
-    cd fonts
-    sh ./install.sh
-    cd ..
-    rm -rf fonts
-
     ##############################################
     # zshrc                                      #
     ##############################################
@@ -207,38 +208,8 @@ if [[ $(uname) == 'Darwin' ]]; then
     ##############################################
     # Symlinks                                  #
     ##############################################
-     # symlink for special emacs
-    if [ ! -d "$HOME/.config/nvim" ]; then
-        create_dir "$HOME/.config/nvim"  
-    fi
-
     symlink_dotfiles
 
-    ##############################################
-    #  NeoVim
-    ###############################################
 
-    # Architecture issue with M macs
-    brew unlink tree-sitter
-    arch -arm64 brew install --HEAD tree-sitter
-    brew unlink nvim
-    arch -arm64 brew install --HEAD nvim
-    
-    git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-    
-    print_message "Done :)"
-fi
-
-##############################################
-# TODO: Add setups for apps
-##############################################
-
-# If on Linux, install zsh
-if [[ $(uname) != 'Darwin' ]]; then
-    which -s zsh
-    if [[ $? != 0 ]]; then
-        echo 'Installing zsh and prezto...'
-        sudo apt-get install zsh curl
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-    fi
+    print_message "Done :) :) :)"
 fi
