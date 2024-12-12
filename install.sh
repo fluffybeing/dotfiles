@@ -75,8 +75,7 @@ symlink_dotfiles() {
     print_message "Symlinking files... $user"
 
     declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc"
-     "xvim/xvimrc" "tmux/tmux" "tmux/tmux.conf" "git/gitignore"
-     "git/gitconfig")
+     "tmux/tmux" "tmux/tmux.conf" "git/gitignore" "git/gitconfig")
 
     for file in "${files[@]}"; do
         f=${file}
@@ -89,6 +88,7 @@ symlink_dotfiles() {
     create_file_and_symlink "$dotfile_dir/editorconfig" "$HOME/.editorconfig"
     create_file_and_symlink "$dotfile_dir/.config/nvim/init.vim" "$HOME/.config/nvim/init.vim"
     create_file_and_symlink "$dotfile_dir/.config/startship.toml" "$HOME/.config/starship.toml"
+    create_file_and_symlink "$dotfile_dir/.config/aerospace.toml" "$HOME/.config/aerospace.toml"
     create_file_and_symlink "$dotfile_dir/.config/mise/config.toml" "$HOME/.config/mise/config.toml"
 }
 
