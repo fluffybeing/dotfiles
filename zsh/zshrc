@@ -61,9 +61,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Convert cd to cd >> ls
-autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ ls -a; }
 
 # Ruby
 eval "$(rbenv init -)"
@@ -105,7 +102,7 @@ alias wget='wget -c' # Download and resume
 alias getpass='openssl rand -base64 20' # Generate password
 alias sha='shasum -a 256' # Check shasum
 alias ping='ping -c 5' # Limit ping to 5'
-alias www='php -S localhost:8000' # Run local web server
+alias www='python -m http.server' # Run local web server
 
 ###################
 #iOS  Workflow
@@ -115,7 +112,7 @@ alias sgp="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 ################
-# Flir
+# Work Related
 ################
 xbuild() {
   XCODE_SCHEME="FLIR One Preview"
@@ -293,3 +290,10 @@ alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && kil
 
 # Starship powerline
 eval "$(starship init zsh)"
+
+# Mise 
+eval "$(mise activate zsh)"
+
+# Convert cd to cd >> ls
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ ls }

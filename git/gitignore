@@ -47,6 +47,7 @@ build/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+buildServer.json
 
 ## Other
 *.moved-aside
