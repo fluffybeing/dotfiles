@@ -86,6 +86,7 @@ brew "youtube-dl"               # Video downloader from YouTube and others
 brew "midnight-commander"       # Terminal file manager
 brew "inav"                     # Configurator for flight controllers (Rosetta thingy)
 brew "less"                     # File pager utility
+brew "stow"
 
 # CLI Tools
 brew "bat"                      # Enhanced file viewer (better `cat`)
