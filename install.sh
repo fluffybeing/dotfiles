@@ -31,7 +31,6 @@ create_dir() {
     fi
 }
 
-
 clone_dotfile_git_repo() {
     git clone https://github.com/fluffybeing/dotfiles.git $dotfile_dir
 }
@@ -57,41 +56,6 @@ install_prezto() {
     for rcfile in "'${ZDOTDIR:-$HOME}'/.zprezto/runcoms/^README.md\(.N\)"; do
         ln -sf "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done
-}
-
-##########################
-# Symlinks helper
-###########################
-create_file_and_symlink() {
-    local realfile=$1
-    local virtualfile=$2
-    local permission=${3:-644}
-
-    touch "$virtualfile"
-    chmod "$permission" "$virtualfile"
-
-    print_message "Linking $virtualfile to $realfile"
-    ln -sf "$realfile" "$virtualfile"
-}
-
-
-symlink_dotfiles() {
-    create_dir "$HOME/.config"
-    user=$USER
-    chown -R "$user" "$HOME/.config/"
-    print_message "Symlinking files... $user"
-
-    declare -a files=("zsh/zshrc" "zsh/zshenv" "zsh/zpreztorc" "vim/vimrc"
-    "git/gitignore" "git/gitconfig")
-
-    for file in "${files[@]}"; do
-        f=${file}
-        f=${f##*/}
-        create_file_and_symlink $dotfile_dir/$file ~/.$f
-    done
-
-    # some symlinks are in separate directory
-    create_file_and_symlink "$dotfile_dir/karabiner/karabiner.json" "$HOME/.config/karabiner.json"
 }
 
 ##########################################################################
@@ -209,7 +173,8 @@ if [[ $(uname) == 'Darwin' ]]; then
     # Symlinks                                  #
     ##############################################
     symlink_dotfiles
-
-
+    sh cd $dotfile_dir
+    sh stow .
+    
     print_message "Done :) :) :)"
 fi
