@@ -1,8 +1,8 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
+    event = "BufWritePre", -- uncomment for format on save
+    opts = require("configs.conform"),
   },
 
   -- These are some examples, uncomment them if you want to see them work!
@@ -10,7 +10,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufWritePre", "BufNewFile" },
     config = function()
-      require "configs.lspconfig"
+      require("configs.lspconfig")
     end,
   },
 
@@ -55,5 +55,30 @@ return {
     config = function()
       require("configs.mason-lint")
     end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+
+  {
+    "folke/which-key.nvim",
+    opts = {},
+    cmd = "Trouble",
+  },
+
+  {
+    "NeogitOrg/neogit",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+    config = true,
   },
 }

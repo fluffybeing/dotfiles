@@ -5,6 +5,15 @@
 # Palettes must be defined _after_ this line
 palette = "catppuccin_macchiato"
 
+# Timeout for commands executed by starship (in milliseconds).
+command_timeout = 3600000
+
+# Ignore global command_timeout setting and keep running external commands, no matter how long they take.
+ignore_timeout = true
+
+# Timeout for starship to scan files (in milliseconds).
+scan_timeout = 500
+
 # Starship modules
 [character]
 # Note the use of Catppuccin color 'peach'
