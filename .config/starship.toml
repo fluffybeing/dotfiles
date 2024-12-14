@@ -24,6 +24,7 @@ vimcmd_symbol = "[󰄛 ❮](subtext1)" # For use with zsh-vi-mode
 [git_branch]
 style = "bold mauve"
 
+# TODO: Change the directory format
 [directory]
 truncation_length = 4
 style = "bold lavender"
