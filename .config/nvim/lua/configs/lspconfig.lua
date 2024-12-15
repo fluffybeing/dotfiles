@@ -22,6 +22,7 @@ local default_servers = {
   "ts_ls",
   "tailwindcss",
   "eslint",
+  "sourcekit",
 }
 
 for _, lsp in ipairs(default_servers) do
@@ -31,3 +32,15 @@ for _, lsp in ipairs(default_servers) do
     capabilities = nvlsp.capabilities,
   })
 end
+
+lspconfig.lua_ls.setup({
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
+
+lspconfig.sourcekit.setup({})

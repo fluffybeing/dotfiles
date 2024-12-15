@@ -2,8 +2,8 @@ local lint = require("lint")
 
 lint.linters_by_ft = {
   markdown = { "vale" },
-  lua = { "luacheck" },
   python = { "flake8" },
+  swift = { "swiftlint" },
 }
 
 -- Supress warning for things we don't want

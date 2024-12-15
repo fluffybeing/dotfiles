@@ -42,7 +42,10 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-lspconfig" },
+    dependencies = {
+      "nvim-lspconfig",
+      "williamboman/mason.nvim",
+    },
     config = function()
       require("configs.mason-lspconfig")
     end,
@@ -59,16 +62,15 @@ return {
 
   {
     "windwp/nvim-ts-autotag",
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
     config = function()
       require("nvim-ts-autotag").setup()
     end,
-  },
-
-  {
-    "folke/which-key.nvim",
-    opts = {},
-    cmd = "Trouble",
   },
 
   {
@@ -79,7 +81,18 @@ return {
       "sindrets/diffview.nvim", -- optional - Diff integration
       "nvim-telescope/telescope.nvim", -- optional
     },
-    config = true,
+    config = function()
+      require("neogit").setup({
+        kind = "split", -- opens neogit in a split
+        signs = {
+          -- { CLOSED, OPENED }
+          section = { "", "" },
+          item = { "", "" },
+          hunk = { "", "" },
+        },
+        integrations = { diffview = true }, -- adds integration with diffview.nvim
+      })
+    end,
   },
 
   {
