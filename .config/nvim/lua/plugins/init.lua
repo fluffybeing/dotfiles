@@ -60,6 +60,7 @@ return {
     end,
   },
 
+  -- Make web development easy --
   {
     "windwp/nvim-ts-autotag",
     ft = {
@@ -71,6 +72,13 @@ return {
     config = function()
       require("nvim-ts-autotag").setup()
     end,
+  },
+
+  -- Nice way to look at errors
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup
+    cmd = "Trouble",
   },
 
   {
@@ -95,6 +103,8 @@ return {
     end,
   },
 
+  ----------------- iOS --------------------
+
   {
     "wojciech-kulik/xcodebuild.nvim",
     lazy = false,
@@ -110,5 +120,29 @@ return {
         -- put some options here or leave it empty to use default settings
       })
     end,
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("configs.dap")
+    end,
+    lazy = false,
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("dapui").setup()
+    end,
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+  },
+
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end,
+    dependencies = { "mfussenegger/nvim-dap", "nvim-dap-ui" },
   },
 }
