@@ -291,9 +291,12 @@ alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && kil
 # Starship powerline
 eval "$(starship init zsh)"
 
-# Mise 
+# Mise
 eval "$(mise activate zsh)"
 
 # Convert cd to cd >> ls
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls }
+
+####
+[ -f ~/.ai ] && source ~/.ai
