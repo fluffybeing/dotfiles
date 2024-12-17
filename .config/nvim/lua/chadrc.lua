@@ -19,4 +19,11 @@ M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
 }
 
+M.nvdash = {
+  load_on_startup = true,
+  buttons = {
+    { txt = "󰈚  Recent Projects", keys = "fp", cmd = "SessionSearch" },
+  },
+}
+
 return M

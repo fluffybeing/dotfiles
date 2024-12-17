@@ -5,7 +5,20 @@ return {
     opts = require("configs.conform"),
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
+  {
+    'rmagatti/auto-session',
+     lazy = false,
+
+  ---enables autocomplete for opts
+  ---@module "auto-session"
+  ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+      allowed_dirs = { '~/dotfiles/', '~/Code/*' },
+    },
+  },
+
+  -- Syntax, autocompletion and formatting
   {
     "neovim/nvim-lspconfig",
     event = { "BufWritePre", "BufNewFile" },
@@ -103,7 +116,7 @@ return {
     end,
   },
 
-  ----------------- iOS --------------------
+  -- iOS
 
   {
     "wojciech-kulik/xcodebuild.nvim",
@@ -121,6 +134,8 @@ return {
       })
     end,
   },
+
+  -- Debugging
 
   {
     "mfussenegger/nvim-dap",
@@ -149,44 +164,6 @@ return {
     dependencies = { "mfussenegger/nvim-dap", "nvim-dap-ui" },
   },
 
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false,
-    opts = {
-      provider = "gemini", -- Recommend using Claude
-      behaviour = {
-        auto_suggestions = false, -- Experimental stage
-        auto_set_highlight_group = true,
-        auto_set_keymaps = true,
-        auto_apply_diff_after_generation = false,
-        support_paste_from_clipboard = false,
-      },
-      gemini = {
-        -- @see https://ai.google.dev/gemini-api/docs/models/gemini
-        model = "gemini-1.5-pro-exp-0827",
-        -- model = "gemini-1.5-flash",
-        temperature = 0,
-        max_tokens = 4096,
-      },
-    },
-
-    build = "make",
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "hrsh7th/nvim-cmp",
-      "nvim-tree/nvim-web-devicons",
-      "zbirenbaum/copilot.lua",
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-  },
+  -- Experimental
 }
+
