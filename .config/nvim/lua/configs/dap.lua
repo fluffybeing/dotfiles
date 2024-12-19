@@ -1,5 +1,7 @@
 local dap, dapui = require("dap"), require("dapui")
 
+-- Adaptors
+
 -- open / close ui windows automatically
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()

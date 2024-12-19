@@ -6,16 +6,24 @@ return {
   },
 
   {
-    'rmagatti/auto-session',
-     lazy = false,
+    "rmagatti/auto-session",
+    lazy = false,
 
-  ---enables autocomplete for opts
-  ---@module "auto-session"
-  ---@type AutoSession.Config
     opts = {
-      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-      allowed_dirs = { '~/dotfiles/', '~/Code/*' },
+      suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      allowed_dirs = { "~/dotfiles/", "~/Code/*" },
     },
+  },
+
+  {
+    "edluffy/hologram.nvim",
+    lazy = false,
+
+    config = function()
+      require("hologram").setup({
+        auto_display = true,
+      })
+    end,
   },
 
   -- Syntax, autocompletion and formatting
@@ -94,6 +102,7 @@ return {
     cmd = "Trouble",
   },
 
+  -- Favorite Git module
   {
     "NeogitOrg/neogit",
     lazy = false,
@@ -161,9 +170,59 @@ return {
     config = function()
       require("nvim-dap-virtual-text").setup()
     end,
-    dependencies = { "mfussenegger/nvim-dap", "nvim-dap-ui" },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-dap-ui",
+    },
   },
 
   -- Experimental
-}
+  -- {
+  --   "monkoose/neocodeium",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     local neocodeium = require("neocodeium")
+  --     neocodeium.setup()
+  --     vim.keymap.set("i", "<C-y>", neocodeium.accept)
+  --   end,
+  -- },
 
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = true,
+    version = false,
+    build = "make",
+
+    opts = {
+      provider = "ollama",
+      vendors = {
+        ollama = {
+          __inherited_from = "openai",
+          api_key_name = "",
+          endpoint = "http://127.0.0.1:11434/v1",
+          model = "mistral",
+        },
+      },
+    },
+
+    config = function()
+      require("configs.ai")
+    end,
+
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-tree/nvim-web-devicons",
+    },
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
+  },
+}

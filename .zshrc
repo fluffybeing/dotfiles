@@ -33,7 +33,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
-
+export EDITOR="nvim"
 # Go
 export PATH="$PATH:$(go env GOPATH)/bin"
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
@@ -300,3 +300,4 @@ add-zsh-hook -Uz chpwd (){ ls }
 
 ####
 [ -f ~/.ai ] && source ~/.ai
+

@@ -103,3 +103,8 @@ flycheck_*.el
 .projectile
 .dir-locals.el
 .projectile
+
+# Editors
+.zed/
+.nvim/
+
