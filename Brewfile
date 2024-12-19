@@ -86,7 +86,8 @@ brew "youtube-dl"               # Video downloader from YouTube and others
 brew "midnight-commander"       # Terminal file manager
 brew "inav"                     # Configurator for flight controllers (Rosetta thingy)
 brew "less"                     # File pager utility
-brew "stow"
+brew "stow"                     # Symlinking utility
+brew "kitty"                    # Faster terminal
 
 # CLI Tools
 brew "bat"                      # Enhanced file viewer (better `cat`)
@@ -104,6 +105,7 @@ brew "webp"                     # Image format optimization
 brew "zsh-autosuggestions"      # Autosuggestions for Zsh
 brew "zsh-syntax-highlighting"  # Syntax highlighting for Zsh
 brew "eza"                      # modern ls
+brew "shortcat"                 # No more mouse
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands
@@ -122,7 +124,7 @@ cask "proxyman"
 cask "iterm2"
 cask "raycast"
 cask "steam"
-cask "trader-workstation"   
+cask "trader-workstation"
 cask "transmission"
 cask "cursor"               # Text editor
 cask "iina"                 # Video media player
@@ -147,3 +149,4 @@ cask "cleanclip"             # clipboard and snippet manager
 
 
 # Apps which is not available via brew
+
