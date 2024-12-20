@@ -132,35 +132,35 @@ cmd-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-1 = 'workspace 1'
-cmd-2 = 'workspace 2'
-cmd-3 = 'workspace 3'
-cmd-4 = 'workspace 4'
-cmd-5 = 'workspace 5'
-cmd-6 = 'workspace 6'
-cmd-7 = 'workspace 7'
+cmd-2 = 'workspace B'
+cmd-3 = 'workspace X'
+cmd-4 = 'workspace C'
+cmd-5 = 'workspace V'
+cmd-6 = 'workspace N'
+cmd-7 = 'workspace E'
 cmd-8 = 'workspace 8'
 cmd-9 = 'workspace 9'
 cmd-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-shift-1 = 'move-node-to-workspace 1'
-cmd-shift-2 = 'move-node-to-workspace 2'
-cmd-shift-3 = 'move-node-to-workspace 3'
-cmd-shift-4 = 'move-node-to-workspace 4'
-cmd-shift-5 = 'move-node-to-workspace 5'
-cmd-shift-6 = 'move-node-to-workspace 6'
-cmd-shift-7 = 'move-node-to-workspace 7'
+cmd-shift-2 = 'move-node-to-workspace B'
+cmd-shift-3 = 'move-node-to-workspace X'
+cmd-shift-4 = 'move-node-to-workspace C'
+cmd-shift-5 = 'move-node-to-workspace V'
+cmd-shift-6 = 'move-node-to-workspace N'
+cmd-shift-7 = 'move-node-to-workspace E'
 cmd-shift-8 = 'move-node-to-workspace 8'
 cmd-shift-9 = 'move-node-to-workspace 9'
 cmd-shift-0 = 'move-node-to-workspace 10'
 
 cmd-ctrl-1 = ['move-node-to-workspace 1', 'workspace 1']
-cmd-ctrl-2 = ['move-node-to-workspace 2', 'workspace 2']
-cmd-ctrl-3 = ['move-node-to-workspace 3', 'workspace 3']
-cmd-ctrl-4 = ['move-node-to-workspace 4', 'workspace 4']
-cmd-ctrl-5 = ['move-node-to-workspace 5', 'workspace 5']
-cmd-ctrl-6 = ['move-node-to-workspace 6', 'workspace 6']
-cmd-ctrl-7 = ['move-node-to-workspace 7', 'workspace 7']
+cmd-ctrl-2 = ['move-node-to-workspace B', 'workspace B']
+cmd-ctrl-3 = ['move-node-to-workspace X', 'workspace X']
+cmd-ctrl-4 = ['move-node-to-workspace C', 'workspace C']
+cmd-ctrl-5 = ['move-node-to-workspace V', 'workspace V']
+cmd-ctrl-6 = ['move-node-to-workspace N', 'workspace N']
+cmd-ctrl-7 = ['move-node-to-workspace E', 'workspace E']
 cmd-ctrl-8 = ['move-node-to-workspace 8', 'workspace 8']
 cmd-ctrl-9 = ['move-node-to-workspace 9', 'workspace 9']
 cmd-ctrl-0 = ['move-node-to-workspace 10', 'workspace 10']
@@ -208,3 +208,4 @@ run = 'move-node-to-workspace 1'
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace 2'
+

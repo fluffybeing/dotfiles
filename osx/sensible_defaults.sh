@@ -590,6 +590,11 @@ sudo pmset -c autorestart 1
 # Restart automatically if the computer freezes
 sudo pmset -c panicrestart 15
 
+#################
+#  Hammerspoon
+# ##############
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
@@ -601,3 +606,4 @@ for app in "Address Book" "Calendar" "Contacts" "Dashboard" "Dock" "Finder" \
 done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+

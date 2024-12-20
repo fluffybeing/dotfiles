@@ -31,21 +31,12 @@ brew "awscli"                   # Amazon AWS CLI
 brew "bash"                     # Bourne Again Shell
 brew "bazel"                    # Build tool for large-scale software
 brew "bazelisk"                 # User-friendly Bazel launcher
-brew "boost"                    # C++ libraries
-brew "glib"                     # Core application library for GNOME
-brew "pkg-config"               # Manage compile and link flags
-brew "cairo"                    # Vector graphics library
 brew "cmake"                    # Build system and project generator
 brew "cocoapods"                # Dependency manager for Swift/Obj-C projects
 brew "coreutils"                # GNU core utilities (better `ls`, `cp`, etc.)
-brew "diff-so-fancy"            # Improve git diff output
-brew "direnv"                   # Manage environment variables per project
-brew "guile"                    # GNU's extension language platform
 brew "unbound"                  # Validating, recursive DNS resolver
 brew "gnutls"                   # Secure communication library
 brew "fd"                       # Fast and user-friendly alternative to `find`
-brew "harfbuzz"                 # OpenType text shaping engine
-brew "libass"                   # Subtitle rendering library
 brew "srt"                      # Secure, reliable transport protocol library
 brew "ffmpeg"                   # Video/audio streaming library
 brew "findutils"                # GNU utilities to search files
@@ -53,29 +44,18 @@ brew "git"                      # Distributed version control system
 brew "git-lfs"                  # Git extension for large files
 brew "go"                       # Open-source programming language
 brew "grep"                     # Pattern searching tool
-brew "grpc"                     # RPC framework
 brew "htop"                     # Interactive process viewer
 brew "httpie"                   # User-friendly HTTP client
 brew "hub"                      # GitHub CLI for Git
 brew "jq"                       # Command-line JSON processor
-brew "lazygit"                  # Simple terminal UI for Git
-brew "libvterm"                 # Terminal emulation library
-brew "luv"                      # Lightweight Lua binding for libuv
-brew "mackup"                   # Backup and restore app settings
 brew "mas"                      # macOS App Store CLI
-brew "maven"                    # Build automation tool for Java projects
 brew "neovim"                   # Modern Vim-based text editor
-brew "nghttp2"                  # HTTP/2 C library
 brew "node"                     # JavaScript runtime
 brew "nvm"                      # Node.js version manager
-brew "poppler"                  # PDF rendering library
-brew "qt"                       # Application development framework
 brew "ruby-build"               # Install Ruby versions
 brew "rbenv"                    # Manage Ruby environments
 brew "ripgrep"                  # Fast search in files (better `grep`)
 brew "ruby"                     # Ruby programming language
-brew "shellcheck"               # Shell script analysis tool
-brew "subversion"               # Version control system
 brew "the_silver_searcher"      # Code searching tool (better `grep`)
 brew "tmux"                     # Terminal multiplexer
 brew "trash"                    # Trash CLI (better `rm`)
@@ -105,14 +85,13 @@ brew "webp"                     # Image format optimization
 brew "zsh-autosuggestions"      # Autosuggestions for Zsh
 brew "zsh-syntax-highlighting"  # Syntax highlighting for Zsh
 brew "eza"                      # modern ls
-brew "shortcat"                 # No more mouse
+brew "hyperkey"                 # Convert one key to hyper
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands
 brew "lazydocker"               # Full Docker management CLI
 brew "oven-sh/bun/bun"          # JavaScript runtime
 brew "xcode-build-server"       # SourceKit LSP for iOS
-
 
 # Apps
 cask "cheatsheet"
