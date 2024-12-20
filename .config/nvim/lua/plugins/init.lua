@@ -15,17 +15,6 @@ return {
     },
   },
 
-  {
-    "edluffy/hologram.nvim",
-    lazy = false,
-
-    config = function()
-      require("hologram").setup({
-        auto_display = true,
-      })
-    end,
-  },
-
   -- Syntax, autocompletion and formatting
   {
     "neovim/nvim-lspconfig",
@@ -126,7 +115,6 @@ return {
   },
 
   -- iOS
-
   {
     "wojciech-kulik/xcodebuild.nvim",
     lazy = false,
@@ -145,7 +133,6 @@ return {
   },
 
   -- Debugging
-
   {
     "mfussenegger/nvim-dap",
     config = function()
@@ -186,43 +173,12 @@ return {
   --     vim.keymap.set("i", "<C-y>", neocodeium.accept)
   --   end,
   -- },
-
   {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    version = false,
-    build = "make",
-
-    opts = {
-      provider = "ollama",
-      vendors = {
-        ollama = {
-          __inherited_from = "openai",
-          api_key_name = "",
-          endpoint = "http://127.0.0.1:11434/v1",
-          model = "mistral",
-        },
-      },
-    },
-
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
     config = function()
-      require("configs.ai")
+      require("copilot").setup({})
     end,
-
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "hrsh7th/nvim-cmp",
-      "nvim-tree/nvim-web-devicons",
-    },
-    {
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
-    },
   },
 }
