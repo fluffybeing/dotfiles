@@ -67,7 +67,7 @@ brew "midnight-commander"       # Terminal file manager
 brew "inav"                     # Configurator for flight controllers (Rosetta thingy)
 brew "less"                     # File pager utility
 brew "stow"                     # Symlinking utility
-brew "kitty"                    # Faster terminal
+brew "helix"                    # Modal editor
 
 # CLI Tools
 brew "bat"                      # Enhanced file viewer (better `cat`)
