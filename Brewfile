@@ -117,7 +117,6 @@ cask "monitorcontrol"        # When working with external monitors
 cask "slack"
 cask "nikitabobko/tap/aerospace"
 cask "boop"                  # Developer helper tool
-cask "popclip"               # Mouse click extra action
 cask "obsidian"              # In future move to obsidian
 cask "orbstack"              # docker containers
 cask "syntax-highlight", args: { no_quarantine: true } # Preview many different source code files
@@ -125,6 +124,7 @@ cask "optimage"              # Image optimization
 cask "jordanbaird-ice"       # Menu bar organiser
 cask "dropzone"              # Temporary file container
 cask "cleanclip"             # clipboard and snippet manager
+cask "pronotes"              # Supercharge apple notes
 
 
 # Apps which is not available via brew
