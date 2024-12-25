@@ -1,0 +1,108 @@
+{
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "trailing",
+  "editor.detectIndentation": false,
+  "files.autoSave": "onFocusChange",
+  "lldb.library": "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB",
+  "lldb.launch.expressions": "native",
+  "window.newWindowProfile": "Default",
+
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.smartRelativeLine": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // NAVIGATION
+    // switch b/w buffers
+    { "before": ["<S-h>"], "commands": [":bprevious"] },
+    { "before": ["<S-l>"], "commands": [":bnext"] },
+
+    // splits
+    { "before": ["leader", "v"], "commands": [":vsplit"] },
+    { "before": ["leader", "s"], "commands": [":split"] },
+
+    // panes
+    {
+      "before": ["leader", "h"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["leader", "j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["leader", "l"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    
+    {
+      "before": ["<Esc>", "<Esc"],
+      "commands": [":nohl"]
+    },
+    {
+       "before": ["<leader>", "g"],
+      "commands": ["workbench.view.scm"] 
+    },
+
+    // NICE TO HAVE
+    { "before": ["leader", "w"], "commands": [":w!"] },
+    { "before": ["leader", "q"], "commands": [":q!"] },
+    { "before": ["leader", "x"], "commands": [":x!"] },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    { "before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"]
+    }
+  ],
+
+  "vim.visualModeKeyBindings": [
+    // Stay in visual mode while indenting
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    // Move selected lines while staying in visual mode
+    { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+    // toggle comment selection
+    { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
+  ],
+
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "diffEditor.codeLens": true,
+  "diffEditor.experimental.showMoves": true
+}

@@ -1,0 +1,94 @@
+[
+  // Xcode
+  {
+    "key": "cmd+0",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+      "key": "cmd+1",
+      "command": "workbench.view.explorer"
+  },
+  {
+      "key": "cmd+2",
+      "command": "workbench.view.search"
+  },
+  {
+      "key": "cmd+3",
+      "command": "workbench.view.scm"
+  },
+  {
+      "key": "cmd+4",
+      "command": "workbench.view.debug"
+  },
+  {
+      "key": "cmd+5",
+      "command": "workbench.view.extensions"
+  },
+  {
+      "key": "cmd+b",
+      "command": "workbench.action.tasks.build"
+  },
+  {
+      "key": "cmd+r",
+      "command": "workbench.action.debug.start",
+      "when": "!inDebugMode"
+  },
+  {
+    "key": "cmd+shift+y",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "cmd+shift+j",
+    "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+  {
+    "key": "cmd+shift+]",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "cmd+shift+[",
+    "command": "workbench.action.previousEditor"
+  },
+  // Terminal
+  {
+    "key": "cmd+shift+t",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  // File tree
+  {
+    "command": "workbench.files.action.focusFilesExplorer",
+    "key": "ctrl+e",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "n",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "renameFile",
+    "key": "r",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "shift+n",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletFocus"
+  },
+  {
+    "key": "shift+n",
+    "command": "workbench.action.newWindow",
+    "when": "!explorerViewletFocus"
+  },
+  {
+    "command": "deleteFile",
+    "key": "d",
+    "when": "filesExplorerFocus && !inputFocus"
+  }
+]

@@ -68,6 +68,7 @@ brew "inav"                     # Configurator for flight controllers (Rosetta t
 brew "less"                     # File pager utility
 brew "stow"                     # Symlinking utility
 brew "helix"                    # Modal editor
+brew "gitu"                     # Magit like git client
 
 # CLI Tools
 brew "bat"                      # Enhanced file viewer (better `cat`)
