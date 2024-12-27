@@ -93,6 +93,7 @@ brew "git-friendly"             # Simplify Git commands
 brew "lazydocker"               # Full Docker management CLI
 brew "oven-sh/bun/bun"          # JavaScript runtime
 brew "xcode-build-server"       # SourceKit LSP for iOS
+brew "ghostty"                  # Replace iTerm 
 
 # Apps
 cask "cheatsheet"

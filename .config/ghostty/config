@@ -1,0 +1,15 @@
+### Themes
+theme = catppuccin-mocha
+font-family = FiraCode Nerd Font
+font-size = 13
+
+window-save-state = always
+copy-on-select = true
+
+## Clipboard
+clipboard-read = "allow"
+clipboard-paste-protection = false
+
+## MacOS
+macos-option-as-alt = true
+macos-titlebar-style = tabs
