@@ -72,9 +72,6 @@ eval "$(rbenv init -)"
 [ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
 
 
-# Python
-alias python="/opt/homebrew/bin/python3"
-alias pip="/opt/homebrew/bin/pip3"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -103,6 +100,8 @@ alias getpass='openssl rand -base64 20' # Generate password
 alias sha='shasum -a 256' # Check shasum
 alias ping='ping -c 5' # Limit ping to 5'
 alias www='python -m http.server' # Run local web server
+alias python="/opt/homebrew/bin/python3"
+alias pip="/opt/homebrew/bin/pip3"
 
 ###################
 #iOS  Workflow
@@ -189,6 +188,7 @@ alias gut="git"
 alias gti="git"
 alias mdkir="mkdir"
 alias brwe="brew"
+alias magit="gitu"
 
 # Shortcuts
 alias ls="ls --color"

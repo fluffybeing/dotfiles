@@ -17,3 +17,14 @@ bash -c "$(curl -sL https://raw.githubusercontent.com/rakontuh/dotfiles/master/i
    - 1.0.0.1
    - 2606:4700:4700::1111
    - 2606:4700:4700::1001
+
+
+### Cursor vim key repeat
+If the key repeat is not working run this following command.
+
+```
+defaults write "$(osascript -e 'id of app "Cursor"')" ApplePressAndHoldEnabled -bool false
+or 
+defaults write -app Cursor ApplePressAndHoldEnabled -bool false
+defaults delete -g ApplePressAndHoldEnabled
+```

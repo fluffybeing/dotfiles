@@ -51,7 +51,10 @@
       "before": ["leader", "l"],
       "commands": ["workbench.action.focusRightGroup"]
     },
-    
+    {
+      "before": ["leader", "t"],
+      "commands": ["workbench.action.terminal.toggleTerminal"]
+    },
     {
       "before": ["<Esc>", "<Esc"],
       "commands": [":nohl"]

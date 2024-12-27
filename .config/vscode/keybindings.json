@@ -51,7 +51,7 @@
   },
   // Terminal
   {
-    "key": "cmd+shift+t",
+    "key": "ctrl+shift+t",
     "command": "workbench.action.terminal.new",
     "when": "terminalFocus"
   },
