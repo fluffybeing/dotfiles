@@ -94,6 +94,7 @@ brew "lazydocker"               # Full Docker management CLI
 brew "oven-sh/bun/bun"          # JavaScript runtime
 brew "xcode-build-server"       # SourceKit LSP for iOS
 brew "ghostty"                  # Replace iTerm 
+brew "displayplacer"            # Display arranger
 
 # Apps
 cask "cheatsheet"
@@ -127,7 +128,7 @@ cask "jordanbaird-ice"       # Menu bar organiser
 cask "dropzone"              # Temporary file container
 cask "cleanclip"             # clipboard and snippet manager
 cask "pronotes"              # Supercharge apple notes
-
+cask "reminders-menubar"     # reminder on menubar
 
 # Apps which is not available via brew
 
