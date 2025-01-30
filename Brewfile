@@ -87,6 +87,7 @@ brew "zsh-autosuggestions"      # Autosuggestions for Zsh
 brew "zsh-syntax-highlighting"  # Syntax highlighting for Zsh
 brew "eza"                      # modern ls
 brew "hyperkey"                 # Convert one key to hyper
+brew "xcbeautify"               # Beautify xcode print
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands
@@ -129,6 +130,7 @@ cask "dropzone"              # Temporary file container
 cask "cleanclip"             # clipboard and snippet manager
 cask "pronotes"              # Supercharge apple notes
 cask "reminders-menubar"     # reminder on menubar
+cask "moom"                  # Window restoration (most annoying thing on MAC)
 
 # Apps which is not available via brew
 
