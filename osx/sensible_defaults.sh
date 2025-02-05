@@ -356,6 +356,9 @@ find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 # Add iOS Simulator to Launchpad
 ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Applications/iOS\ Simulator.app
 
+# Xcode format on save
+defaults write com.apple.dt.Xcode FormatOnSave -bool true
+
 # Disable Xcode Predictive LLM Model
 defaults write com.apple.dt.Xcode IDEModelAccessHasUserConsentForOnDeviceInteractions -bool FALSE
 

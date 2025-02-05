@@ -96,6 +96,7 @@ brew "oven-sh/bun/bun"          # JavaScript runtime
 brew "xcode-build-server"       # SourceKit LSP for iOS
 brew "ghostty"                  # Replace iTerm 
 brew "displayplacer"            # Display arranger
+brew "onyx"                     # File management and more
 
 # Apps
 cask "cheatsheet"
