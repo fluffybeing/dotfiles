@@ -86,7 +86,6 @@ brew "webp"                     # Image format optimization
 brew "zsh-autosuggestions"      # Autosuggestions for Zsh
 brew "zsh-syntax-highlighting"  # Syntax highlighting for Zsh
 brew "eza"                      # modern ls
-brew "hyperkey"                 # Convert one key to hyper
 brew "xcbeautify"               # Beautify xcode print
 
 # Additional Tools
