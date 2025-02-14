@@ -38,10 +38,6 @@ export EDITOR="nvim"
 export PATH="$PATH:$(go env GOPATH)/bin"
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
-# Flutter
-export PATH="$PATH:/usr/local/opt/flutter/bin"
-export PATH="$PATH:/usr/local/opt/flutter/bin/cache/dart-sdk/bin"
-
 # Android
 export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
@@ -71,18 +67,10 @@ eval "$(rbenv init -)"
 # bun completions
 [ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
 
-
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-
-# OpenSSL
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
 
 ###################
 # Library path
@@ -107,7 +95,7 @@ alias pip="/opt/homebrew/bin/pip3"
 #iOS  Workflow
 ####################
 alias cs="xcrun simctl erase all"
-alias sgp="swift package generate-xcodeproj"
+alias spmg="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
 
 ################
@@ -210,21 +198,17 @@ alias nvm="fnm"
 
 # Git client
 alias t="github ."
-
 # Lazydocker
 alias ld="lazydocker"
-
 # File Manager
 alias ff="open -a 'Marta' ."
 
 #
 # Built-ins upgrades
 #
-
 command_exists() {
   command -v "$@" &> /dev/null
 }
-
 # Bat: https://github.com/sharkdp/bat
 command_exists bat && alias cat="bat --style=plain"
 
@@ -258,16 +242,12 @@ command_exists eza && alias ls="eza -a --icons=auto --color=always --group-direc
 command_exists eza && alias ll="ls --long --no-user --header -g --git"
 # Display clickable directory tree
 command_exists eza && alias llt="ls --tree --git-ignore"
-
 # Safer reversible file removal: https://github.com/sindresorhus/trash-cli
 command_exists trash && alias rm="trash"
-
 # Htop: https://htop.dev/
 command_exists htop && alias top="htop"
-
 # Tlrc: https://github.com/tldr-pages/tlrc
 command_exists tldr && alias man="tldr --config ~/.tlrc.toml"
-
 # Prettyping: https://denilson.sa.nom.br/prettyping/
 command_exists prettyping && alias ping="prettyping --nolegend"
 
@@ -278,7 +258,6 @@ alias get="curl -O -L"
 #
 # macOS
 #
-
 # System
 alias shut="sudo shutdown -h now"
 alias restart="sudo shutdown -r now"
@@ -290,10 +269,8 @@ alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && kil
 
 # Starship powerline
 eval "$(starship init zsh)"
-
 # Mise
 eval "$(mise activate zsh)"
-
 # Convert cd to cd >> ls
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls }
