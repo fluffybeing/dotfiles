@@ -113,13 +113,6 @@ xbuild() {
   build
 }
 
-###################
-# Git
-###################
-alias gpr='git pull origin development --rebase'
-alias gpp='"$(gpr)" && git push origin "$(git-branch-current 2> /dev/null)"'
-
-
 ################
 # Neovim
 ################
