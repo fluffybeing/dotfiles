@@ -34,7 +34,7 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export EDITOR="nvim"
-export PATH="/opt/homebrew/opt/python3/libexec/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 
 # Go
 export PATH="$PATH:$(go env GOPATH)/bin"
