@@ -23,6 +23,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
@@ -34,7 +35,6 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export EDITOR="nvim"
-export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 
 # Go
 export PATH="$PATH:$(go env GOPATH)/bin"
