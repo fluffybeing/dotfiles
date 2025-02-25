@@ -53,6 +53,7 @@ zstyle ':prezto:load' pmodule \
   'homebrew' \
   'fasd' \
   'helper' \
+  'python' \
 
 #
 # Autosuggestions
