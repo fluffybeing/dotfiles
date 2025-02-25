@@ -144,3 +144,11 @@
   autoStash = true
   updateRefs = true
 
+[apply]
+  whitespace = fix
+
+[log]
+  date = iso
+
+[init] 
+  defaultBranch = main
