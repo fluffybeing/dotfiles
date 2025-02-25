@@ -22,6 +22,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Path
+# Put Xcode path first
+export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
@@ -59,7 +61,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-
 # Ruby
 eval "$(rbenv init -)"
 
@@ -73,11 +74,6 @@ eval "$(rbenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-
-###################
-# Library path
-####################
-export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 
 ################################
 # Alias
