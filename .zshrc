@@ -269,8 +269,9 @@ autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls }
 
 # Virtualenvwrapper
-source virtualenvwrapper.sh
 export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=$(which python)
+source $(which virtualenvwrapper.sh)
 
 ####
 [ -f ~/.ai ] && source ~/.ai
