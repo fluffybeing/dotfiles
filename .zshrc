@@ -89,7 +89,7 @@ alias sha='shasum -a 256' # Check shasum
 alias ping='ping -c 5' # Limit ping to 5'
 alias www='python -m http.server' # Run local web server
 alias python="/opt/homebrew/bin/python3"
-alias pip="/opt/homebrew/bin/pip3"
+alias pip="pip3"
 
 ###################
 #iOS  Workflow
