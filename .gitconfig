@@ -25,7 +25,7 @@
 # Git mergetool
 [merge]
   tool = vimdiff
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [mergetool]
   prompt = false
@@ -55,11 +55,11 @@
   hyperlinks = true
   hyperlinks-file-link-format = "file-line://{path}:{line}"
 
-[merge]
-  conflictstyle = zdiff3
-
 [diff]
-  colorMoved = default
+  colorMoved = plain
+  algorithm = histogram
+  renames = true 
+  mnemonicPrefix = true
   cmd = code --wait --diff $LOCAL $REMOTE
   ignoreSubmodules = dirty
   tool = vimdiff
@@ -80,7 +80,6 @@
   # Correct typos
   autocorrect = 1
 
-
 [url "git@gist.github.com:"]
   insteadOf = "gst:"
   pushInsteadOf = "gist:"
@@ -95,7 +94,7 @@
   # Make `git push` automatically push relevant
   # annotated tags when pushing branches out
   followTags = true
-  default = current
+  default = simple
   autoSetupRemote = true
 
 # Use separate file for username / github token / etc
@@ -104,6 +103,8 @@
 
 [fetch]
   prune = true
+  pruneTags = true
+  all = true
 
 [user]
 	email = rahul.rrixe@gmail.com
@@ -115,8 +116,31 @@
 [branch]
   autosetupmerge = always
   autosetuprebase = always
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[column]
+  ui = auto 
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[commit]
+  verbose = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
