@@ -268,6 +268,10 @@ eval "$(mise activate zsh)"
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls }
 
+# Virtualenvwrapper
+source virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+
 ####
 [ -f ~/.ai ] && source ~/.ai
 
