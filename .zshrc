@@ -24,18 +24,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Path
 # Put Xcode path first
 export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/bin:$PATH"
+
+# Ensure GCC and other tools are available
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export LD=/usr/bin/ld
+export CPP=/usr/bin/cpp
+
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
 export SDKROOT="`xcrun --show-sdk-path`"
-export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
-export PATH=/usr/local/bin:$PATH
+
 export EDITOR="nvim"
 
 # Go
