@@ -54,13 +54,16 @@ zstyle ':prezto:load' pmodule \
   'fasd' \
   'helper' \
   'python' \
+  'autosuggestions' \
+  'tmux' \
+  'ssh' \
 
 #
 # Autosuggestions
 #
 
 # Set the query found color.
-# zstyle ':prezto:module:autosuggestions:color' found 'yes'
+zstyle ':prezto:module:autosuggestions:color' found 'yes'
 
 #
 # Completions

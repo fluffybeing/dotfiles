@@ -26,40 +26,41 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/bin:$PATH"
-
-# Ensure GCC and other tools are available
-export CC=/usr/bin/gcc
-export CXX=/usr/bin/g++
-export LD=/usr/bin/ld
-export CPP=/usr/bin/cpp
-
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+export PATH="/opt/homebrew/opt/gradle@7/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Compiler and Tools
+export CC="/opt/homebrew/opt/llvm/bin/clang"
+export CXX="/opt/homebrew/opt/llvm/bin/clang++"
 export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
-export SDKROOT="`xcrun --show-sdk-path`"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
-export EDITOR="nvim"
-
-# Go
-export PATH="$PATH:$(go env GOPATH)/bin"
-export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
+# Java
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 
 # Android
 export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
-# JAVA
-# export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-# export JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-export PATH=$JAVA_HOME/bin:$PATH
-export PATH="/opt/homebrew/opt/gradle@7/bin:$PATH"
+# Ruby
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-# Flags for C++
+# Editor
+export EDITOR="nvim"
 export ITERM_24BIT=1
+
+# Dynamic Library Path
+export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_FALLBACK_LIBRARY_PATH
+
+# SDK
+export SDKROOT="`xcrun --show-sdk-path`"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -76,88 +77,51 @@ eval "$(rbenv init -)"
 [ -s "/Users/rranjan/.bun/_bun" ] && source "/Users/rranjan/.bun/_bun"
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 ################################
 # Alias
-# ##############################
-# ##############################
-alias untar='tar -zxvf' # Unpack .tar file
-alias hs='history | grep'
-alias wget='wget -c' # Download and resume
-alias getpass='openssl rand -base64 20' # Generate password
-alias sha='shasum -a 256' # Check shasum
-alias ping='ping -c 5' # Limit ping to 5'
-alias www='python -m http.server' # Run local web server
-alias python="/opt/homebrew/bin/python3"
-alias pip="pip3"
+################################
 
-###################
-#iOS  Workflow
-####################
-alias cs="xcrun simctl erase all"
-alias spmg="swift package generate-xcodeproj"
-alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
-
-################
-# Work Related
-################
-xbuild() {
-  XCODE_SCHEME="FLIR One Preview"
-  XCODE_WORKSPACE="FLIR One.xcworkspace"
-  /opt/homebrew/bin/pod install
-  xcrun xcodebuild \
-  -scheme $XCODE_SCHEME \
-  -workspace $XCODE_WORKSPACE \
-  -configuration Debug \
-  -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
-  build
-}
-
-################
-# Neovim
-################
-alias vi="nvim"
-alias vim="nvim"
-alias view="nvim -R"
-alias vimdiff="nvim -d"
-
-# Limit CPU usage of a process
-limitCPU() {
-  cpulimit -l 20 -p $(pgrep -f $1)
-}
-
-# Make a new directory and cd into it
-take() {
-  \mkdir -p "$1" && cd "$1"
-}
-
-# Emacs
-alias org="emacs $HOME/Dropbox/org/"
-
-# Enable aliases to be sudo’ed
-alias sudo="sudo "
-
-# Easier navigation
-alias .='pwd'
+# General Aliases
 alias ..='cd ..'
 alias 2..='cd ../..'
 alias 3..='cd ../../..'
 alias 4..='cd ../../../..'
 alias 5..='cd ../../../../..'
+alias .='pwd'
 alias cd..='cd ..'
 alias -- -="cd -" # previous working directory
+alias ls="ls --color"
+alias l="ls -l"
+alias -- +x="chmod +x"
+alias o="open"
+alias oo="open ."
+alias e="$EDITOR"
+alias c="code ."
+alias cc="code ."
+alias where="which"
+alias python="python3"
+alias pip="pip3"
 
-# Hot-access directories
-alias library="cd $HOME/Library"
+# iOS Workflow
+alias cs="xcrun simctl erase all"
+alias spmg="swift package generate-xcodeproj"
+alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
+
+# Work Related
 alias projects="cd $HOME/Code"
+alias library="cd $HOME/Library"
 
-# zshrc config
-alias zshrc="$EDITOR ~/.zshrc"
-alias reload="source ~/.zshrc && echo 'Shell config reloaded from ~/.zshrc'"
-alias s="reload"
+# Neovim
+alias vi="nvim"
+alias vim="nvim"
+alias view="nvim -R"
+alias vimdiff="nvim -d"
+
+# Emacs
+alias org="emacs $HOME/Dropbox/org/"
 
 # Sane defaults for built-ins (verbose and interactive)
 alias cp='cp -iv'
@@ -175,68 +139,28 @@ alias brwe="brew"
 alias magit="gitu"
 
 # Shortcuts
-alias ls="ls --color"
-alias l="ls -l"
-alias -- +x="chmod +x"
-alias o="open"
-alias oo="open ."
 alias g="git"
 alias d="docker"
 alias dc="docker compose"
-alias e="$EDITOR"
-alias c="code ."
-alias cc="code ."
-alias where="which"
 alias pn="pnpm"
 alias nvm="fnm"
 
 # Apps
-
-# Git client
 alias t="github ."
-# Lazydocker
 alias ld="lazydocker"
-# File Manager
 alias ff="open -a 'Marta' ."
 
-#
 # Built-ins upgrades
-#
 command_exists() {
   command -v "$@" &> /dev/null
 }
 # Bat: https://github.com/sharkdp/bat
 command_exists bat && alias cat="bat --style=plain"
-
 # Fd: https://github.com/sharkdp/fd
 command_exists fd && alias find="fd"
-
 # Eza: https://eza.rocks/
-# ---------------------
-# eza universal Dracula
-# ---------------------
-export EZA_COLORS="\
-uu=36:\
-uR=31:\
-un=35:\
-gu=37:\
-da=2;34:\
-ur=34:\
-uw=95:\
-ux=36:\
-ue=36:\
-gr=34:\
-gw=35:\
-gx=36:\
-tr=34:\
-tw=35:\
-tx=36:\
-xx=95:"
-# Display all clickable entries (incl. hidden files) as a grid with icons
 command_exists eza && alias ls="eza -a --icons=auto --color=always --group-directories-first"
-# Display a detailed list of clickable entries (incl. hidden files) with a Git status
 command_exists eza && alias ll="ls --long --no-user --header -g --git"
-# Display clickable directory tree
 command_exists eza && alias llt="ls --tree --git-ignore"
 # Safer reversible file removal: https://github.com/sindresorhus/trash-cli
 command_exists trash && alias rm="trash"
@@ -247,13 +171,6 @@ command_exists tldr && alias man="tldr --config ~/.tlrc.toml"
 # Prettyping: https://denilson.sa.nom.br/prettyping/
 command_exists prettyping && alias ping="prettyping --nolegend"
 
-# Download file and save it with the name of the remote file in the current working directory
-# Usage: get <URL>
-alias get="curl -O -L"
-
-#
-# macOS
-#
 # System
 alias shut="sudo shutdown -h now"
 alias restart="sudo shutdown -r now"
@@ -262,6 +179,10 @@ alias restart="sudo shutdown -r now"
 alias showdesk="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
+# zshrc config
+alias zshrc="$EDITOR ~/.zshrc"
+alias reload="source ~/.zshrc && echo 'Shell config reloaded from ~/.zshrc'"
+alias s="reload"
 
 # Starship powerline
 eval "$(starship init zsh)"
@@ -271,11 +192,8 @@ eval "$(mise activate zsh)"
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls }
 
-# Virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=$(which python)
-source $(which virtualenvwrapper.sh)
-
 ####
 [ -f ~/.ai ] && source ~/.ai
 
+# Set pip to use the user site-packages directory by default
+export PIP_USER=true
