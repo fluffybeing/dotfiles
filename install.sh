@@ -172,7 +172,6 @@ if [[ $(uname) == 'Darwin' ]]; then
     ##############################################
     # Symlinks                                  #
     ##############################################
-    symlink_dotfiles
     sh cd $dotfile_dir
     sh stow .
     
