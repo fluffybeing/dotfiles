@@ -163,7 +163,7 @@ command_exists eza && alias ls="eza -a --icons=auto --color=always --group-direc
 command_exists eza && alias ll="ls --long --no-user --header -g --git"
 command_exists eza && alias llt="ls --tree --git-ignore"
 # Safer reversible file removal: https://github.com/sindresorhus/trash-cli
-command_exists trash && alias rm="trash"
+command_exists trash && alias dd="trash"
 # Htop: https://htop.dev/
 command_exists htop && alias top="htop"
 # Tlrc: https://github.com/tldr-pages/tlrc
