@@ -178,7 +178,7 @@ zstyle ':prezto:module:python' conda-init 'on'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'flir'
 
 #
 # Syntax Highlighting
@@ -201,8 +201,8 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 #   'function' 'bg=blue'
 
 # Set syntax pattern styles.
-zstyle ':prezto:module:syntax-highlighting' pattern \
-   'rm*-rf*' 'fg=white,bold,bg=red'
+# zstyle ':prezto:module:syntax-highlighting' pattern \
+#    'rm*-rf*' 'fg=white,bold,bg=red'
 
 #
 # Terminal
