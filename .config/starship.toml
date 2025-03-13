@@ -120,7 +120,7 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 [python]
 symbol = ""
 style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+format = '[[ (\($virtualenv\)g$symbol( $version) ](fg:base bg:teal)]($style)'
 
 [docker_context]
 symbol = ""
@@ -134,5 +134,4 @@ disabled = false
 disabled = false
 success_symbol = "[[󰄛](green) ❯](peach)"
 error_symbol = "[[󰄛](red) ❯](peach)"
-vimcmd_symbol = "[󰄛 ❮](subtext1)" # For use with zsh-vi-mode
-
+vimcmd_symbol = "[󰄛 ❮](subtext1)"        # For use with zsh-vi-mode
