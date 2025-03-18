@@ -120,7 +120,7 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 [python]
 symbol = ""
 style = "bg:teal"
-format = '[[ (\($virtualenv\)g$symbol( $version) ](fg:base bg:teal)]($style)'
+format = '[(\($virtualenv\)) $symbol( $version) ](fg:base bg:teal)'
 
 [docker_context]
 symbol = ""
