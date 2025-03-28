@@ -1,13 +1,7 @@
 tap "git-friendly/git-friendly"
-tap "homebrew/bundle"
-tap "homebrew/services"
-tap "homebrew/cask-fonts"
 tap "jesseduffield/lazydocker"
-tap "jesseduffield/lazygit"
 tap "oven-sh/bun"
-tap "keith/formulae"
 tap "facebook/fb"
-
 
 # Fonts
 cask "font-sf-mono-for-powerline"
@@ -59,16 +53,13 @@ brew "trash"                    # Trash CLI (better `rm`)
 brew "tree"                     # Directory listing in a tree structure
 brew "wget"                     # Download files from the web
 brew "yarn"                     # JavaScript package manager
-brew "youtube-dl"               # Video downloader from YouTube and others
 brew "midnight-commander"       # Terminal file manager
-brew "inav"                     # Configurator for flight controllers (Rosetta thingy)
 brew "less"                     # File pager utility
 brew "stow"                     # Symlinking utility
 brew "helix"                    # Modal editor
 brew "gitu"                     # Magit like git client
 brew "virtualenv"               # Python virtual environment
 brew "virtualenvwrapper"        # Python virtual environment wrapper
-brew "miniconda"                # Python distribution
 brew "conda-zsh-completion"     # Zsh completion for conda
 
 # CLI Tools
@@ -94,10 +85,7 @@ brew "git-friendly"             # Simplify Git commands
 brew "lazydocker"               # Full Docker management CLI
 brew "oven-sh/bun/bun"          # JavaScript runtime
 brew "xcode-build-server"       # SourceKit LSP for iOS
-brew "ghostty"                  # Replace iTerm 
 brew "displayplacer"            # Display arranger
-brew "onyx"                     # System maintenance tool
-brew "marta"                    # File manager
 
 # Apps
 cask "cheatsheet"
@@ -108,8 +96,6 @@ cask "hammerspoon"
 cask "proxyman"
 cask "iterm2"
 cask "raycast"
-cask "steam"
-cask "trader-workstation"
 cask "transmission"
 cask "cursor"               # Text editor
 cask "iina"                 # Video media player
@@ -131,6 +117,10 @@ cask "cleanclip"             # clipboard and snippet manager
 cask "pronotes"              # Supercharge apple notes
 cask "reminders-menubar"     # reminder on menubar
 cask "appcleaner"            # App uninstaller
+cask "marta"                 # File manager
+cask "onyx"                  # System maintenance tool
+cask "ghostty"               # Replace iTerm 
+cask "miniconda"             # Python distribution
 
 # Apps which is not available via brew
 
