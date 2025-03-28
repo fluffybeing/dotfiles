@@ -22,8 +22,6 @@ cask "font-fira-sans-condensed"
 cask "font-fira-sans"
 
 # Utilities
-brew "apr-util"                 # Libraries for Apache Portable Runtime
-brew "aspell"                   # Spell checker for text processing
 brew "fzf"                      # Command-line fuzzy finder
 brew "lf"                       # Terminal file manager
 brew "automake"                 # Tool for generating Makefile.in
@@ -53,7 +51,6 @@ brew "neovim"                   # Modern Vim-based text editor
 brew "node"                     # JavaScript runtime
 brew "nvm"                      # Node.js version manager
 brew "ruby-build"               # Install Ruby versions
-brew "rbenv"                    # Manage Ruby environments
 brew "ripgrep"                  # Fast search in files (better `grep`)
 brew "ruby"                     # Ruby programming language
 brew "the_silver_searcher"      # Code searching tool (better `grep`)
@@ -131,7 +128,7 @@ cask "dropzone"              # Temporary file container
 cask "cleanclip"             # clipboard and snippet manager
 cask "pronotes"              # Supercharge apple notes
 cask "reminders-menubar"     # reminder on menubar
-cask "moom"                  # Window restoration (most annoying thing on MAC)
+cask "appcleaner"            # App uninstaller
 
 # Apps which is not available via brew
 
