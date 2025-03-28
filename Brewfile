@@ -68,6 +68,8 @@ brew "helix"                    # Modal editor
 brew "gitu"                     # Magit like git client
 brew "virtualenv"               # Python virtual environment
 brew "virtualenvwrapper"        # Python virtual environment wrapper
+brew "miniconda"                # Python distribution
+brew "conda-zsh-completion"     # Zsh completion for conda
 
 # CLI Tools
 brew "bat"                      # Enhanced file viewer (better `cat`)

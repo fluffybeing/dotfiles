@@ -28,3 +28,10 @@ or
 defaults write -app Cursor ApplePressAndHoldEnabled -bool false
 defaults delete -g ApplePressAndHoldEnabled
 ```
+
+### Conda showing env info twice
+Conda shows the activated env twice, to avoid that run the following command
+
+```
+conda config --set changeps1 False
+```

@@ -4,6 +4,7 @@ format = """
 [](surface0)\
 $os\
 $directory\
+$conda\
 $git_branch\
 $git_status\
 [](fg:green bg:green)\
@@ -121,6 +122,11 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 symbol = ""
 style = "bg:teal"
 format = '[(\($virtualenv\)) $symbol( $version) ](fg:base bg:teal)'
+
+[conda]
+symbol = "  "
+style = "bg:teal"
+format = '[[$symbol(\($environment\)) ](fg:base bg:green)]($style)'
 
 [docker_context]
 symbol = ""
