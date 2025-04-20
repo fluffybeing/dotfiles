@@ -1,0 +1,36 @@
+environment {
+    terminal "Ghostty"
+    textEditor "Cursor"
+}
+
+
+behavior {
+    theme "Kon" 
+    quickSelect {
+        activateOnAnyCharacter false
+    }
+}
+
+keyBindings {
+    "H" "core.move.left"
+    "L" "core.move.right"
+    "K" "core.move.up"
+    "J" "core.move.down"
+    "Cmd+R" "core.rename"
+    "Shift+Cmd+N" "core.new.folder"
+}
+
+setup {
+    pinnedPlaces [
+        "Users/rranjan"
+        "system.applications"
+        "Users/rranjan/Code"
+        "/Users/rranjan/Dropbox"
+    ]
+}
+
+etty {
+  fonts {
+      normal [ "FiraCode Nerd Font" 11 ]
+  }
+}
