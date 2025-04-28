@@ -2,8 +2,8 @@
 # global tool versions go here
 # you can set these with `mise use -g`
 node = '23.3.0'
-python = "3.13.0"
-ruby = "2.6.10"
+python = "3.12.9"
+ruby = "3.4.2"
 "java" = { version = "openjdk-17", release_type = "ga" }
 
 [env]

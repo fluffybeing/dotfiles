@@ -185,13 +185,18 @@ alias s="reload"
 # Starship powerline
 eval "$(starship init zsh)"
 # Mise
-eval "$(mise activate zsh)"
+# eval "$(mise activate zsh)"
 # Convert cd to cd >> ls
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls }
 
-####
+# AI chat key
 [ -f ~/.ai ] && source ~/.ai
+
+# Tuist
+fpath=(~/.zsh/completion $fpath)
+autoload -U compinit
+compinit
 
 # Set pip to use the user site-packages directory by default
 export PIP_USER=true
