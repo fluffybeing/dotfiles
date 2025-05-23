@@ -94,7 +94,6 @@ cask "eul"                  # System monitor
 cask "flipper"              # App debugger
 cask "hammerspoon"
 cask "proxyman"
-cask "iterm2"
 cask "raycast"
 cask "transmission"
 cask "cursor"               # Text editor
@@ -113,14 +112,13 @@ cask "syntax-highlight", args: { no_quarantine: true } # Preview many different 
 cask "optimage"              # Image optimization
 cask "jordanbaird-ice"       # Menu bar organiser
 cask "dropzone"              # Temporary file container
-cask "cleanclip"             # clipboard and snippet manager
 cask "pronotes"              # Supercharge apple notes
 cask "reminders-menubar"     # reminder on menubar
-cask "appcleaner"            # App uninstaller
+cask "pearcleaner"           # App uninstaller
 cask "marta"                 # File manager
 cask "onyx"                  # System maintenance tool
 cask "ghostty"               # Replace iTerm 
 cask "miniconda"             # Python distribution
-
+cask "keyclu"                # Shortcut suggestions
 # Apps which is not available via brew
 
