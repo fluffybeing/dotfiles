@@ -35,3 +35,15 @@ Conda shows the activated env twice, to avoid that run the following command
 ```
 conda config --set changeps1 False
 ```
+
+### Xcode custom key binding
+Check if stow created the symlink to this file unless
+
+```
+~/Library/Developer/Xcode/UserData/KeyBindings/Rahul\'s.idekeybindings
+```
+Move it yourself
+
+```
+ln -s ~/dotfiles/Library/Developer/Xcode/UserData/KeyBindings/Rahul\'s.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Rahul\'s.idekeybindings 
+```
