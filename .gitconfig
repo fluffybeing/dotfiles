@@ -63,6 +63,7 @@
   cmd = code --wait --diff $LOCAL $REMOTE
   ignoreSubmodules = dirty
   tool = vimdiff
+  submodule = log
 
 [diff "bin"]
   # Use `hexdump` to diff binary files
@@ -146,8 +147,16 @@
 
 [init] 
   defaultBranch = main
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[alias]
+	spull = !git pull && git submodule sync --recursive && git submodule update --init --recursive
+  spush = git push --recurse-submodules=on-demand
+
+[status]
+	submoduleSummary = true
