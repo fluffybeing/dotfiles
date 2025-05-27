@@ -79,6 +79,7 @@ brew "zsh-autosuggestions"      # Autosuggestions for Zsh
 brew "zsh-syntax-highlighting"  # Syntax highlighting for Zsh
 brew "eza"                      # modern ls
 brew "xcbeautify"               # Beautify xcode print
+brew "chisel"                   # LLDB script for iOS debugging
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands
