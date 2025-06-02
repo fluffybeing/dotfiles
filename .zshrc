@@ -184,6 +184,7 @@ alias s="reload"
 
 # Starship powerline
 eval "$(starship init zsh)"
+
 # Mise
 # eval "$(mise activate zsh)"
 # Convert cd to cd >> ls
@@ -216,3 +217,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Zoxide
+eval "$(zoxide init zsh)"
+command_exists z && alias cd="z"
