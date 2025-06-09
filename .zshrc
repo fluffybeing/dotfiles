@@ -22,6 +22,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Path
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+# Android
+export ANDROID_HOME="~/Library/Android/sdk"
+
 # Put Xcode path first
 export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
@@ -39,11 +44,6 @@ export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
-# Java
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
-
-# Android
-export ANDROID_HOME="/Users/rranjan/Library/Android/sdk"
 
 # Ruby
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
