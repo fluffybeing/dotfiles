@@ -78,6 +78,9 @@ fi
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
+# Zoxide
+eval "$(zoxide init zsh)"
+
 ################################
 # Alias
 ################################
@@ -168,6 +171,8 @@ command_exists htop && alias top="htop"
 command_exists tldr && alias man="tldr --config ~/.tlrc.toml"
 # Prettyping: https://denilson.sa.nom.br/prettyping/
 command_exists prettyping && alias ping="prettyping --nolegend"
+# Better cd: https://github.com/ajeetdsouza/zoxide
+command_exists z && alias cd="z"
 
 # System
 alias shut="sudo shutdown -h now"
@@ -181,6 +186,7 @@ alias hidedesk="defaults write com.apple.finder CreateDesktop -bool false && kil
 alias zshrc="$EDITOR ~/.zshrc"
 alias reload="source ~/.zshrc && echo 'Shell config reloaded from ~/.zshrc'"
 alias s="reload"
+alias myip="curl ifconfig.me"
 
 # Starship powerline
 eval "$(starship init zsh)"
@@ -216,7 +222,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Zoxide
-eval "$(zoxide init zsh)"
-command_exists z && alias cd="z"
