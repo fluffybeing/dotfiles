@@ -61,7 +61,6 @@
   renames = true 
   mnemonicPrefix = true
   cmd = code --wait --diff $LOCAL $REMOTE
-  ignoreSubmodules = dirty
   tool = vimdiff
   submodule = log
 
