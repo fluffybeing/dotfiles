@@ -224,5 +224,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 # Created by `pipx` on 2025-08-11 10:54:50
 export PATH="$PATH:/Users/rranjan/.local/bin"
-pipx ensurepath
-pipx install aicodeprep-gui
