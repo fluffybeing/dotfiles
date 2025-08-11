@@ -61,6 +61,7 @@ brew "gitu"                     # Magit like git client
 brew "virtualenv"               # Python virtual environment
 brew "virtualenvwrapper"        # Python virtual environment wrapper
 brew "conda-zsh-completion"     # Zsh completion for conda
+brew "pipx"                     # Install and run Python CLI applications in isolated environments
 
 # CLI Tools
 brew "bat"                      # Enhanced file viewer (better `cat`)
