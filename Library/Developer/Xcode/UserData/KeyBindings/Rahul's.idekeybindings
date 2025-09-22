@@ -272,26 +272,6 @@
 			</dict>
 			<dict>
 				<key>Action</key>
-				<string>runPageLayout:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDEKit.CmdDefinition.PageSetup</string>
-				<key>CommandID</key>
-				<string>Xcode.IDEKit.CmdDefinition.PageSetup</string>
-				<key>Group</key>
-				<string>File Menu</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEKit.MenuDefinition.Main</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Title</key>
-				<string>Page Setup…</string>
-			</dict>
-			<dict>
-				<key>Action</key>
 				<string>printDocument:</string>
 				<key>Alternate</key>
 				<string>NO</string>
@@ -376,7 +356,27 @@
 				<key>Parent Title</key>
 				<string>Editor</string>
 				<key>Title</key>
-				<string>Focus</string>
+				<string>Focus Editor Pane</string>
+			</dict>
+			<dict>
+				<key>Action</key>
+				<string>togglePinSelectedEditorTab:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandGroupID</key>
+				<string>Xcode.IDEKit.CmdDefinition.TogglePinSelectedEditorTab</string>
+				<key>CommandID</key>
+				<string>Xcode.IDEKit.CmdDefinition.TogglePinSelectedEditorTab</string>
+				<key>Group</key>
+				<string>View Menu</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEKit.MenuDefinition.Main</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Title</key>
+				<string>Pin Editor Tab</string>
 			</dict>
 			<dict>
 				<key>Action</key>
