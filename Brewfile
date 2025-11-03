@@ -124,5 +124,6 @@ cask "onyx"                  # System maintenance tool
 cask "ghostty"               # Replace iTerm 
 cask "miniconda"             # Python distribution
 cask "keyclu"                # Shortcut suggestions
+cask "affinity-photo"        # Image editing
 # Apps which is not available via brew
 
