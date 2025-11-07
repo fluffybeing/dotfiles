@@ -92,15 +92,13 @@ brew "xcode-build-server"       # SourceKit LSP for iOS
 brew "displayplacer"            # Display arranger
 
 # Apps
-cask "cheatsheet"
 cask "dropbox"
-cask "eul"                  # System monitor
 cask "flipper"              # App debugger
 cask "hammerspoon"
 cask "proxyman"
 cask "raycast"
 cask "transmission"
-cask "cursor"               # Text editor
+cask "visual-studio-code"   # Text editor
 cask "iina"                 # Video media player
 cask "shottr"               # Screenshot App
 cask "sf-symbols"
@@ -121,9 +119,12 @@ cask "reminders-menubar"     # reminder on menubar
 cask "pearcleaner"           # App uninstaller
 cask "marta"                 # File manager
 cask "onyx"                  # System maintenance tool
-cask "ghostty"               # Replace iTerm 
+cask "ghostty"               # Replace Terminal
 cask "miniconda"             # Python distribution
 cask "keyclu"                # Shortcut suggestions
-cask "affinity-photo"        # Image editing
+cask "affinity"              # Image editing
+cask "ibkr"                  # Trading platform
+
+
 # Apps which is not available via brew
 
