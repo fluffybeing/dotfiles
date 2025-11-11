@@ -83,6 +83,7 @@ brew "eza"                      # modern ls
 brew "xcbeautify"               # Beautify xcode print
 brew "chisel"                   # LLDB script for iOS debugging
 brew "zoxide"                   # Fast directory jumper
+brew "swiftly"                  # Swift version manager
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands

@@ -205,9 +205,6 @@ fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
-# Set pip to use the user site-packages directory by default
-export PIP_USER=true
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -224,3 +221,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 # Created by `pipx` on 2025-08-11 10:54:50
 export PATH="$PATH:/Users/rranjan/.local/bin"
+
+source "/Users/rranjan/.espressif/tools/activate_idf_v5.5.1.sh"
