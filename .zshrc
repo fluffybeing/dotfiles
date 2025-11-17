@@ -205,21 +205,22 @@ fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
 compinit
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+#         . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 # Created by `pipx` on 2025-08-11 10:54:50
 export PATH="$PATH:/Users/rranjan/.local/bin"
 
-source "/Users/rranjan/.espressif/tools/activate_idf_v5.5.1.sh"
+# Swift Toolchain
+# export TOOLCHAINS="org.swift.62202511031a"
