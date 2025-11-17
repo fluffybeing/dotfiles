@@ -156,6 +156,7 @@
 [alias]
 	spull = !git pull && git submodule sync --recursive && git submodule update --init --recursive
   spush = git push --recurse-submodules=on-demand
+  sinit = git submodule update --init --force --recursive --verbose
 
 [status]
 	submoduleSummary = true
