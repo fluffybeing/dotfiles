@@ -10,6 +10,7 @@
   "lldb.library": "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB",
   "lldb.launch.expressions": "native",
   "window.newWindowProfile": "Default",
+  "git.detectSubmodules": false,
 
   "vim.easymotion": true,
   "vim.incsearch": true,
