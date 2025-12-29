@@ -108,3 +108,5 @@ flycheck_*.el
 .zed/
 .nvim/
 
+# AI 
+mcp.json
