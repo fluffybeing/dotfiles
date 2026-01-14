@@ -84,6 +84,7 @@ brew "xcbeautify"               # Beautify xcode print
 brew "chisel"                   # LLDB script for iOS debugging
 brew "zoxide"                   # Fast directory jumper
 brew "swiftly"                  # Swift version manager
+brew "mole"                     # Deep clean and optimize your Mac
 
 # Additional Tools
 brew "git-friendly"             # Simplify Git commands
