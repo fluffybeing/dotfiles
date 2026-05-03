@@ -18,6 +18,14 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+.Trash/
+
+# macOS system directories
+.cache/
+.local/
+
+# node_modules pulled in via stow --adopt
+node_modules/
 
 # Compiled Python files
 *.pyc
@@ -28,6 +36,7 @@ DerivedData/
 
 # IntelliJ
 *.iml
+
 .idea/
 misc.xml
 deploymentTargetDropDown.xml
