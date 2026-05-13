@@ -129,4 +129,4 @@ cask "ibkr"                  # Trading platform
 
 
 # Apps which is not available via brew
-
+# drawers - Project-based workspace organizer (https://drawers.computer)
