@@ -110,6 +110,7 @@ alias pip="pip3"
 alias cs="xcrun simctl erase all"
 alias spmg="swift package generate-xcodeproj"
 alias ddd="rm -rf ~/Library/Developer/Xcode/DerivedData"
+alias gwipe='git reset --hard && git clean --force -df'
 
 # Work Related
 alias projects="cd $HOME/Code"
