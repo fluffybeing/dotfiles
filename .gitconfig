@@ -160,3 +160,9 @@
 
 [status]
 	submoduleSummary = true
+[safe]
+	bareRepository = all
+
+# Work identity for repos under ~/Code/Work (must stay after [user])
+[includeIf "gitdir/i:~/Code/Work/"]
+  path = ~/.gitconfig-work

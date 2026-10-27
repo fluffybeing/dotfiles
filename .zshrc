@@ -223,5 +223,8 @@ compinit
 # Created by `pipx` on 2025-08-11 10:54:50
 export PATH="$PATH:/Users/rranjan/.local/bin"
 
+# direnv: per-directory env (work gh account)
+eval "$(direnv hook zsh)"
+
 # Swift Toolchain
 # export TOOLCHAINS="org.swift.62202511031a"
